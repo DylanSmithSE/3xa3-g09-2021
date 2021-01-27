@@ -1,0 +1,6 @@
+*.o
+*.hi
+*.aux
+*.log
+*.DS_Store
+*.synctex.gz
