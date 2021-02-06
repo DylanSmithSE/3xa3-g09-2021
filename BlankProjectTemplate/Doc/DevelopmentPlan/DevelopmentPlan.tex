@@ -2,18 +2,18 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{hyperref}
 
-\title{SE 3XA3: Development Plan\\Title of Project}
+\title{SE 3XA3: Development Plan\\KingMe}
 
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
+\author{Team 9, KingMe
+		\\ Ardhendu Barge 400066133
+		\\ Dylan Smith 001314410
+		\\ Thaneegan Chandrasekara 400022748
 }
 
 \date{}
 
-\input{../Comments}
 
 \begin{document}
 
@@ -23,8 +23,8 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
+3rd Feb'21 & Ardhendu, Thaneegan, Dylan & Updated sections 1, 2 3, 4, 6, 7\\
+4th Feb'21 & Ardhendu, Thaneegan, Dylan & Added PoC Plan and updated Technology, Git workflow plan sections\\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -34,26 +34,42 @@ Date2 & Name(s) & Description of changes\\
 
 \maketitle
 
-Put your introductory blurb here.
+This document includes high-level information on the development plan for the checkers game being implemented. The group will refer to this document throughout the project life-cycle.
 
 \section{Team Meeting Plan}
+Group meetings will be held online on Microsoft Teams. Two meetings will be held per week, one at Thursday 1:30pm and the other at Sunday 11:00am, plus any additional time available during the lab time. Before each meeting we will determine an agenda. The meetings will be led by Thaneegan Chandrasekara who will be in charge of documenting the meeting minutes. Upon completion of the meeting we will discuss what needs to be completed before the next meeting, to make all group members aware of what work they are responsible for.
 
 \section{Team Communication Plan}
+Team will communicate via Facebook messenger and Microsoft Teams. Verbal discussions will primarily be held through Microsoft Teams, while written discussions will occur via Facebook messenger. In case a team member is unavailable on either applications, contact information has been exchanged for texting/calling. 
 
 \section{Team Member Roles}
+Ardhendu - Git Expert, Developer\\ 
+Dylan - Developer, Tester \\
+Thaneegan - Developer, Tester, UI Expert
 
 \section{Git Workflow Plan}
+We will be following a Git Branching model. Various features will have a branch of their own. Issues will be raised for bugs.
 
 \section{Proof of Concept Demonstration Plan}
+For this project, testing the mechanics of the pieces should not pose a challenge. Where we see the biggest challenges will be in modifying the existing modules to incorporate the larger playing surface and more pieces, as well as testing the effectiveness of the min/max algorithm. We will need to come up with a testing plan to ensure that algorithm is a worthy opponent. As shown in our Gantt chart, we will be dedicating nearly 2 weeks for testing purposes.
+
+As the project has no user-interface, we plan to add GUI using pygame. Some difficulties that the team may face is limitation of pygame making the game difficult to play.
+In addition, some parts of the game are bit incomplete, hence algorithm will need improvements. In order to complete the game mechanics, all the team members will need to grasp the rules and understand the game completely which can take a bit of time.
 
 \section{Technology}
+We will be using the python programming language to implement our project. \\
+For Graphical User interface, we will be using pygame framework to implement the game. \\
+For testing, unittest library will be used for testing the application.
+Each team member will have their own preference for IDE but primarily we will be using Atom or Visual Studio.
 
 \section{Coding Style}
+We will be using PEP 8 for coding style in python. \\ \url{https://www.python.org/dev/peps/pep-0008/}
 
 \section{Project Schedule}
 
-Provide a pointer to your Gantt Chart.
+Project schedule can be viewed in our project repository:\\
+\url{https://gitlab.cas.mcmaster.ca/bargea/3xa3-g09-2021/-/tree/master/BlankProjectTemplate/ProjectSchedule}
 
 \section{Project Review}
-
+N/A
 \end{document}
