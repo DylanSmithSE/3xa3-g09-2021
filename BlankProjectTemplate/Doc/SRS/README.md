@@ -2,4 +2,6 @@
 
 The folders and files for this folder are as follows:
 
-Describe ...
+SRS.bib - Outlines any references used in the SRS document.
+SRS.tex - SRS file written in latex.
+SRS.pdf - SRS file in PDF format.
