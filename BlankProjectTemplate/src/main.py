@@ -1,12 +1,13 @@
 # Created by Carson Wilcox for Professor Szpakowicz's AI class CSI 4106
-# These 
+# These
 # Main class runs the game
 from board import *
 from minmax import *
+from GUI import *
 
 # Setup variables
-width = 6
-height = 6
+width = 8
+height = 8
 firstPlayer = 0
 
 # Gets the move from the User
@@ -30,10 +31,9 @@ def getUserMove(b):
     return move
 
 ### MAIN PROGRAM ###
-
+gui = GUI()
 b = board(width, height, firstPlayer)
-b.printBoard()
-print("Welcome to checkers.")
+gui.display_board(b)
 
 # Main game loop
 while b.gameWon == -1:
@@ -44,7 +44,7 @@ while b.gameWon == -1:
     except Exception:
         print("Invalid move")
         continue
-        
+
     # Then it is the computers turn
     temp = minMax2(b)
     b = temp[0]
