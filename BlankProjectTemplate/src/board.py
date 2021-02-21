@@ -17,6 +17,7 @@ class board(object):
         self.whitelist = []
         # Set default piece positions
         for i in range(width):
+            print(i, (i, (i+1)%2), (i, height - (i%2) - 1) )
             self.blacklist.append((i, (i+1)%2))
             self.whitelist.append((i, height - (i%2) - 1))
         # boardState contains the current state of the board for printing/eval
@@ -25,6 +26,9 @@ class board(object):
         self.turn = firstPlayer
         self.maxDepth = 10
 
+        print('black list is ', self.blacklist)
+        print('white list is ', self.whitelist)
+    
     # Generate an iterator for all of the moves
     def iterWhiteMoves(self):
         """
@@ -33,7 +37,7 @@ class board(object):
         for piece in self.whitelist:
             for move in self.iterWhitePiece(piece):
                 yield move
-
+                
     def iterBlackMoves(self):
         """
             Main Generator for black moves
@@ -41,13 +45,13 @@ class board(object):
         for piece in self.blacklist:
             for move in self.iterBlackPiece(piece):
                 yield move
-
+                
     def iterWhitePiece(self, piece):
         """
             Generates possible moves for a white piece
-        """
+        """            
         return self.iterBoth(piece, ((-1,-1),(1,-1)))
-
+    
     def iterBlackPiece(self, piece):
         """
             Generates possible moves for a black piece
@@ -62,6 +66,7 @@ class board(object):
             # Regular Move
             targetx = piece[0] + move[0]
             targety = piece[1] + move[1]
+            #print(f'targetx is {targetx} and targety is {targety}' )
             # If the move is out of bounds don't move
             if targetx < 0 or targetx >= self.width or targety < 0 or targety >= self.height:
                 continue
@@ -78,7 +83,7 @@ class board(object):
                     continue
                 elif self.turn == self.WHITE and white:
                     continue
-                # Jump proceeds by adding the same movement in order to jump over the opposing
+                # Jump proceeds by adding the same movement in order to jump over the opposing 
                 # piece on the checkerboard
                 jumpx = target[0] + move[0]
                 jumpy = target[1] + move[1]
@@ -90,8 +95,8 @@ class board(object):
                 black = jump in self.blacklist
                 white = jump in self.whitelist
                 if not black and not white:
-                    yield (piece, jump, self.turn)
-
+                    yield (piece, jump, self.turn)                   
+    
     def updateBoard(self):
         """
             Updates the array containing the board to reflect the current state of the pieces on the
@@ -101,12 +106,12 @@ class board(object):
             for j in range(self.height):
                 self.boardState[i][j] = " "
         for piece in self.blacklist:
-            self.boardState[piece[1]][piece[0]] = u'◆'
+            self.boardState[piece[1]][piece[0]] = 'WHITE'
         for piece in self.whitelist:
-            self.boardState[piece[1]][piece[0]] = u'◇'
+            self.boardState[piece[1]][piece[0]] = 'BLACK'
 
     # Movement of pieces
-    def moveSilentBlack(self, moveFrom, moveTo, winLoss):
+    def moveSilentBlack(self, moveFrom, moveTo, winLoss): 
         """
             Move black piece without printing
         """
@@ -121,7 +126,7 @@ class board(object):
             self.gameWon = winLoss
         else:
             raise Exception
-
+        
     def moveSilentWhite(self, moveFrom, moveTo, winLoss):
         """
             Move white piece without printing
@@ -137,7 +142,7 @@ class board(object):
             self.gameWon = winLoss
         else:
             raise Exception
-
+    
     def moveBlack(self, moveFrom, moveTo, winLoss):
         """
             Move a black piece from one spot to another. \n winLoss is passed as either 0(white)
@@ -145,7 +150,7 @@ class board(object):
         """
         self.moveSilentBlack(moveFrom, MoveTo, winLoss)
         self.printBoard()
-
+        
     def moveWhite(self, moveFrom, moveTo, winLoss):
         """
             Move a white piece from one spot to another. \n winLoss is passed as either 0(white)
@@ -158,10 +163,8 @@ class board(object):
         """
             Prints the game board to stdout
         """
-        print "this is the unicode"
-        print unicode(self)
-        print self.boardState
-
+        print(str(self.boardState))
+        
     def __unicode__(self):
         """
             Contains the unicode and other BS for printing the board
@@ -170,27 +173,27 @@ class board(object):
         self.updateBoard()
         lines = []
         # This prints the numbers at the top of the Game Board
-        lines.append('    ' + '   '.join(map(str, range(self.width))))
+        lines.append('    ' + '   '.join(map(str, list(range(self.width)))))
         # Prints the top of the gameboard in unicode
-        lines.append(u'  ╭' + (u'───┬' * (self.width-1)) + u'───╮')
-
+        lines.append('  ╭' + ('───┬' * (self.width-1)) + '───╮')
+        
         # Print the boards rows
         for num, row in enumerate(self.boardState[:-1]):
-            lines.append(chr(num+65) + u' │ ' + u' │ '.join(row) + u' │')
-            lines.append(u'  ├' + (u'───┼' * (self.width-1)) + u'───┤')
-
+            lines.append(chr(num+65) + ' │ ' + ' │ '.join(row) + ' │')
+            lines.append('  ├' + ('───┼' * (self.width-1)) + '───┤')
+        
         #Print the last row
-        lines.append(chr(self.height+64) + u' │ ' + u' │ '.join(self.boardState[-1]) + u' │')
+        lines.append(chr(self.height+64) + ' │ ' + ' │ '.join(self.boardState[-1]) + ' │')
 
         # Prints the final line in the board
-        lines.append(u'  ╰' + (u'───┴' * (self.width-1)) + u'───╯')
+        lines.append('  ╰' + ('───┴' * (self.width-1)) + '───╯')
         return '\n'.join(lines)
 
 ############## DEBUGGING
 ##############
 #    def getWin(self):
 #        return self.g
-#
+#    
 #    def setWin(self, val):
 ##        if val == 0:
 ##            raise Exception("Game won by white")
