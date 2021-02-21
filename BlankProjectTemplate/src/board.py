@@ -104,7 +104,7 @@ class board(object):
         """
         for i in range(self.width):
             for j in range(self.height):
-                self.boardState[i][j] = " "
+                self.boardState[i][j] = "Null"
         for piece in self.blacklist:
             self.boardState[piece[1]][piece[0]] = 'WHITE'
         for piece in self.whitelist:
