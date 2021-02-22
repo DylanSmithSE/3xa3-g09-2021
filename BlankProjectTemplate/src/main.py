@@ -44,16 +44,29 @@ moves = []
 
 while b.gameWon == -1:
     clock.tick(60)
-
+    gui.display_board(b.boardState)
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             b.gameWon = 2
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            print(get_square_clicked(pygame.mouse.get_pos()))
-            # moves.append(get_square_clicked(pygame.mouse.get_pos()))
+            moves.append(get_square_clicked(pygame.mouse.get_pos()))
 
-    gui.display_board(b.boardState)
+    if len(moves) == 1 and not(moves[0] in b.whitelist):
+        gui.update_message("That is not one of your pieces. Choose a white piece.")
+        moves = []
+    elif len(moves) == 2:
+        print(moves)
+        userMove = (moves[0], moves[1], b.NOTDONE)
+        try:
+            b.moveWhite(*userMove)
+        except Exception:
+            moves = []
+            gui.update_message("Invalid move, try again")
+            continue
+
+
 pygame.quit()
 
 

@@ -36,14 +36,14 @@ class GUI:
             y+=1
         pygame.display.update()
 
-    def update_message(message):
+    def update_message(self, message):
         self.message = message
         print(message)
 
     def display_piece(self,colour, row, col):
-        if colour == 'R':
+        if colour == 'BLACK':
             self.screen.blit(self.red_piece, self.calc_pos(row, col))
-        elif colour == 'W':
+        elif colour == 'WHITE':
             self.screen.blit(self.white_piece, self.calc_pos(row, col))
         else:
             pass
