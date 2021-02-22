@@ -48,11 +48,17 @@ class GUI:
         else:
             pass
 
-
     def calc_pos(self, row, col):
         x = row * self.board_width/self.num_cols
         y = col * self.board_height/self.num_rows
         return (x,y)
+
+    #calculates the row and collumn if user clicks on board 
+    def get_square_clicked(self, pos):
+        x, y = pos
+        row = y // (self.board_height/self.num_rows)
+        col = x // (self.board_width/self.num_cols)
+        return (int(col),int(row))
 
 #testing
 # b = [['','W','','W','','W','','W'],\

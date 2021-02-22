@@ -10,12 +10,6 @@ width = 8
 height = 8
 firstPlayer = 0
 
-def get_square_clicked(pos):
-    x, y = pos
-    row = y // (gui.board_height/gui.num_rows)
-    col = x // (gui.board_width/gui.num_cols)
-    return (int(col),int(row))
-
 ### MAIN PROGRAM ###
 gui = GUI()
 b = board(width, height, firstPlayer)
@@ -31,7 +25,7 @@ while b.gameWon == -1:
             b.gameWon = 2
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            moves.append(get_square_clicked(pygame.mouse.get_pos()))
+            moves.append(gui.get_square_clicked(pygame.mouse.get_pos()))
 
     if len(moves) == 1 and not(moves[0] in b.whitelist):
         gui.update_message("That is not one of your pieces. Choose a white piece.")
