@@ -55,32 +55,32 @@ class GUI:
         return (x,y)
 
 #testing
-b = [['','W','','W','','W','','W'],\
-                ['W','','W','','W','','W',''],\
-                ['','W','','W','','W','','W'],\
-                ['','','','','','','',''],\
-                ['','','','','','','',''],\
-                ['R','','R','','R','','R',''],\
-                ['','R','','R','','R','','R'],\
-                ['R','','R','','R','','R','']]
-
-gui = GUI()
-
-run = True
-clock = pygame.time.Clock()
-while run:
-    #slows down the while loop to make it run the same speed on diff computers
-    clock.tick(60)
-    pass
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            pass
-        else:
-            pass
-    gui.display_board(b)
-
-#closes screen when the loop ends
-#loop ends when we the "x" on the screen is clicked
-pygame.quit()
+# b = [['','W','','W','','W','','W'],\
+#                 ['W','','W','','W','','W',''],\
+#                 ['','W','','W','','W','','W'],\
+#                 ['','','','','','','',''],\
+#                 ['','','','','','','',''],\
+#                 ['R','','R','','R','','R',''],\
+#                 ['','R','','R','','R','','R'],\
+#                 ['R','','R','','R','','R','']]
+#
+# gui = GUI()
+#
+# run = True
+# clock = pygame.time.Clock()
+# while run:
+#     #slows down the while loop to make it run the same speed on diff computers
+#     clock.tick(60)
+#     pass
+#     for event in pygame.event.get():
+#         if event.type == pygame.QUIT:
+#             run = False
+#         if event.type == pygame.MOUSEBUTTONDOWN:
+#             pass
+#         else:
+#             pass
+#     gui.display_board(b)
+#
+# #closes screen when the loop ends
+# #loop ends when we the "x" on the screen is clicked
+# pygame.quit()

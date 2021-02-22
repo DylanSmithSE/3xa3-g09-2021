@@ -30,29 +30,50 @@ def getUserMove(b):
     move = (moveFromTup, moveToTup, b.NOTDONE)
     return move
 
+
 ### MAIN PROGRAM ###
 gui = GUI()
 b = board(width, height, firstPlayer)
-gui.display_board(b)
+clock = pygame.time.Clock()
+moves = []
 
-# Main game loop
 while b.gameWon == -1:
-    # First it is the users turn
-    userMove = getUserMove(b)
-    try:
-        b.moveWhite(*userMove)
-    except Exception:
-        print("Invalid move")
-        continue
+    clock.tick(60)
 
-    # Then it is the computers turn
-    temp = minMax2(b)
-    b = temp[0]
-    print("**********COMPUTER MOVE**********")
-    b.printBoard()
-    if b.gameWon == b.WHITE:
-        print("White Wins\nGame Over")
-        break
-    elif b.gameWon == b.BLACK:
-        print("Black Wins\nGame Over")
-        break
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            b.gameWon = 2
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            moves.append(pygame.mouse.get_pos())
+
+
+
+    gui.display_board(b.boardState)
+pygame.quit()
+
+
+
+
+
+# # Main game loop
+# while b.gameWon == -1:
+#     # First it is the users turn
+#     userMove = getUserMove(b)
+#     try:
+#         b.moveWhite(*userMove)
+#     except Exception:
+#         print("Invalid move")
+#         continue
+#
+#     # Then it is the computers turn
+#     temp = minMax2(b)
+#     b = temp[0]
+#     print("**********COMPUTER MOVE**********")
+#     b.printBoard()
+#     if b.gameWon == b.WHITE:
+#         print("White Wins\nGame Over")
+#         break
+#     elif b.gameWon == b.BLACK:
+#         print("Black Wins\nGame Over")
+#         break
