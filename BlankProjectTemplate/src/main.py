@@ -30,6 +30,11 @@ def getUserMove(b):
     move = (moveFromTup, moveToTup, b.NOTDONE)
     return move
 
+def get_square_clicked(pos):
+    x, y = pos
+    row = y // (gui.board_height/gui.num_rows)
+    col = x // (gui.board_width/gui.num_cols)
+    return (int(col),int(row))
 
 ### MAIN PROGRAM ###
 gui = GUI()
@@ -45,9 +50,8 @@ while b.gameWon == -1:
             b.gameWon = 2
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            moves.append(pygame.mouse.get_pos())
-
-
+            print(get_square_clicked(pygame.mouse.get_pos()))
+            # moves.append(get_square_clicked(pygame.mouse.get_pos()))
 
     gui.display_board(b.boardState)
 pygame.quit()
