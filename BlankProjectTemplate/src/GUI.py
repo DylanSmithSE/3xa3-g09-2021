@@ -49,12 +49,23 @@ class GUI:
             self.screen.blit(self.white_piece, self.calc_pos(row, col))
         else:
             pass
-    # def
 
     def calc_pos(self, row, col):
         x = row * self.board_width/self.num_cols
         y = col * self.board_height/self.num_rows
         return (x,y)
+
+    #returns a string of what was clicked on
+    def get_clicked_object(self, pos):
+        x,y = pos
+        if x <= 720 and y <= 720:
+            return "board"
+        elif x > 720 and y <= 70:
+            return "new"
+        elif x > 720 and y >= 80 and y <= 150:
+            return "tutorial"
+        else:
+            return "nothing"
 
     #calculates the row and collumn if user clicks on board
     def get_square_clicked(self, pos):
