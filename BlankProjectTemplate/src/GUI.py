@@ -23,11 +23,11 @@ class GUI:
         self.screen = pygame.display.set_mode((1060, 720))
         pygame.display.set_caption('Checkers')
         self.screen.fill((0,0,0))
-        self.screen.blit(self.board_img, (0, 0))
         self.screen.blit(self.new_game_button, (720,0))
         self.screen.blit(self.tutorial_button, (720,80))
 
     def display_board(self, board_state):
+        self.screen.blit(self.board_img, (0, 0))
         #Adding pieces
         y = 0
         for col in board_state:
