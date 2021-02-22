@@ -7,8 +7,8 @@ class GUI:
         self.board_img = pygame.image.load('./img/board.png')
         self.red_piece = pygame.image.load('./img/red_man.png')
         self.white_piece = pygame.image.load('./img/white_man.png')
-        #self.start_button = pygame.image.load('./img/start_button.png')
-        #self.tutorial_button = pygame.image.load('./img/tutorial_button.png')
+        self.new_game_button = pygame.image.load('./img/btn_new_game.png')
+        self.tutorial_button = pygame.image.load('./img/btn_tutorial.png')
         #get dimensions of board
         self.board_height = self.board_img.get_height()
         self.board_width = self.board_img.get_width()
@@ -20,12 +20,14 @@ class GUI:
         self.make_display()
 
     def make_display(self):
-        self.screen = pygame.display.set_mode((800, 800))
+        self.screen = pygame.display.set_mode((1060, 720))
         pygame.display.set_caption('Checkers')
+        self.screen.fill((0,0,0))
+        self.screen.blit(self.board_img, (0, 0))
+        self.screen.blit(self.new_game_button, (720,0))
+        self.screen.blit(self.tutorial_button, (720,80))
 
     def display_board(self, board_state):
-        self.screen.fill((200,0,0))
-        self.screen.blit(self.board_img, (0, 0))
         #Adding pieces
         y = 0
         for col in board_state:
@@ -47,13 +49,14 @@ class GUI:
             self.screen.blit(self.white_piece, self.calc_pos(row, col))
         else:
             pass
+    # def
 
     def calc_pos(self, row, col):
         x = row * self.board_width/self.num_cols
         y = col * self.board_height/self.num_rows
         return (x,y)
 
-    #calculates the row and collumn if user clicks on board 
+    #calculates the row and collumn if user clicks on board
     def get_square_clicked(self, pos):
         x, y = pos
         row = y // (self.board_height/self.num_rows)
