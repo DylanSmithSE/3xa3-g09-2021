@@ -61,10 +61,15 @@ class GUI:
         if x <= 720 and y <= 720:
             return "board"
         elif x > 720 and y <= 70:
+            print("New")
+            print(x, y)
             return "new"
         elif x > 720 and y >= 80 and y <= 150:
+            print("Tutorial")
+            print(x, y)
             return "tutorial"
         else:
+            print(x, y)
             return "nothing"
 
     #calculates the row and collumn if user clicks on board
