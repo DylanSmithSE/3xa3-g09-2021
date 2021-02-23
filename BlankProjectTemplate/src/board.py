@@ -1,6 +1,9 @@
 # coding: utf-8
 # Game board. It needs a height and a width in order
 # to be instantiated
+from tkinter import *
+from tkinter import messagebox
+
 class board(object):
     BLACK = 1
     WHITE = 0
@@ -29,6 +32,25 @@ class board(object):
 
         print('black list is ', self.blacklist)
         print('white list is ', self.whitelist)
+
+
+    def resetBoard(self, height, width, firstPlayer):
+        # Create two lists which will contain the pieces each player posesses
+        self.blacklist = []
+        self.whitelist = []
+        # Set default piece positions
+        for i in range(self.width):
+            print(i, (i, (i+1)%2), (i, self.height - (i%2) - 1) )
+            self.blacklist.append((i, (i+1)%2))
+            self.whitelist.append((i, self.height - (i%2) - 1))
+        # boardState contains the current state of the board for printing/eval
+        self.boardState = [[' '] * self.width for x in range(self.height)]
+        self.updateBoard()
+        self.gameWon = self.NOTDONE
+        self.turn = firstPlayer
+        self.maxDepth = 10
+        Tk().wm_withdraw() #to hide the main window
+        messagebox.showinfo('Starting new game...','New game selected, enjoy!')
 
     # Generate an iterator for all of the moves
     def iterWhiteMoves(self):
