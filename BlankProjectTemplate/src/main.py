@@ -48,6 +48,17 @@ while b.gameWon == -1:
             gui.update_message("Invalid move, try again")
             continue
 
+        gui.display_board(b.boardState)
+
+        temp = minMax2(b)
+        b = temp[0]
+        if b.gameWon == b.WHITE:
+            print("White Wins\nGame Over")
+            break
+        elif b.gameWon == b.BLACK:
+            print("Black Wins\nGame Over")
+            break
+        print("her")
 pygame.quit()
 
 
