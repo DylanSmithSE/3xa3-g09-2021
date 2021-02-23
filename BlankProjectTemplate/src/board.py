@@ -5,9 +5,11 @@ from tkinter import *
 from tkinter import messagebox
 
 class board(object):
-    BLACK = 1
+
+    RED = 1
     WHITE = 0
     NOTDONE = -1
+
     def __init__(self, height, width, firstPlayer):
         """
             Constructs a board, right now maxDepth is statically assigned
@@ -102,7 +104,7 @@ class board(object):
             # There was something in the way, can we jump it?
             else:
                 # It has to be of the opposing color to jump
-                if self.turn == self.BLACK and black:
+                if self.turn == self.RED and black:
                     continue
                 elif self.turn == self.WHITE and white:
                     continue
@@ -161,7 +163,7 @@ class board(object):
         if not (black or white):
             self.whitelist[self.whitelist.index(moveFrom)] = moveTo
             self.updateBoard()
-            self.turn = self.BLACK
+            self.turn = self.RED
             self.gameWon = winLoss
         else:
             raise Exception

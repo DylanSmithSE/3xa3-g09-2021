@@ -55,7 +55,7 @@ while b.gameWon == -1:
         if b.gameWon == b.WHITE:
             print("White Wins\nGame Over")
             break
-        elif b.gameWon == b.BLACK:
+        elif b.gameWon == b.RED:
             print("Black Wins\nGame Over")
             break
         print("her")

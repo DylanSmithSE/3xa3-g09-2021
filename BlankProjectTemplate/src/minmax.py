@@ -94,7 +94,7 @@ def staticEval2(evalBoard):
         See Comments above an evaluator for what it's strategy is
     """
     # Has someone won the game? If so return an INFINITE value
-    if evalBoard.gameWon == evalBoard.BLACK:
+    if evalBoard.gameWon == evalBoard.RED:
         return float('inf')  
     elif evalBoard.gameWon == evalBoard.WHITE:
         return float('-inf')
@@ -107,7 +107,7 @@ def staticEval2(evalBoard):
     if evalBoard.turn == evalBoard.WHITE:
         pieces = evalBoard.whitelist
         scoremod = -1
-    elif evalBoard.turn == evalBoard.BLACK:
+    elif evalBoard.turn == evalBoard.RED:
         pieces = evalBoard.blacklist
         scoremod = 1
 
