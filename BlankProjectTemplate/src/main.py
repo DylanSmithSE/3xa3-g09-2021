@@ -25,13 +25,21 @@ while b.gameWon == -1:
             b.gameWon = 2
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            moves.append(gui.get_square_clicked(pygame.mouse.get_pos()))
+            pos = pygame.mouse.get_pos()
+            clicked_object = gui.get_clicked_object(pos)
+            if clicked_object == "board":
+                moves.append(gui.get_square_clicked(pos))
+            elif clicked_object == "new":
+                pass
+            elif clicked_object == "tutorial":
+                pass
+            elif clicked_object == "nothing":
+                print("You didn't click on anything")
 
     if len(moves) == 1 and not(moves[0] in b.whitelist):
         gui.update_message("That is not one of your pieces. Choose a white piece.")
         moves = []
     elif len(moves) == 2:
-        print(moves)
         userMove = (moves[0], moves[1], b.NOTDONE)
         try:
             b.moveWhite(*userMove)
@@ -39,7 +47,6 @@ while b.gameWon == -1:
             moves = []
             gui.update_message("Invalid move, try again")
             continue
-
 
 pygame.quit()
 
