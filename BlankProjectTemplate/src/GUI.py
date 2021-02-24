@@ -1,6 +1,8 @@
 import pygame
 from board import *
 
+screen_dimensions = (1060, 720)
+
 class GUI:
     def __init__(self):
         #import images
@@ -20,7 +22,7 @@ class GUI:
         self.make_display()
 
     def make_display(self):
-        self.screen = pygame.display.set_mode((1060, 720))
+        self.screen = pygame.display.set_mode(screen_dimensions)
         pygame.display.set_caption('Checkers')
         self.screen.fill((0,0,0))
         self.screen.blit(self.new_game_button, (720,0))

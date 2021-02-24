@@ -12,17 +12,17 @@ firstPlayer = 0
 
 ### MAIN PROGRAM ###
 gui = GUI()
-b = board(width, height, firstPlayer)
+board = board(width, height, firstPlayer)
 clock = pygame.time.Clock()
 moves = []
 
-while b.gameWon == -1:
+while board.gameWon == -1:
     clock.tick(60)
-    gui.display_board(b.boardState)
+    gui.display_board(board.boardState)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            b.gameWon = 2
+            board.gameWon = 2
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             pos = pygame.mouse.get_pos()
@@ -36,29 +36,28 @@ while b.gameWon == -1:
             elif clicked_object == "nothing":
                 print("You didn't click on anything")
 
-    if len(moves) == 1 and not(moves[0] in b.whitelist):
+    if len(moves) == 1 and not(moves[0] in board.whitelist):
         gui.update_message("That is not one of your pieces. Choose a white piece.")
         moves = []
     elif len(moves) == 2:
-        userMove = (moves[0], moves[1], b.NOTDONE)
+        userMove = (moves[0], moves[1], board.NOTDONE)
         try:
-            b.moveWhite(*userMove)
+            board.moveWhite(*userMove)
         except Exception:
             moves = []
             gui.update_message("Invalid move, try again")
             continue
 
-        gui.display_board(b.boardState)
+        gui.display_board(board.boardState)
 
-        temp = minMax2(b)
-        b = temp[0]
-        if b.gameWon == b.WHITE:
+        temp = minMax2(board)
+        board = temp[0]
+        if board.gameWon == board.WHITE:
             print("White Wins\nGame Over")
             break
-        elif b.gameWon == b.RED:
-            print("Black Wins\nGame Over")
+        elif board.gameWon == board.RED:
+            print("Red Wins\nGame Over")
             break
-        print("her")
 pygame.quit()
 
 
