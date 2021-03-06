@@ -30,7 +30,7 @@ while board.gameWon == -1:
             if clicked_object == "board":
                 moves.append(gui.get_square_clicked(pos))
             elif clicked_object == "new":
-                b.resetBoard(width, height, firstPlayer)
+                board.resetBoard(width, height, firstPlayer)
             elif clicked_object == "tutorial":
                 tutorial()
             elif clicked_object == "nothing":
