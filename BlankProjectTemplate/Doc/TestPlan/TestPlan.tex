@@ -4,6 +4,7 @@
 \usepackage{tabularx}
 \usepackage{changepage}
 \usepackage{hyperref}
+\usepackage{float}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -459,7 +460,7 @@ How test will be performed: Tester will conduct a code inspection to identify an
 
 \subsection{Traceability Between Test Cases and Requirements}
 \newpage
-\begin{table}[htbp]
+\begin{table}[H]
     \begin{center}
 	\caption{\bf Requirement Traceability Matrix}
 	\begin{adjustwidth}{-1.5cm}{}
@@ -468,6 +469,7 @@ How test will be performed: Tester will conduct a code inspection to identify an
 		{\bf Requirement ID}  & {\bf Requirement Description} & {\bf Priority} & {\bf Test Case ID} \\
 		\hline
 		FR1 & Home Screen & High & FR-AO-1\\
+		& & & FR-AO-2\\
 		\hline
 		FR2 & Allow user to choose piece colour & Low & FR-AO6\\
 		\hline
@@ -479,6 +481,8 @@ How test will be performed: Tester will conduct a code inspection to identify an
 		FR5 & Invalid move notification & Medium & FR-GP-6\\
 		\hline
 		FR6 & Display is updated after each move & High & FR-GP-4\\
+		& & & FR-GP-3\\
+		& & & FR-GP-5\\
 		\hline
 		FR7 & Start new game & Medium & FR-AO-3\\
 		& & & FR-AO-6\\
@@ -532,7 +536,7 @@ How test will be performed: Tester will conduct a code inspection to identify an
 	\end{center}
 \end{table}
 
-
+\newpage
 \section{Tests for Proof of Concept}
 For our proof of concept we wanted to demonstrate that we were able to integrate the original project with a GUI to increase the ease of use of the application. The testing we did consisted mainly of Functional/Manual/Dynamic testing as it required a tester to observe the output of the application on the screen when the user interacts with the application.
 
