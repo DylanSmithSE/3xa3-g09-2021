@@ -37,8 +37,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+March 5, 2021 & 1.0 & Revision 0 (all members)\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -68,41 +67,41 @@ NFR & Non-functional Requirement\\
 TP & Test Plan\\
 SRS & Software Requirement Specification\\
 POC & Proof Of Concept\\
-GUI & Graphical Tester Interface\\
+GUI & Graphical User Interface\\
 \bottomrule
 \end{tabularx}
 
 \end{table}
 
-\begin{table}[!htbp]
-\caption{\textbf{Table of Definitions}} \label{Table}
+% \begin{table}[!htbp]
+% \caption{\textbf{Table of Definitions}} \label{Table}
 
-\begin{tabularx}{\textwidth}{p{3cm}X}
-\toprule
-\textbf{Term} & \textbf{Definition}\\
-\midrule
-Term1 & Definition1\\
-Term2 & Definition2\\
-\bottomrule
-\end{tabularx}
+% \begin{tabularx}{\textwidth}{p{3cm}X}
+% \toprule
+% \textbf{Term} & \textbf{Definition}\\
+% \midrule
+% Term1 & Definition1\\
+% Term2 & Definition2\\
+% \bottomrule
+% \end{tabularx}
 
-\end{table}	
+% \end{table}	
 
 \subsection{Overview of Document}
 In the rest of this document we will be discussing the approach we plan to take to test our application. We will introduce the tools we plan to use as well as the various testing methods we will use to verify and validate that our requirements are being met.
 \section{Plan}
 	
 \subsection{Software Description}
-The software being tested is a re-implementation of a checkers application. It will offer the Tester the ability to play checkers against another player or against the computer. The game will adhere to all of the rules of checkers and will show Testers all the possible valid moves they can make when they select one of their pieces. The application will also include a tutorial outlining how to play the game.
+The software being tested is a re-implementation of a checkers application. It will offer the user the ability to play checkers against another player or against the computer. The game will adhere to all of the rules of checkers and will show users all the possible valid moves they can make when they select one of their pieces. The application will also include a tutorial outlining how to play the game and an option to restart the game at any time.
 
 \subsection{Test Team}
-Test team will consist of all three members of team namely Ardhendu, Thaneegan and Dylan. Each tester will have a specific area of testing based on their expertise.
+Test team will consist of all three members of team namely Ardhendu, Thaneegan and Dylan. Each tester will have a specific area of testing based on their expertise. We also plan to have users test the system using an exploratory approach to help find bugs in the user interface, and help improve the usability of the application.
 
 \subsection{Automated Testing Approach}
-Our testing will consist of both manual and automated testing. We will use manual testing to test mainly the GUI functionality, and use automated testing to test the checkers logic and game functionality. The automated testing will be done using unittest.
+We will use automated testing to perform unit testing and integration testing. We will need to use unit testing to ensure the application adheres to all the rules of checkers. We will provide the various functions with input and ensure the correct output. We will use unittest to automate the process, and we will run the tests any time one of the functions are modified. We will also use integration testing to ensure that different functions and modules interact with one another correctly. They will also be automated using unittest and will be run when any changes are made to one of the components or when a new component is added.
 
 \subsection{Testing Tools}
-We will be using unittest and vscode for testing the application.
+We will be using unittest and vscode for testing the application. We will also use many different testing techniques. We will use a combination of whitebox, blackbox and exploratory testing to test the checkers logic and to test the GUI.
 
 \subsection{Testing Schedule}
 The Gantt chart illustrates the subtasks for tesing and the corresponding resource breakdown.
@@ -456,13 +455,10 @@ Input: Source code will be reviewed by tester through code inspection.
 Output: Tester will determine if there are any requests for input that is not related to making a move on the checkers board or accessing a functionality on the menu.
 					
 How test will be performed: Tester will conduct a code inspection to identify any spots in the source code where they may be a security vulnerability. Tester will ensure no requests for external input is being made, outside of 1) making a move on the checkers board and 2) clicking on of the menu functionalities.
-
 \end{enumerate}
 
-...
-
 \subsection{Traceability Between Test Cases and Requirements}
-
+\newpage
 \begin{table}[htbp]
     \begin{center}
 	\caption{\bf Requirement Traceability Matrix}
@@ -472,7 +468,6 @@ How test will be performed: Tester will conduct a code inspection to identify an
 		{\bf Requirement ID}  & {\bf Requirement Description} & {\bf Priority} & {\bf Test Case ID} \\
 		\hline
 		FR1 & Home Screen & High & FR-AO-1\\
-		& & & FR-AO-2\\
 		\hline
 		FR2 & Allow user to choose piece colour & Low & FR-AO6\\
 		\hline
@@ -484,8 +479,6 @@ How test will be performed: Tester will conduct a code inspection to identify an
 		FR5 & Invalid move notification & Medium & FR-GP-6\\
 		\hline
 		FR6 & Display is updated after each move & High & FR-GP-4\\
-		& & & FR-GP-3\\
-		& & & FR-GP-5\\
 		\hline
 		FR7 & Start new game & Medium & FR-AO-3\\
 		& & & FR-AO-6\\
@@ -528,19 +521,17 @@ How test will be performed: Tester will conduct a code inspection to identify an
 		\hline
 		NFR8 & Game should not compromise security & High & NFR-SR-1 \\
 		\hline
-		NFR3 & Game has different colour schemes to accomodate various users & Medium & NFR-UH-1\\
+		NFR3 & Game has different colour schemes & Medium & NFR-UH-1\\
 		\hline
-		NFR5 & Game should have a tutorial for new users & High & NFR-UH-2\\
+		NFR5 & Game should have a tutorial & High & NFR-UH-2\\
 		\hline
-		NFR11 & Game should execute without the need of internet & High & NFR-OE-1\\
+		NFR11 & Game does not need internet & High & NFR-OE-1\\
 		\hline
 	\end{tabularx}
 	\end{adjustwidth}
 	\end{center}
 \end{table}
 
-\newpage
-\newpage
 
 \section{Tests for Proof of Concept}
 For our proof of concept we wanted to demonstrate that we were able to integrate the original project with a GUI to increase the ease of use of the application. The testing we did consisted mainly of Functional/Manual/Dynamic testing as it required a tester to observe the output of the application on the screen when the user interacts with the application.
@@ -692,7 +683,7 @@ In the original implementation of the Checkers game, there was no documents/file
 
     Initial State: Game is in progress
 
-    Input: Move is made by either ai or player
+    Input: Move is made by either AI or player
 	
     Output: State of the board is changed
 	
@@ -704,20 +695,13 @@ In the original implementation of the Checkers game, there was no documents/file
 
     Initial State: Game is in progress
 
-    Input: Move is made by either ai or player
+    Input: Move is made by either AI or player
 	
     Output: State of the board is changed
 	
     How test will be performed: The turn boolean variable will compared with current turn to determine if each player is getting turns consecutively
     
 \end{enumerate}
-
-
-
-\bibliographystyle{plainnat}
-\bibliography{SRS}
-
-\newpage
 
 \section{Appendix}
 
@@ -727,8 +711,17 @@ N/A
 
 N/A
 
-\subsection{Usability Survey Questions?}
-
-N/A
+\subsection{Usability Survey Questions}
+To test the usability of our application we plan to have users test the application and answer several survey questions. We will also ask for general feedback of the game. We will ask the users the several questions and will ask them to choose one of the following answers: Stronly agree, agree, neutral, disagree, strongly disagree. The questions we plan to include in the survey are as follows:
+\begin{itemize}
+    \item The application was very easy to use.
+    \item I found the tutorial was very descriptive and made using the app much easier.
+    \item When moving a piece the dots representing the valid moves made it easier to choose a move.
+    \item When selecting a piece it is highlighted this helped assure me that the application registered my choice.
+    \item The game responded in a timely fashion.
+    \item The application was visually appealing.
+    \item The buttons and options were self explanatory, and caused no confusion.
+    \item I was pleased with the experience of playing checkers.
+\end{itemize}
 
 \end{document}
