@@ -4,3 +4,7 @@
 *.log
 *.DS_Store
 *.synctex.gz
+*.lof
+*.lot
+*.out
+*.toc
