@@ -41,9 +41,11 @@ while board.gameWon == -1:
         moves = []
     elif len(moves) == 2:
         userMove = (moves[0], moves[1], board.NOTDONE)
+        # board.moveWhite(*userMove)
         try:
             board.moveWhite(*userMove)
-        except Exception:
+        except Exception as e:
+            print(e)
             moves = []
             gui.update_message("Invalid move, try again")
             continue
