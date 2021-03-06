@@ -27,16 +27,16 @@
 \contentsline {subsubsection}{\numberline {3.2.4}Maintainability and Support}{10}{subsubsection.3.2.4}
 \contentsline {subsubsection}{\numberline {3.2.5}Security}{11}{subsubsection.3.2.5}
 \contentsline {subsection}{\numberline {3.3}Traceability Between Test Cases and Requirements}{12}{subsection.3.3}
-\contentsline {section}{\numberline {4}Tests for Proof of Concept}{13}{section.4}
-\contentsline {subsection}{\numberline {4.1}Display}{13}{subsection.4.1}
-\contentsline {paragraph}{State of Board}{13}{section*.11}
-\contentsline {paragraph}{Homescreen}{13}{section*.12}
-\contentsline {subsection}{\numberline {4.2}User Interactions}{14}{subsection.4.2}
-\contentsline {paragraph}{Get location of Clicks}{14}{section*.13}
-\contentsline {paragraph}{Integrating Clicks}{14}{section*.14}
-\contentsline {section}{\numberline {5}Comparison to Existing Implementation}{16}{section.5}
-\contentsline {section}{\numberline {6}Unit Testing Plan}{16}{section.6}
-\contentsline {subsection}{\numberline {6.1}Unit testing of internal functions}{16}{subsection.6.1}
-\contentsline {section}{\numberline {7}Appendix}{18}{section.7}
-\contentsline {subsection}{\numberline {7.1}Symbolic Parameters}{18}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}Usability Survey Questions?}{18}{subsection.7.2}
+\contentsline {section}{\numberline {4}Tests for Proof of Concept}{14}{section.4}
+\contentsline {subsection}{\numberline {4.1}Display}{14}{subsection.4.1}
+\contentsline {paragraph}{State of Board}{14}{section*.11}
+\contentsline {paragraph}{Homescreen}{14}{section*.12}
+\contentsline {subsection}{\numberline {4.2}User Interactions}{15}{subsection.4.2}
+\contentsline {paragraph}{Get location of Clicks}{15}{section*.13}
+\contentsline {paragraph}{Integrating Clicks}{15}{section*.14}
+\contentsline {section}{\numberline {5}Comparison to Existing Implementation}{17}{section.5}
+\contentsline {section}{\numberline {6}Unit Testing Plan}{17}{section.6}
+\contentsline {subsection}{\numberline {6.1}Unit testing of internal functions}{17}{subsection.6.1}
+\contentsline {section}{\numberline {7}Appendix}{19}{section.7}
+\contentsline {subsection}{\numberline {7.1}Symbolic Parameters}{19}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Usability Survey Questions?}{19}{subsection.7.2}
