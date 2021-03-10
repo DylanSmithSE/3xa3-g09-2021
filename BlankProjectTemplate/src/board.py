@@ -21,10 +21,12 @@ class board(object):
         self.blacklist = []
         self.whitelist = []
         # Set default piece positions
-        for i in range(width):
-            print(i, (i, (i+1)%2), (i, height - (i%2) - 1) )
-            self.blacklist.append((i, (i+1)%2))
-            self.whitelist.append((i, height - (i%2) - 1))
+        self.blacklist = [(0,1), (0,3), (0,5), (0,7), (1,0), (1,2), (1,4), (1,6), (2,1), (2,3), (2,5), (2,7)]
+        self.whitelist = [(5,0), (5,2), (5,4), (5,6), (6,1), (6,3), (6,5), (6,7), (7,0), (7,2), (7,4), (7,6)]
+        # for i in range(width):
+        #     print(i, (i, (i+1)%2), (i, height - (i%2) - 1) )
+        #     self.blacklist.append((i, (i+1)%2))
+        #     self.whitelist.append((i, height - (i%2) - 1))
         # boardState contains the current state of the board for printing/eval
         self.boardState = [[' '] * self.width for x in range(self.height)]
         self.updateBoard()
@@ -127,13 +129,22 @@ class board(object):
             Updates the array containing the board to reflect the current state of the pieces on the
             board
         """
-        for i in range(self.width):
-            for j in range(self.height):
+        # for i in range(self.width):
+        #     for j in range(self.height):
+        #         self.boardState[i][j] = "Null"
+        # for piece in self.blacklist:
+        #     self.boardState[piece[1]][piece[0]] = 'WHITE'
+        # for piece in self.whitelist:
+        #     self.boardState[piece[1]][piece[0]] = 'BLACK'
+
+        for i in range(self.height):
+            for j in range(self.width):
                 self.boardState[i][j] = "Null"
         for piece in self.blacklist:
-            self.boardState[piece[1]][piece[0]] = 'WHITE'
+            # print('piece is  ', piece)
+            self.boardState[piece[0]][piece[1]] = 'WHITE'
         for piece in self.whitelist:
-            self.boardState[piece[1]][piece[0]] = 'BLACK'
+            self.boardState[piece[0]][piece[1]] = 'BLACK'
 
     # Movement of pieces
     def moveSilentBlack(self, moveFrom, moveTo, winLoss):
@@ -173,8 +184,7 @@ class board(object):
             Move a black piece from one spot to another. \n winLoss is passed as either 0(white)
             or 1(black) if the move is a jump
         """
-        self.moveSilentBlack(moveFrom, MoveTo, winLoss)
-        self.printBoard()
+        self.moveSilentBlack(moveFrom, moveTo, winLoss)
 
     def moveWhite(self, moveFrom, moveTo, winLoss):
         """
@@ -182,7 +192,6 @@ class board(object):
             or 1(black) if the move is a jump
         """
         self.moveSilentWhite(moveFrom, moveTo, winLoss)
-        self.printBoard()
 
     def printBoard(self):
         """
@@ -190,40 +199,4 @@ class board(object):
         """
         print(str(self.boardState))
 
-    def __unicode__(self):
-        """
-            Contains the unicode and other BS for printing the board
-        """
-        # Updates Game board
-        self.updateBoard()
-        lines = []
-        # This prints the numbers at the top of the Game Board
-        lines.append('    ' + '   '.join(map(str, list(range(self.width)))))
-        # Prints the top of the gameboard in unicode
-        lines.append('  ╭' + ('───┬' * (self.width-1)) + '───╮')
 
-        # Print the boards rows
-        for num, row in enumerate(self.boardState[:-1]):
-            lines.append(chr(num+65) + ' │ ' + ' │ '.join(row) + ' │')
-            lines.append('  ├' + ('───┼' * (self.width-1)) + '───┤')
-
-        #Print the last row
-        lines.append(chr(self.height+64) + ' │ ' + ' │ '.join(self.boardState[-1]) + ' │')
-
-        # Prints the final line in the board
-        lines.append('  ╰' + ('───┴' * (self.width-1)) + '───╯')
-        return '\n'.join(lines)
-
-############## DEBUGGING
-##############
-#    def getWin(self):
-#        return self.g
-#
-#    def setWin(self, val):
-##        if val == 0:
-##            raise Exception("Game won by white")
-#        self.g = val
-
-#    gameWon=property(getWin, setWin)
-##############
-##############

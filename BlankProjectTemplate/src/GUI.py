@@ -38,6 +38,16 @@ class GUI:
                 self.display_piece(row,x,y)
                 x+=1
             y+=1
+        # x = 0
+        # for row in board_state:
+        #     # print('row is ', row)
+        #     # break
+        #     y = 0
+        #     for col in row:
+        #         # print('col is ', col)
+        #         self.display_piece(col,x,y)
+        #         y+=1
+        #     x+=1
         pygame.display.update()
 
     def update_message(self, message):
@@ -45,6 +55,13 @@ class GUI:
         print(message)
 
     def display_piece(self,colour, row, col):
+        # print('row and col is ', (row, col))
+        # if colour == 'BLACK':
+        #     self.screen.blit(self.red_piece, self.calc_pos(col, row))
+        # elif colour == 'WHITE':
+        #     self.screen.blit(self.white_piece, self.calc_pos(col, row))
+        # else:
+        #     pass
         if colour == 'BLACK':
             self.screen.blit(self.red_piece, self.calc_pos(row, col))
         elif colour == 'WHITE':
@@ -77,8 +94,10 @@ class GUI:
     #calculates the row and collumn if user clicks on board
     def get_square_clicked(self, pos):
         x, y = pos
-        row = y // (self.board_height/self.num_rows)
-        col = x // (self.board_width/self.num_cols)
+        # row = y // (self.board_height/self.num_rows)
+        # col = x // (self.board_width/self.num_cols)
+        row = x // (self.board_height/self.num_rows)
+        col = y // (self.board_width/self.num_cols)
         return (int(col),int(row))
 
 #testing
