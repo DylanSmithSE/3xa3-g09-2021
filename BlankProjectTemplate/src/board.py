@@ -149,7 +149,6 @@ class board(object):
             or 1(black) if the move is a jump
         """
         self.moveSilentBlack(moveFrom, MoveTo, winLoss)
-        self.printBoard()
         
     def moveWhite(self, moveFrom, moveTo, winLoss):
         """
@@ -157,48 +156,4 @@ class board(object):
             or 1(black) if the move is a jump
         """
         self.moveSilentWhite(moveFrom, moveTo, winLoss)
-        self.printBoard()
-
-    def printBoard(self):
-        """
-            Prints the game board to stdout
-        """
-        print(str(self.boardState))
         
-    def __unicode__(self):
-        """
-            Contains the unicode and other BS for printing the board
-        """
-        # Updates Game board
-        self.updateBoard()
-        lines = []
-        # This prints the numbers at the top of the Game Board
-        lines.append('    ' + '   '.join(map(str, list(range(self.width)))))
-        # Prints the top of the gameboard in unicode
-        lines.append('  ╭' + ('───┬' * (self.width-1)) + '───╮')
-        
-        # Print the boards rows
-        for num, row in enumerate(self.boardState[:-1]):
-            lines.append(chr(num+65) + ' │ ' + ' │ '.join(row) + ' │')
-            lines.append('  ├' + ('───┼' * (self.width-1)) + '───┤')
-        
-        #Print the last row
-        lines.append(chr(self.height+64) + ' │ ' + ' │ '.join(self.boardState[-1]) + ' │')
-
-        # Prints the final line in the board
-        lines.append('  ╰' + ('───┴' * (self.width-1)) + '───╯')
-        return '\n'.join(lines)
-
-############## DEBUGGING
-##############
-#    def getWin(self):
-#        return self.g
-#    
-#    def setWin(self, val):
-##        if val == 0:
-##            raise Exception("Game won by white")
-#        self.g = val
-
-#    gameWon=property(getWin, setWin)
-##############
-##############

@@ -32,7 +32,6 @@ def getUserMove(b):
 ### MAIN PROGRAM ###
 
 b = board(width, height, firstPlayer)
-b.printBoard()
 print("Welcome to checkers.")
 
 # Main game loop
