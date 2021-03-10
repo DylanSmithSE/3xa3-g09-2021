@@ -169,9 +169,12 @@ class board(object):
         """
         if moveTo[0] < 0 or moveTo[0] >= self.width or moveTo[1] < 0 or moveTo[1] >= self.height:
             raise Exception("That would move white piece", moveFrom, "out of bounds")
+
         black = moveTo in self.blacklist
         white = moveTo in self.whitelist
-        if not (black or white):
+        print('move pair is ', (moveFrom, moveTo))
+
+        if( not(black or white) and ( (moveTo == (moveFrom[0]-1,moveFrom[1]+1)) or  (moveTo == (moveFrom[0]-1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]+1)) )):
             self.whitelist[self.whitelist.index(moveFrom)] = moveTo
             self.updateBoard()
             self.turn = self.RED
