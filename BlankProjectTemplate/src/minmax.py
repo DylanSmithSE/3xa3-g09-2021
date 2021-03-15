@@ -19,6 +19,7 @@ def minMax2(board):
         currentDepth -= 1
         # Get the best move and it's value from maxMinBoard (minmax handler)
         (bestBoard, bestVal) = maxMove2(board, currentDepth)
+        print('bestboard and bestval is ', (bestBoard, bestVal))
         # If we got a NUll board raise an exception
     if not bestBoard:
         raise Exception("Could only return null boards")
@@ -40,6 +41,7 @@ def minMove2(minBoard, currentDepth):
     return maxMinBoard(minBoard, currentDepth-1, float('inf'))
 
 def maxMinBoard(board, currentDepth, bestMove):
+    print('yeeee this being acacaalalallalal')
     """
         Does the actual work of calculating the best move
     """

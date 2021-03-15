@@ -32,7 +32,7 @@ class board(object):
         self.updateBoard()
         self.gameWon = self.NOTDONE
         self.turn = firstPlayer
-        self.maxDepth = 10
+        self.maxDepth = 5
 
         print('black list is ', self.blacklist)
         print('white list is ', self.whitelist)
@@ -77,27 +77,32 @@ class board(object):
         """
             Generates possible moves for a white piece
         """
-        return self.iterBoth(piece, ((-1,-1),(1,-1)))
+        # return self.iterBoth(piece, ((-1,-1),(1,-1)))
+        return self.iterBoth(piece, ((-1,1),(-1,-1)))
 
     def iterBlackPiece(self, piece):
         """
             Generates possible moves for a black piece
         """
-        return self.iterBoth(piece, ((-1,1),(1,1)))
+        # return self.iterBoth(piece, ((-1,1),(1,1)))
+        return self.iterBoth(piece, ((1,-1),(1,1)))
 
     def iterBoth(self, piece, moves):
         """
             Handles the actual generation of moves for either black or white pieces
         """
+        print('moves ae piece ', piece, moves)
         for move in moves:
             # Regular Move
+            print('moce s ', move)
             targetx = piece[0] + move[0]
             targety = piece[1] + move[1]
-            #print(f'targetx is {targetx} and targety is {targety}' )
+            # print(f'targetx is {targetx} and targety is {targety}' )
             # If the move is out of bounds don't move
             if targetx < 0 or targetx >= self.width or targety < 0 or targety >= self.height:
                 continue
             target = (targetx, targety)
+            print('target is ', target)
             # Check that there is nothing in the way of moving to the target
             black = target in self.blacklist
             white = target in self.whitelist
@@ -155,7 +160,7 @@ class board(object):
             raise Exception("That would move black piece", moveFrom, "out of bounds")
         black = moveTo in self.blacklist
         white = moveTo in self.whitelist
-        if not (black or white):
+        if( not(black or white) and ( (moveTo == (moveFrom[0]-1,moveFrom[1]+1)) or  (moveTo == (moveFrom[0]-1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]+1)) )):
             self.blacklist[self.blacklist.index(moveFrom)] = moveTo
             self.updateBoard()
             self.turn = self.WHITE
@@ -173,7 +178,9 @@ class board(object):
         black = moveTo in self.blacklist
         white = moveTo in self.whitelist
         print('move pair is ', (moveFrom, moveTo))
-
+        if( (moveTo == (moveFrom[0]-1,moveFrom[1]+1)) or  (moveTo == (moveFrom[0]-1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]+1)) ):
+            print('Trueeee')
+        
         if( not(black or white) and ( (moveTo == (moveFrom[0]-1,moveFrom[1]+1)) or  (moveTo == (moveFrom[0]-1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]+1)) )):
             self.whitelist[self.whitelist.index(moveFrom)] = moveTo
             self.updateBoard()
