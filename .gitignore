@@ -8,3 +8,4 @@
 *.lot
 *.out
 *.toc
+**/__pycache__/
