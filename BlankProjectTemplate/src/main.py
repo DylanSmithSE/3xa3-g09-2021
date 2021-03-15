@@ -4,7 +4,7 @@
 from board import *
 from minmax import *
 from GUI import *
-from tutorial import *
+from menu import *
 # Setup variables
 width = 8
 height = 8
@@ -30,9 +30,9 @@ while board.gameWon == -1:
             if clicked_object == "board":
                 moves.append(gui.get_square_clicked(pos))
             elif clicked_object == "new":
-                board.resetBoard(width, height, firstPlayer)
+                menu().newgame(board, width, height, firstPlayer)
             elif clicked_object == "tutorial":
-                tutorial()
+                menu().tutorial()
             elif clicked_object == "nothing":
                 print("You didn't click on anything")
 
