@@ -19,6 +19,7 @@ def minMax2(board):
         currentDepth -= 1
         # Get the best move and it's value from maxMinBoard (minmax handler)
         (bestBoard, bestVal) = maxMove2(board, currentDepth)
+        print('bestboard and bestval is ', (bestBoard, bestVal))
         # If we got a NUll board raise an exception
     if not bestBoard:
         raise Exception("Could only return null boards")
@@ -40,6 +41,7 @@ def minMove2(minBoard, currentDepth):
     return maxMinBoard(minBoard, currentDepth-1, float('inf'))
 
 def maxMinBoard(board, currentDepth, bestMove):
+    print('yeeee this being acacaalalallalal')
     """
         Does the actual work of calculating the best move
     """
@@ -94,7 +96,7 @@ def staticEval2(evalBoard):
         See Comments above an evaluator for what it's strategy is
     """
     # Has someone won the game? If so return an INFINITE value
-    if evalBoard.gameWon == evalBoard.BLACK:
+    if evalBoard.gameWon == evalBoard.RED:
         return float('inf')  
     elif evalBoard.gameWon == evalBoard.WHITE:
         return float('-inf')
@@ -107,7 +109,7 @@ def staticEval2(evalBoard):
     if evalBoard.turn == evalBoard.WHITE:
         pieces = evalBoard.whitelist
         scoremod = -1
-    elif evalBoard.turn == evalBoard.BLACK:
+    elif evalBoard.turn == evalBoard.RED:
         pieces = evalBoard.blacklist
         scoremod = 1
 
