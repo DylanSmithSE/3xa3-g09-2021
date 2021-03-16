@@ -43,11 +43,13 @@ class board(object):
         self.blacklist = []
         self.whitelist = []
         # Set default piece positions
-        for i in range(self.width):
-            print(i, (i, (i+1)%2), (i, self.height - (i%2) - 1) )
-            self.blacklist.append((i, (i+1)%2))
-            self.whitelist.append((i, self.height - (i%2) - 1))
+        # for i in range(self.width):
+        #     print(i, (i, (i+1)%2), (i, self.height - (i%2) - 1) )
+        #     self.blacklist.append((i, (i+1)%2))
+        #     self.whitelist.append((i, self.height - (i%2) - 1))
         # boardState contains the current state of the board for printing/eval
+        self.blacklist = [(0,1), (0,3), (0,5), (0,7), (1,0), (1,2), (1,4), (1,6), (2,1), (2,3), (2,5), (2,7)]
+        self.whitelist = [(5,0), (5,2), (5,4), (5,6), (6,1), (6,3), (6,5), (6,7), (7,0), (7,2), (7,4), (7,6)]
         self.boardState = [[' '] * self.width for x in range(self.height)]
         self.updateBoard()
         self.gameWon = self.NOTDONE
