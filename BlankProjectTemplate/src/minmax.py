@@ -1,7 +1,7 @@
-## @file Box3D.py
-#  @title Box3D
-#  @author 
-#  @date 1/8/2017
+## @file minmax.py
+#  @title minmax
+#  @author Carson Wilcox, Thaneegan, Dylan, Ardhendu  
+#  @date 3/5/2021
 
 # Provides the minmax functionality as well as static evaluation
 from copy import deepcopy
@@ -11,9 +11,6 @@ from copy import deepcopy
 #  @param board board object cotaining the state
 #  @param size (w,h,d) tuple containing the width, height and depth
 def is_won(board):
-    """
-        Returns true if the game has been won
-    """
     return board.gameWon != board.NOTDONE
         
 ## @brief Main minimax algorithm function for AI
