@@ -211,7 +211,7 @@ class board(object):
         print('move pair is ', (moveFrom, moveTo))
         if( (moveTo == (moveFrom[0]-1,moveFrom[1]+1)) or  (moveTo == (moveFrom[0]-1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]+1)) ):
             print('Trueeee')
-        
+
         if( not(black or white) and ( (moveTo == (moveFrom[0]-1,moveFrom[1]+1)) or  (moveTo == (moveFrom[0]-1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]+1)) )):
             self.whitelist[self.whitelist.index(moveFrom)] = moveTo
             self.updateBoard()
@@ -240,11 +240,9 @@ class board(object):
         """
         self.moveSilentWhite(moveFrom, moveTo, winLoss)
 
-    ## @brief Prints the game board to stdout
+    #Prints the game board to stdout
     def printBoard(self):
         """
             Prints the game board to stdout
         """
         print(str(self.boardState))
-
-
