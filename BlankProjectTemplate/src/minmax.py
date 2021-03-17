@@ -1,10 +1,11 @@
 ## @file minmax.py
 #  @title minmax
 #  @author Carson Wilcox, Thaneegan, Dylan, Ardhendu  
-#  @date 3/5/2021
+#  @brief Provides the minmax functionality as well as static evaluation
+#  @date 3/17/2021
 
-# Provides the minmax functionality as well as static evaluation
 from copy import deepcopy
+from gameLogic import *
 
 ## @brief Function to check if game is won
 #  @details Function takes in board object and returns bool
@@ -61,42 +62,42 @@ def maxMinBoard(board, currentDepth, bestMove):
     # Check if we are at an end node
     if is_won(board) or currentDepth <= 0:
         return (board, staticEval2(board))
-  
+
     # So we are not at an end node, now we need to do minmax
     # Set up values for minmax
     best_move = bestMove
     best_board = None    
-  
+
     # I could probably consolidate MaxNode and MinNode more by assigning the iterator with a 
     # function and doing some trickery with the bestmove == INF bullshit
     # MaxNode
     if bestMove == float('-inf'):
         # Create the iterator for the Moves
-        moves = board.iterBlackMoves()
+        moves = iterBlackMoves(board)
         for move in moves:
             maxBoard = deepcopy(board)
-            maxBoard.moveSilentBlack(*move)
+            moveSilentBlack(maxBoard, *move)
             value = minMove2(maxBoard, currentDepth-1)[1]
             if value > best_move:
                 best_move = value
                 best_board = maxBoard         
-  
+
     # MinNode
     elif bestMove == float('inf'):
-        moves = board.iterWhiteMoves()
+        moves = iterWhiteMoves(board)
         for move in moves:
             minBoard = deepcopy(board)
-            minBoard.moveSilentWhite(*move)
+            moveSilentWhite(minBoard, *move)
             value = maxMove2(minBoard, currentDepth-1)[1]
             # Take the smallest value we can
             if value < best_move:
                 best_move = value
                 best_board = minBoard
-  
+
     # Something is wrong with bestMove so raise an Exception
     else:
         raise Exception("bestMove is set to something other than inf or -inf")
-  
+
     # Things appear to be fine, we should have a board with a good value to move to
     return (best_board, best_move)
 

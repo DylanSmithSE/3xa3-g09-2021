@@ -2,6 +2,7 @@
 # These
 # Main class runs the game
 from board import *
+from gameLogic import *
 from minmax import *
 from GUI import *
 from menu import *
@@ -43,7 +44,7 @@ while board.gameWon == -1:
         userMove = (moves[0], moves[1], board.NOTDONE)
         # board.moveWhite(*userMove)
         try:
-            board.moveWhite(*userMove)
+            moveWhite(board, *userMove)
         except Exception as e:
             print(e)
             moves = []
