@@ -240,9 +240,9 @@ class board(object):
         """
         self.moveSilentWhite(moveFrom, moveTo, winLoss)
 
-    #Prints the game board to stdout
-    def printBoard(self):
-        """
-            Prints the game board to stdout
-        """
-        print(str(self.boardState))
+    # #Prints the game board to stdout
+    # def printBoard(self):
+    #     """
+    #         Prints the game board to stdout
+    #     """
+    #     print(str(self.boardState))
