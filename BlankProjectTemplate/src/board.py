@@ -1,3 +1,8 @@
+## @file board.py
+#  @author Ardhendu, Dylan, Thaneegan
+#  @brief Class to represent the board of the checkers game.
+#  @date March 16th 2021
+
 # coding: utf-8
 # Game board. It needs a height and a width in order
 # to be instantiated
@@ -10,6 +15,10 @@ class board(object):
     WHITE = 0
     NOTDONE = -1
 
+    ## @brief Initialize the board with the default state
+    #  @param height The height of the board
+    #  @param width The width of the board
+    #  @param firstPlayer The current turn (who goes first)
     def __init__(self, height, width, firstPlayer):
         """
             Constructs a board, right now maxDepth is statically assigned
@@ -37,7 +46,10 @@ class board(object):
         print('black list is ', self.blacklist)
         print('white list is ', self.whitelist)
 
-
+    ## @brief Used to reset the board to the original state.
+    #  @param height The height of the board
+    #  @param width The width of the board
+    #  @param firstPlayer The current turn (who goes first)
     def resetBoard(self, height, width, firstPlayer):
         # Create two lists which will contain the pieces each player posesses
         self.blacklist = []
@@ -58,7 +70,7 @@ class board(object):
         Tk().wm_withdraw() #to hide the main window
         messagebox.showinfo('Starting new game...','New game selected, enjoy!')
 
-    # Generate an iterator for all of the moves
+    ## @brief Iterates through the white pieces array to generate moves for white pieces.
     def iterWhiteMoves(self):
         """
             Main generator for white moves
@@ -67,6 +79,7 @@ class board(object):
             for move in self.iterWhitePiece(piece):
                 yield move
 
+    ## @brief Iterates through the black pieces array to generate moves for black pieces.
     def iterBlackMoves(self):
         """
             Main Generator for black moves
@@ -75,6 +88,9 @@ class board(object):
             for move in self.iterBlackPiece(piece):
                 yield move
 
+    ## @brief Checks for possible moves for the selected piece
+    #  @param piece The piece to be moved
+    #  @return Returns the location of the possible move of the selected piece
     def iterWhitePiece(self, piece):
         """
             Generates possible moves for a white piece
@@ -82,6 +98,9 @@ class board(object):
         # return self.iterBoth(piece, ((-1,-1),(1,-1)))
         return self.iterBoth(piece, ((-1,1),(-1,-1)))
 
+    ## @brief Checks for possible moves for the selected piece
+    #  @param piece The piece to be moved
+    #  @return Returns the location of the valid move of the selected piece
     def iterBlackPiece(self, piece):
         """
             Generates possible moves for a black piece
@@ -89,6 +108,10 @@ class board(object):
         # return self.iterBoth(piece, ((-1,1),(1,1)))
         return self.iterBoth(piece, ((1,-1),(1,1)))
 
+    ## @brief Checks for possible moves for the selected piece
+    #  @param piece The piece to be moved
+    #  @param moves The set of possible moves
+    #  @return Returns the location of the valid moves of the selected piece
     def iterBoth(self, piece, moves):
         """
             Handles the actual generation of moves for either black or white pieces
@@ -131,6 +154,7 @@ class board(object):
                 if not black and not white:
                     yield (piece, jump, self.turn)
 
+    ## @brief Updates the board with the current state after a move is made by the user or AI
     def updateBoard(self):
         """
             Updates the array containing the board to reflect the current state of the pieces on the
@@ -153,7 +177,9 @@ class board(object):
         for piece in self.whitelist:
             self.boardState[piece[0]][piece[1]] = 'BLACK'
 
-    # Movement of pieces
+    ## @brief Moves a black piece, calls the updateboard method, determines if black piece player has won or loss (sets the turn to white after)
+    #  @param moveFrom The location of the piece to be moved
+    #  @param moveTo The location of where the piece has to be moved to
     def moveSilentBlack(self, moveFrom, moveTo, winLoss):
         """
             Move black piece without printing
@@ -170,6 +196,9 @@ class board(object):
         else:
             raise Exception
 
+    ## @brief Moves a white piece, calls the updateboard method, determines if white piece player has won or loss (sets the turn to black after)
+    #  @param moveFrom The location of the piece to be moved
+    #  @param moveTo The location of where the piece has to be moved to
     def moveSilentWhite(self, moveFrom, moveTo, winLoss):
         """
             Move white piece without printing
@@ -191,13 +220,19 @@ class board(object):
         else:
             raise Exception
 
+    ## @brief Moves a black piece, calls the updateboard method, determines if black piece player has won or loss (sets the turn to white after)
+    #  @param moveFrom The location of the piece to be moved
+    #  @param moveTo The location of where the piece has to be moved to
     def moveBlack(self, moveFrom, moveTo, winLoss):
         """
             Move a black piece from one spot to another. \n winLoss is passed as either 0(white)
             or 1(black) if the move is a jump
         """
-        self.moveSilentBlack(moveFrom, MoveTo, winLoss)
-        
+        self.moveSilentBlack(moveFrom, moveTo, winLoss)
+
+    ## @brief Moves a white piece, calls the updateboard method, determines if white piece player has won or loss (sets the turn to black after)
+    #  @param moveFrom The location of the piece to be moved
+    #  @param moveTo The location of where the piece has to be moved to
     def moveWhite(self, moveFrom, moveTo, winLoss):
         """
             Move a white piece from one spot to another. \n winLoss is passed as either 0(white)
@@ -205,6 +240,7 @@ class board(object):
         """
         self.moveSilentWhite(moveFrom, moveTo, winLoss)
 
+    ## @brief Prints the game board to stdout
     def printBoard(self):
         """
             Prints the game board to stdout
