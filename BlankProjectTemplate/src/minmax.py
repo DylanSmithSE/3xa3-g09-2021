@@ -1,13 +1,25 @@
+## @file Box3D.py
+#  @title Box3D
+#  @author 
+#  @date 1/8/2017
+
 # Provides the minmax functionality as well as static evaluation
 from copy import deepcopy
 
+## @brief Function to check if game is won
+#  @details Function takes in board object and returns bool
+#  @param board board object cotaining the state
+#  @param size (w,h,d) tuple containing the width, height and depth
 def is_won(board):
     """
         Returns true if the game has been won
     """
     return board.gameWon != board.NOTDONE
         
-
+## @brief Main minimax algorithm function for AI
+#  @details Function takes in board object and returns most appropirate move for the AI
+#  @param board board object cotaining the state
+#  @param size (w,h,d) tuple containing the width, hei
 def minMax2(board):
     """
         Main minmax function, takes a board as input and returns the best possible move in the form
@@ -27,6 +39,10 @@ def minMax2(board):
     else:
         return (bestBoard, bestVal)
 
+## @brief Function to calculate best move for AI
+#  @details Function takes in board object as well as currentdepth to return best move for the AI
+#  @param maxBoard board object with final state after completeing all the possible moves
+#  @param currentDepth depth for the AI to predict best move
 def maxMove2(maxBoard, currentDepth):
     """
         Calculates the best move for BLACK player (computer) (seeks a board with INF value)
