@@ -1,6 +1,6 @@
 ## @file minmax.py
 #  @author Carson Wilcox, Thaneegan, Dylan, Ardhendu  
-#  @brief Provides the minmax functionality as well as static evaluation
+#  @brief Provides the minmax functionality  for AI as well as static evaluation
 #  @date 3/17/2021
 
 from copy import deepcopy

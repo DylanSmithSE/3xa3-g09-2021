@@ -1,6 +1,6 @@
 ## @file board.py
 #  @author Ardhendu, Dylan, Thaneegan
-#  @brief Class to represent the board of the checkers game.
+#  @brief Class to represent the board and handle the state of the board of the checkers game.
 #  @date March 16th 2021
 
 # coding: utf-8
