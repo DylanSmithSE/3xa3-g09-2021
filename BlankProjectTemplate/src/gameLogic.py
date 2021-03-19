@@ -1,5 +1,4 @@
 ## @file gameLogic.py
-#  @title gameLogic
 #  @author Carson Wilcox, Thaneegan, Dylan, Ardhendu  
 #  @brief Provides logic for game (including making moves)
 #  @date 3/17/2021
