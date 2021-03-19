@@ -1,4 +1,5 @@
 ## @file GUI.py
+## @brief Following module handles the graphical user interface for the checkers game
 #  @author Dylan, Thaneegan, Ardhendu
 #  @date March 3 2021
 import pygame
@@ -6,9 +7,7 @@ from board import *
 
 screen_dimensions = (1060, 720)
 
-## @brief Following module handles the graphical user interface for the checkers game
-#  @details The GUI class will handle the display of all graphics for the
-#           Graphical User Interface
+
 class GUI:
     ## @brief The init method loads the graphics, sets the dimensions of the
     #         board and calls make_display()

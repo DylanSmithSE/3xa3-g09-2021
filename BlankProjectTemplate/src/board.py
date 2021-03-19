@@ -9,7 +9,7 @@
 from tkinter import *
 from tkinter import messagebox
 
-class board(object):
+class board():
 
     RED = 1
     WHITE = 0
