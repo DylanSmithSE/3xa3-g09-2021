@@ -15,10 +15,6 @@ def is_won(board):
 #  @details Function takes in board object and returns most appropirate move for the AI
 #  @param board board object cotaining the state
 def minMax2(board):
-    """
-        Main minmax function, takes a board as input and returns the best possible move in the form
-        of a board and the value of that board.
-    """
     bestBoard = None
     currentDepth = board.maxDepth + 1
     while not bestBoard and currentDepth > 0:
@@ -38,9 +34,6 @@ def minMax2(board):
 #  @param maxBoard board object with final state after completeing all the possible moves
 #  @param currentDepth depth for the AI to predict best move
 def maxMove2(maxBoard, currentDepth):
-    """
-        Calculates the best move for BLACK player (computer) (seeks a board with INF value)
-    """
     return maxMinBoard(maxBoard, currentDepth-1, float('-inf'))
     
 ## @brief Function to calculate and predict best move from perspective of the player
@@ -48,9 +41,6 @@ def maxMove2(maxBoard, currentDepth):
 #  @param maxBoard board object with final state after completeing all the possible moves
 #  @param currentDepth depth for the AI to predict best player move
 def minMove2(minBoard, currentDepth):
-    """
-        Calculates the best move from the perspective of WHITE player (seeks board with -INF value)
-    """
     return maxMinBoard(minBoard, currentDepth-1, float('inf'))
 
 ## @brief Function to calculate and predict best move from perspective of the player
@@ -95,13 +85,6 @@ def maxMinBoard(board, currentDepth, bestMove):
 ## @brief Function to evaluate the board state and which player is favoured to win to assess AI move
 #  @param evalBoard board that needs to be evaluated
 def staticEval2(evalBoard):
-    """
-        Evaluates a board for how advantageous it is
-        -INF if WHITE player has won
-        INF if BLACK player has won
-        Otherwise use a particular strategy to evaluate the move
-        See Comments above an evaluator for what it's strategy is
-    """
     if evalBoard.gameWon == evalBoard.RED:
         return float('inf')  
     elif evalBoard.gameWon == evalBoard.WHITE:
