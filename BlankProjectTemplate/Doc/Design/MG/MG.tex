@@ -29,17 +29,15 @@
 \newcommand{\mthemnum}{M\themnum}
 \newcommand{\mref}[1]{M\ref{#1}}
 
-\title{SE 3XA3: Software Requirements Specification\\Title of Project}
+\title{SE 3XA3: Software Requirements Specification\\KingMe}
 
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
+\author{Team 9, KingMe
+		\\ Ardhendu Barge 400066133
+		\\ Dylan Smith 001314410
+		\\ Thaneegan Chandrasekara 400022748
 }
 
 \date{\today}
-
-\input{../../Comments}
 
 \begin{document}
 
@@ -50,13 +48,15 @@
 \listoftables
 \listoffigures
 
-\begin{table}[bp]
+\begin{table}[!ht]
 \caption{\bf Revision History}
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+2021/03/10 & 0 & Added the modules of the system\\
+2021/03/11 & 0 & Added likely and unlikely changes\\
+2021/03/14 & 0 & Added the traceability tables\\
+2021/03/18 & 0 & Added the section introducitons\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -67,105 +67,45 @@ Date 2 & 1.1 & Notes\\
 
 \section{Introduction}
 
-Decomposing a system into modules is a commonly accepted approach to developing
-software.  A module is a work assignment for a programmer or programming
-team~\citep{ParnasEtAl1984}.  We advocate a decomposition
-based on the principle of information hiding~\citep{Parnas1972a}.  This
-principle supports design for change, because the ``secrets'' that each module
-hides represent likely future changes.  Design for change is valuable in SC,
-where modifications are frequent, especially during initial development as the
-solution space is explored.  
-
-Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
-\begin{itemize}
-\item System details that are likely to change independently should be the
-  secrets of separate modules.
-\item Each data structure is used in only one module.
-\item Any other program that requires information stored in a module's data
-  structures must obtain it by calling access programs belonging to that module.
-\end{itemize}
-
-After completing the first stage of the design, the Software Requirements
-Specification (SRS), the Module Guide (MG) is developed~\citep{ParnasEtAl1984}. The MG
-specifies the modular structure of the system and is intended to allow both
-designers and maintainers to easily identify the parts of the software.  The
-potential readers of this document are as follows:
-
-\begin{itemize}
-\item New project members: This document can be a guide for a new project member
-  to easily understand the overall structure and quickly find the
-  relevant modules they are searching for.
-\item Maintainers: The hierarchical structure of the module guide improves the
-  maintainers' understanding when they need to make changes to the system. It is
-  important for a maintainer to update the relevant sections of the document
-  after changes have been made.
-\item Designers: Once the module guide has been written, it can be used to
-  check for consistency, feasibility and flexibility. Designers can verify the
-  system in various ways, such as consistency among modules, feasibility of the
-  decomposition, and flexibility of the design.
-\end{itemize}
-
-The rest of the document is organized as follows. Section
-\ref{SecChange} lists the anticipated and unlikely changes of the software
-requirements. Section \ref{SecMH} summarizes the module decomposition that
-was constructed according to the likely changes. Section \ref{SecConnection}
-specifies the connections between the software requirements and the
-modules. Section \ref{SecMD} gives a detailed description of the
-modules. Section \ref{SecTM} includes two traceability matrices. One checks
-the completeness of the design against the requirements provided in the SRS. The
-other shows the relation between anticipated changes and the modules. Section
-\ref{SecUse} describes the use relation between modules.
+A very important part of the development of our checkers application, King Me, is modular decomposition. This is the process of breaking our application into individual modules each containing one secret. In this document we will be discussing each of these different modules, the secret they contain and how they have been designed for change. We will be discussing the changes we anticipate being made in the future and how the modules have been designed to allow these changes to be easily made, and we will discuss the unlikely changes that we don't anticipate being made. We will be discussing the structure of the modules and how they comprise the system. Lastly we will demonstrate how the requirements are being met by the different modules of our system.
 
 \section{Anticipated and Unlikely Changes} \label{SecChange}
-
-This section lists possible changes to the system. According to the likeliness
-of the change, the possible changes are classified into two
-categories. Anticipated changes are listed in Section \ref{SecAchange}, and
-unlikely changes are listed in Section \ref{SecUchange}.
+This section will list possible changes that may be made to the system. They will be separated into anticipated and unlikely changes.
 
 \subsection{Anticipated Changes} \label{SecAchange}
 
-Anticipated changes are the source of the information that is to be hidden
-inside the modules. Ideally, changing one of the anticipated changes will only
-require changing the one module that hides the associated decision. The approach
-adapted here is called design for
-change.
+Anticipated changes are changes that were anticipated during the design process. These changes influenced the modular decomposition of our system. They are changes that we anticipate will likely be made and should be easily made. We chose to decompose the system into modules containing secrets such that each of these changes would result in the modification of only one module, therefore making it much easier to implement the changes when the time comes. 
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+\item[\refstepcounter{acnum} \actheacnum \label{acAlgorithm}:] Modifying the algorithm for generating computer moves.
+\item[\refstepcounter{acnum} \actheacnum \label{acGraphics}:] Changing the graphical elements used to display the application.
+\item[\refstepcounter{acnum} \actheacnum \label{acMenu}:] The tutorial will need to be updated when new features are added or removed.
+\item[\refstepcounter{acnum} \actheacnum \label{acBoard}:] Changes to the implementation of the state of the board.
+\item[\refstepcounter{acnum} \actheacnum \label{acMoves}:] Changing how the valid moves are generated.
+\item[\refstepcounter{acnum} \actheacnum \label{acRules}:] More advanced checkers rules may be added.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
 
-The module design should be as general as possible. However, a general system is
-more complex. Sometimes this complexity is not necessary. Fixing some design
-decisions at the system architecture stage can simplify the software design. If
-these decision should later need to be changed, then many parts of the design
-will potentially need to be modified. Hence, it is not intended that these
-decisions will be changed.
+Unlikely changes are those that we do not anticipate being made. The module structure was not be designed to accommodate these changes. They will likely require the modification of multiple modules, making these changes much more difficult to implement.
+
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
-  a source of input data external to the software.
-\item ...
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The input will come from the mouse and the screen will be used to output to. 
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The user is the source of the input.
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
 
-This section provides an overview of the module design. Modules are summarized
-in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed
-below, which are leaves in the hierarchy tree, are the modules that will
-actually be implemented.
+In this section we discuss our module design. The modules are separated into Hardware-Hiding, Behaviour-Hiding and Software Decision Hiding based on the secrets they contain. 
 
 \begin{description}
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{mGUI}:] GUI Module
+\item [\refstepcounter{mnum} \mthemnum \label{mM}:] Menu Module
+\item [\refstepcounter{mnum} \mthemnum \label{mB}:] Board Module
+\item [\refstepcounter{mnum} \mthemnum \label{mG}:] GameLogic Module
+\item [\refstepcounter{mnum} \mthemnum \label{mP}:] Piece Module
+\item [\refstepcounter{mnum} \mthemnum \label{mA}:] AI Module
 \end{description}
 
 
@@ -176,22 +116,17 @@ actually be implemented.
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-{Hardware-Hiding Module} & ~ \\
+{Hardware-Hiding Module} & None \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & GUI Module\\
+& Menu Module\\
+& Board Module\\
+& GameLogic Module\\
+& Piece Module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+\multirow{1}{0.3\textwidth}{Software Decision Module} & AI Module\\
 \bottomrule
 
 \end{tabular}
@@ -201,102 +136,115 @@ actually be implemented.
 
 \section{Connection Between Requirements and Design} \label{SecConnection}
 
-The design of the system is intended to satisfy the requirements developed in
-the SRS. In this stage, the system is decomposed into modules. The connection
-between requirements and modules is listed in Table \ref{TblRT}.
+King Me has been designed to meet the functional and nonfunctional requirements as outlined in the SRS document. Table \ref{TblRT} shows all the requirements of the SRS document alongside the modules used to satisfy them. 
 
 \section{Module Decomposition} \label{SecMD}
 
-Modules are decomposed according to the principle of ``information hiding''
-proposed by \citet{ParnasEtAl1984}. The \emph{Secrets} field in a module
-decomposition is a brief statement of the design decision hidden by the
-module. The \emph{Services} field specifies \emph{what} the module will do
-without documenting \emph{how} to do it. For each module, a suggestion for the
-implementing software is given under the \emph{Implemented By} title. If the
-entry is \emph{OS}, this means that the module is provided by the operating
-system or by standard programming language libraries.  Also indicate if the
-module will be implemented specifically for the software.
+In this section we will discuss what modules our system have been decomposed into. We will introduce the different modules and briefly explain their role in the overall system. Each module is broken up into a secret, a service and an implementation. The secret of the module is the design decision that has been hidden within the module , the service of the module is what the module does, and the implementation is how we implemented the module.
 
-Only the leaf modules in the
-hierarchy have to be implemented. If a dash (\emph{--}) is shown, this means
-that the module is not a leaf and will not have to be implemented. Whether or
-not this module is implemented depends on the programming language
-selected.
-
-\subsection{Hardware Hiding Modules (\mref{mHH})}
-
+\subsection{Hardware Hiding Modules}
+%\subsection{Hardware Hiding Modules (\mref{mHH})}
 \begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the virtual
-  hardware.
-\item[Services:]Serves as a virtual hardware used by the rest of the
-  system. This module provides the interface between the hardware and the
-  software. So, the system can use it to display outputs or to accept inputs.
-\item[Implemented By:] OS
+\item N/A - This implementation contains no hardware hiding modules.
 \end{description}
 
-\subsection{Behaviour-Hiding Module}
+\subsection{Behaviour-Hiding Modules}
+
+\subsubsection{GUI Module (\mref{mGUI})}
 
 \begin{description}
-\item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
+\item[Secrets:] Manages the display of the application.
+\item[Services:] Displays the UI to the screen. Displays the board, the pieces and the menu options in the desired configurations. Captures interactions on the UI and relays to appropriate modules.
+\item[Implemented By:] GUI.py (Python)
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
+\subsubsection{Menu Module (\mref{mM})}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
+\item[Secrets:] Manages the 'New Game' and 'Tutorial' logic.
+\item[Services:] Provides a way to restart the game and also provides instructions on how to play the game.
+\item[Implemented By:] menu.py (Python)
 \end{description}
 
-\subsubsection{Etc.}
-
-
-\subsection{Software Decision Module}
+\subsubsection{Board Module (\mref{mB})}
 
 \begin{description}
-\item[Secrets:] The design decision based on mathematical theorems, physical
-  facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
-\item[Services:] Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user. 
-  % Changes in these modules are more likely to be motivated by a desire to
-  % improve performance than by externally imposed changes.
-\item[Implemented By:] --
+\item[Secrets:] Manages the state of the game board.
+\item[Services:] Provides details on the state of the game board, including where pieces are located on the board.
+\item[Implemented By:] board.py (Python)
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{GameLogic Module (\mref{mG})}
+
+\begin{description}
+\item[Secrets:] The checkers logic.
+\item[Services:] Determines the valid moves that can be made by any given piece. Tracks whether or not a win/loss state has been reached.
+\item[Implemented By:] gameLogic.py (Python)
+\end{description}
+
+\subsubsection{Piece Module (\mref{mP})}
+
+\begin{description}
+\item[Secrets:] Manages how the position of the piece.
+\item[Services:] Contains the information on where the piece is located and the direction(s) it can move.
+\item[Implemented By:] piece.py (Python)
+\end{description}
+
+\subsection{Software Decision Modules}
+
+\subsubsection{AI Module (\mref{mA})}
+\begin{description}
+\item[Secrets:] The logic of how the AI/Computer chooses it's move.
+\item[Services:] Calculates the best move for the AI/Computer to make based on the given state of the game board. Utilizes an efficient algorithm to select the move while satisfying the NFR response times.
+\item[Implemented By:] minmax.py (Python)
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
-This section shows two traceability matrices: between the modules and the
-requirements and between the modules and the anticipated changes.
+This section shows two traceability matrices. The first shows the connection between the requirements of the SRS document and the modules used to satisfy them, and the second is between the anticipated changes and the modules that will need to be modified to make the changes.
 
-% the table should use mref, the requirements should be named, use something
-% like fref
 \begin{table}[H]
 \centering
 \begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+FR1 & \mref{mGUI}\\
+R2 & \mref{mGUI}, \mref{mM}\\
+R3 & \mref{mP}\\
+R4 & \mref{mP}\\
+R5 & \mref{mGUI}, \mref{mP}\\
+FR6 & \mref{mGUI}, \mref{mB}, \mref{mG}\\
+FR7 & \mref{mGUI}, \mref{mM}\\
+FR8 & \mref{mB}, \mref{mG}\\
+FR9 & \mref{mB}, \mref{mG}\\
+FR10 & \mref{mGUI}, \mref{mG}\\
+R11 & \mref{mP}, \mref{mGUI}, \mref{mB}, \mref{mG}\\
+FR12 & \mref{mGUI}, \mref{mP}\\
+FR13 & \mref{mB}, \mref{mP}\\
+FR14 & \mref{mB}, \mref{mG}, \mref{mP}\\
+FR15 & \mref{mGUI}, \mref{mG}, \mref{mP}\\
+FR16 & \mref{mGUI}, \mref{mB}, \mref{mP}\\
+
+NFR1 & \mref{mGUI}, \mref{mM}\\
+NFR2 & \mref{mGUI}\\
+NFR3 & \mref{mGUI}\\
+NFR4 & N/A\\
+NFR5 & \mref{mM}\\
+
+NFR6 & \mref{mGUI}, \mref{mB}, \mref{mG}, \mref{mP}\\
+NFR7 & \mref{mGUI}, \mref{mB}, \mref{mA}\\
+NFR8 & \mref{mGUI}, \mref{mB}, \mref{mG}\\
+NFR9 & \mref{mGUI}\\
+
+NFR10 & N/A\\
+NFR11 & N/A\\
+NFR12 & N/A\\
+NFR13 & N/A\\
+NFR14 & N/A\\
+NFR15 & N/A\\
+NFR16 & N/A\\
+NFR17 & \mref{mGUI}, \mref{mM}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -309,40 +257,26 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{acAlgorithm} & \mref{mA}\\
+\acref{acGraphics} & \mref{mGUI}\\
+\acref{acMenu} & \mref{mM}\\
+\acref{acBoard} & \mref{mB}\\
+\acref{acMoves} & \mref{mG}\\
+\acref{acRules} & \mref{mG}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
 \label{TblACT}
 \end{table}
 
+\newpage
 \section{Use Hierarchy Between Modules} \label{SecUse}
 
-In this section, the uses hierarchy between modules is
-provided. \citet{Parnas1978} said of two programs A and B that A {\em uses} B if
-correct execution of B may be necessary for A to complete the task described in
-its specification. That is, A {\em uses} B if there exist situations in which
-the correct functioning of A depends upon the availability of a correct
-implementation of B.  Figure \ref{FigUH} illustrates the use relation between
-the modules. It can be seen that the graph is a directed acyclic graph
-(DAG). Each level of the hierarchy offers a testable and usable subset of the
-system, and modules in the higher level of the hierarchy are essentially simpler
-because they use modules from the lower levels.
+In this section we provide the uses hierarchy between the modules. The uses hierarchy depicts the relationships between the different modules. An arrow from one module to another describes a uses relation where the first module depends on the module it points to as described by \citet{Parnas1978}. 
 
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
