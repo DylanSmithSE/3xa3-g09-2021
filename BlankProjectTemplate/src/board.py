@@ -1,5 +1,5 @@
 ## @file board.py
-#  @author Ardhendu, Dylan, Thaneegan
+#  @author Carson Wilcox, Ardhendu, Dylan, Thaneegan
 #  @brief Class to represent the board and handle the state of the board of the checkers game.
 #  @date March 16th 2021
 
