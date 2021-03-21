@@ -88,7 +88,6 @@ class board():
             for j in range(self.width):
                 self.boardState[i][j] = "Null"
         for piece in self.blacklist:
-            # print('piece is  ', piece)
             self.boardState[piece[0]][piece[1]] = 'WHITE'
         for piece in self.whitelist:
             self.boardState[piece[0]][piece[1]] = 'BLACK'
