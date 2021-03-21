@@ -24,6 +24,7 @@ def iterBlackMoves(board):
     for piece in board.blacklist:
         for move in iterBlackPiece(board, piece):
             yield move
+    print('blacklist is ', board.blacklist)
 
 ## @brief Checks for possible moves for the selected piece
 #  @param board The state of the current board
@@ -56,25 +57,25 @@ def iterBoth(board, piece, moves):
     """
         Handles the actual generation of moves for either black or white pieces
     """
-    print('moves ae piece ', piece, moves)
+    #print('piece is ', piece)
     for move in moves:
         # Regular Move
-        print('moce s ', move)
         targetx = piece[0] + move[0]
         targety = piece[1] + move[1]
-        # print(f'targetx is {targetx} and targety is {targety}' )
+        #print(f'targetx is {targetx} and targety is {targety}' )
         # If the move is out of bounds don't move
         if targetx < 0 or targetx >= board.width or targety < 0 or targety >= board.height:
             continue
         target = (targetx, targety)
-        print('target is ', target)
         # Check that there is nothing in the way of moving to the target
         black = target in board.blacklist
         white = target in board.whitelist
         if not black and not white:
+            #print('p and t is ', piece, target)
             yield (piece, target, board.NOTDONE)
         # There was something in the way, can we jump it?
         else:
+            print('in ese')
             # It has to be of the opposing color to jump
             if board.turn == board.RED and black:
                 continue
@@ -106,7 +107,15 @@ def moveSilentBlack(board, moveFrom, moveTo, winLoss):
         raise Exception("That would move black piece", moveFrom, "out of bounds")
     black = moveTo in board.blacklist
     white = moveTo in board.whitelist
-    if( not(black or white) and ( (moveTo == (moveFrom[0]-1,moveFrom[1]+1)) or  (moveTo == (moveFrom[0]-1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]+1)) )):
+    moveT1 = (moveTo == (moveFrom[0]-1,moveFrom[1]+1))
+    moveT2 = (moveTo == (moveFrom[0]-1,moveFrom[1]-1))
+    moveT3 = (moveTo == (moveFrom[0]+1,moveFrom[1]-1))
+    moveT4 = (moveTo == (moveFrom[0]+1,moveFrom[1]+1))
+    moveT5 = (moveTo == (moveFrom[0]-2,moveFrom[1]+2))
+    moveT6 = (moveTo == (moveFrom[0]-2,moveFrom[1]-2))
+    moveT7 = (moveTo == (moveFrom[0]+2,moveFrom[1]-2))
+    moveT8 = (moveTo == (moveFrom[0]+2,moveFrom[1]+2))
+    if( not(black or white) and ( moveT1 or  moveT2 or moveT3 or moveT4 or moveT5 or moveT6 or moveT7 or moveT8 )):
         board.blacklist[board.blacklist.index(moveFrom)] = moveTo
         board.updateBoard()
         board.turn = board.WHITE
@@ -122,21 +131,31 @@ def moveSilentWhite(board, moveFrom, moveTo, winLoss):
     """
         Move white piece without printing
     """
+    #print("movesillentwhite ", moveFrom, moveTo)
     if moveTo[0] < 0 or moveTo[0] >= board.width or moveTo[1] < 0 or moveTo[1] >= board.height:
         raise Exception("That would move white piece", moveFrom, "out of bounds")
 
     black = moveTo in board.blacklist
     white = moveTo in board.whitelist
-    print('move pair is ', (moveFrom, moveTo))
-    if( (moveTo == (moveFrom[0]-1,moveFrom[1]+1)) or  (moveTo == (moveFrom[0]-1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]+1)) ):
-        print('Trueeee')
-    
-    if( not(black or white) and ( (moveTo == (moveFrom[0]-1,moveFrom[1]+1)) or  (moveTo == (moveFrom[0]-1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]+1)) )):
+    #print('move pair is ', (moveFrom, moveTo))
+    # if( (moveTo == (moveFrom[0]-1,moveFrom[1]+1)) or  (moveTo == (moveFrom[0]-1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]-1)) or (moveTo == (moveFrom[0]+1,moveFrom[1]+1)) ):
+    #     print('Trueeee')
+    moveT1 = (moveTo == (moveFrom[0]-1,moveFrom[1]+1))
+    moveT2 = (moveTo == (moveFrom[0]-1,moveFrom[1]-1))
+    moveT3 = (moveTo == (moveFrom[0]+1,moveFrom[1]-1))
+    moveT4 = (moveTo == (moveFrom[0]+1,moveFrom[1]+1))
+    moveT5 = (moveTo == (moveFrom[0]-2,moveFrom[1]+2))
+    moveT6 = (moveTo == (moveFrom[0]-2,moveFrom[1]-2))
+    moveT7 = (moveTo == (moveFrom[0]+2,moveFrom[1]-2))
+    moveT8 = (moveTo == (moveFrom[0]+2,moveFrom[1]+2))
+    if( not(black or white) and ( moveT1 or  moveT2 or moveT3 or moveT4 or moveT5 or moveT6 or moveT7 or moveT8 ) ):
+        print("movesillentwhite ", moveFrom, moveTo)
         board.whitelist[board.whitelist.index(moveFrom)] = moveTo
         board.updateBoard()
         board.turn = board.RED
         board.gameWon = winLoss
     else:
+        print('invalid moce is ', moveFrom, moveTo)
         raise Exception
 
 ## @brief Moves a black piece, calls the updateboard method, determines if black piece player has won or loss (sets the turn to white after)

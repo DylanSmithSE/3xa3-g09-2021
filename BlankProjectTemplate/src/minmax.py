@@ -49,7 +49,6 @@ def minMove2(minBoard, currentDepth):
 #  @param maxBoard board object with final state after completeing all the possible moves
 #  @param currentDepth depth for the AI to predict best player move
 def maxMinBoard(board, currentDepth, bestMove):
-    print('yeeee this being acacaalalallalal')
 
     if is_won(board) or currentDepth <= 0:
         return (board, staticEval2(board))
