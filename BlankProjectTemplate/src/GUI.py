@@ -3,6 +3,7 @@
 #  @author Dylan, Thaneegan, Ardhendu
 #  @date March 3 2021
 import pygame
+import time
 from board import *
 
 screen_dimensions = (1060, 720)
@@ -16,6 +17,8 @@ class GUI:
         self.board_img = pygame.image.load('./img/board.png')
         self.red_piece = pygame.image.load('./img/red_man.png')
         self.white_piece = pygame.image.load('./img/white_man.png')
+        self.highlighted_red_piece = pygame.image.load('./img/highlighted_red_man.jpg')
+        self.highlighted_white_piece = pygame.image.load('./img/highlighted_white_man.jpg')        
         self.new_game_button = pygame.image.load('./img/btn_new_game.png')
         self.tutorial_button = pygame.image.load('./img/btn_tutorial.png')
         #get dimensions of board
@@ -41,14 +44,18 @@ class GUI:
     #  @details Loops through the board_state and calls display_piece to display
     #           the pieces
     #  @param board_state Two dimensional array representing the state of the board
-    def display_board(self, board_state):
+    def display_board(self, board_state, selected):
         self.screen.blit(self.board_img, (0, 0))
         #Adding pieces
         y = 0
+        #print('Selected is: ', selected[0], selected[1])
         for col in board_state:
             x = 0
             for row in col:
-                self.display_piece(row,x,y)
+                if (x == selected[0] and y == selected[1]):
+                    self.display_piece(row,x,y,1)
+                else:
+                    self.display_piece(row,x,y,0) 
                 x+=1
             y+=1
         # x = 0
@@ -72,11 +79,15 @@ class GUI:
     #  @param colour The colour of the piece to be displayed
     #  @param row The row to display the piece
     #  @param col The collumn to display the piece
-    def display_piece(self,colour, row, col):
-        if colour == 'BLACK':
+    def display_piece(self,colour, row, col, selected):
+        if colour == 'BLACK' and selected == 0:
             self.screen.blit(self.red_piece, self.calc_pos(row, col))
-        elif colour == 'WHITE':
+        elif colour == 'WHITE' and selected == 0:
             self.screen.blit(self.white_piece, self.calc_pos(row, col))
+        elif colour == 'BLACK' and selected == 1:
+            self.screen.blit(self.highlighted_red_piece, self.calc_pos(row, col))
+        elif colour == 'WHITE' and selected == 1:
+            self.screen.blit(self.highlighted_white_piece, self.calc_pos(row, col))        
         else:
             pass
 
@@ -125,6 +136,24 @@ class GUI:
         col = y // (self.board_width/self.num_cols)
         return (int(col),int(row))
 
+    def highlight_piece(self, board, moves):
+        counter = 0
+        x = None
+        y = None
+        selected = [10,10]
+        for i in board.whitelist:
+            if (moves[0][0] == i[0] and moves[0][1] == i[1]):
+                x = i[1]
+                y = i[0]
+                break
+            counter+=1
+        print('Value of x and y is ', x, y)
+        if (x != None or y != None):
+            self.display_piece('BLACK', x, y, 1)
+            #print('Highlighted piece is ', moves[0][0],moves[0][1])
+            pygame.display.update()
+            selected = x, y
+        return selected
 #testing
 # b = [['','WHITE','','WHITE','','WHITE','','WHITE'],\
 #                 ['WHITE','','WHITE','','WHITE','','WHITE',''],\

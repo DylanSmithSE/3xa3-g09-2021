@@ -6,6 +6,7 @@ from gameLogic import *
 from minmax import *
 from GUI import *
 from menu import *
+import time
 # Setup variables
 width = 8
 height = 8
@@ -16,10 +17,11 @@ gui = GUI()
 board = board(width, height, firstPlayer)
 clock = pygame.time.Clock()
 moves = []
+selected = [10,10]
 
 while board.gameWon == -1:
     clock.tick(60)
-    gui.display_board(board.boardState)
+    gui.display_board(board.boardState, selected)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -30,6 +32,7 @@ while board.gameWon == -1:
             clicked_object = gui.get_clicked_object(pos)
             if clicked_object == "board":
                 moves.append(gui.get_square_clicked(pos))
+                selected = gui.highlight_piece(board, moves) #------------------------
             elif clicked_object == "new":
                 menu().newgame(board, width, height, firstPlayer)
             elif clicked_object == "tutorial":
@@ -51,7 +54,6 @@ while board.gameWon == -1:
             gui.update_message("Invalid move, try again")
             continue
 
-        gui.display_board(board.boardState)
 
         temp = minMax2(board)
         board = temp[0]
