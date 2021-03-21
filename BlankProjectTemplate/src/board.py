@@ -66,7 +66,10 @@ class board():
         self.updateBoard()
         self.gameWon = self.NOTDONE
         self.turn = firstPlayer
-        self.maxDepth = 10
+        self.maxDepth = 5
+
+        print('black list is ', self.blacklist)
+        print('white list is ', self.whitelist)
         Tk().wm_withdraw() #to hide the main window
         messagebox.showinfo('Starting new game...','New game selected, enjoy!')
 

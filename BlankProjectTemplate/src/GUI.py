@@ -3,7 +3,7 @@
 #  @author Dylan, Thaneegan, Ardhendu
 #  @date March 3 2021
 import pygame
-import time
+import gameLogic
 from board import *
 
 screen_dimensions = (1060, 720)
@@ -141,6 +141,7 @@ class GUI:
         x = None
         y = None
         selected = [10,10]
+        #self.highlight_validmoves(board)
         for i in board.whitelist:
             if (moves[0][0] == i[0] and moves[0][1] == i[1]):
                 x = i[1]
@@ -154,7 +155,12 @@ class GUI:
             pygame.display.update()
             selected = x, y
         return selected
-#testing
+    
+#     def highlight_validmoves(self, board):
+#         moves = gameLogic.iterBlackMoves(board)
+#         for move in moves:
+
+# #testing
 # b = [['','WHITE','','WHITE','','WHITE','','WHITE'],\
 #                 ['WHITE','','WHITE','','WHITE','','WHITE',''],\
 #                 ['','WHITE','','WHITE','','WHITE','','WHITE'],\

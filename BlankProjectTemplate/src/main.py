@@ -34,6 +34,8 @@ while board.gameWon == -1:
                 moves.append(gui.get_square_clicked(pos))
                 selected = gui.highlight_piece(board, moves) #------------------------
             elif clicked_object == "new":
+                moves = []
+                selected = [10, 10]
                 menu().newgame(board, width, height, firstPlayer)
             elif clicked_object == "tutorial":
                 menu().tutorial()
