@@ -34,7 +34,7 @@ class Board():
                     self.boardState[x][y] = p
                     self.red_pieces.append(p)
                 elif col == "WHITE":
-                    p = piece(x,y,"WHITE",-1)
+                    p = piece(x,y,"WHITE",1)
                     self.boardState[x][y] = p
                     self.white_pieces.append(p)
                 else:
@@ -44,102 +44,108 @@ class Board():
 
     #replace piece with 0 and then moves the piece to the new location
     def move(self, piece, toRow, toCol):
-        self.remove(piece)
+        self.boardState[piece.row][piece.col] = 0
         self.boardState[toRow][toCol] = piece
         piece.move(toRow,toCol)
 
     #replaces piece with 0 in boardstate
     def remove(self, piece):
         self.boardState[piece.row][piece.col] = 0
+        self.red_pieces.remove(piece)
+        self.white_pieces.remove(piece)
 
     def getValidMoves(self, piece):
         moves = {}
         row = piece.row
         col = piece.col
         colour = piece.color
-        self.checkUpLeft(row,col,colour,False,[],moves)
-        self.checkUpRight(row,col,colour,False,[],moves)
+        direction = piece.direction
+        if not piece.king:
+            self.checkLeft(row,col,colour,direction, False,[],moves)
+            self.checkRight(row,col,colour,direction,False,[],moves)
+        else:
+            pass
         return moves
 
 
-    def checkUpLeft(self, row, col, colour, haveSkipped, captures,moves):
+    def checkLeft(self, row, col, colour,direction, haveSkipped, captures,moves):
         skipped = []
         for tup in captures:
             skipped.append(tup)
-        if row-1>=0 and col-1>=0:
+        if row+direction>=0 and row+direction<8 and col-1>=0:
             #no captures have been made
             if not haveSkipped:
-                if self.boardState[row-1][col-1] == 0:
-                    if not (row-1,col-1) in moves:
-                        moves[(row-1,col-1)] = []
-                elif self.boardState[row-1][col-1].color != colour:
-                    self.checkUpLeftSkip(row,col,colour,skipped,moves)
+                if self.boardState[row+direction][col-1] == 0:
+                    if not (row+direction,col-1) in moves:
+                        moves[(row+direction,col-1)] = []
+                elif self.boardState[row+direction][col-1].color != colour:
+                    self.checkLeftSkip(row,col,colour,direction,skipped,moves)
                 else:
                     pass
             #if a piece has been captured already
             else:
-                if self.boardState[row-1][col-1] == 0:
+                if self.boardState[row+direction][col-1] == 0:
                     pass
-                elif self.boardState[row-1][col-1].color != colour:
-                    self.checkUpLeftSkip(row,col,colour,skipped,moves)
+                elif self.boardState[row+direction][col-1].color != colour:
+                    self.checkLeftSkip(row,col,colour,direction,skipped,moves)
                 else:
                     pass
 
-    def checkUpLeftSkip(self,row,col,colour,captures,moves):
+    def checkLeftSkip(self,row,col,colour,direction,captures,moves):
         skipped =[]
+        print()
         for tup in captures:
             skipped.append(tup)
-        if row-2>=0 and col-2>=0:
-            if self.boardState[row-2][col-2] == 0:
-                skipped.append((row-1,col-1))
-                if not (row-2,col-2) in moves:
-                    moves[(row-2,col-2)] = skipped
-                self.checkUpLeft(row-2,col-2,colour,True,skipped,moves)
-                self.checkUpRight(row-2,col-2,colour,True,skipped,moves)
+        if (row+(2*direction))>=0 and (row+(2*direction)<8) and col-2>=0:
+            if self.boardState[row+(2*direction)][col-2] == 0:
+                skipped.append((row+direction,col-1))
+                if not (row+(2*direction),col-2) in moves:
+                    moves[(row+(2*direction),col-2)] = skipped
+                self.checkLeft(row+(2*direction),col-2,colour,direction,True,skipped,moves)
+                self.checkRight(row+(2*direction),col-2,colour,direction,True,skipped,moves)
             else:
                 pass
 
 
-    def checkUpRight(self, row, col, colour, haveSkipped, captures,moves):
+    def checkRight(self,row,col,colour,direction,haveSkipped,captures,moves):
         skipped = []
         for tup in captures:
             skipped.append(tup)
-        if row-1>=0 and col+1<8:
+        if row+direction>=0 and row+direction<8 and col+1<8:
             #no captures have been made
             if not haveSkipped:
-                if self.boardState[row-1][col+1] == 0:
-                    if not (row-1,col+1) in moves:
-                        moves[(row-1,col+1)] = []
-                elif self.boardState[row-1][col+1].color != colour:
-                    self.checkUpRightSkip(row,col,colour,skipped,moves)
+                if self.boardState[row+direction][col+1] == 0:
+                    if not (row+direction,col+1) in moves:
+                        moves[(row+direction,col+1)] = []
+                elif self.boardState[row+direction][col+1].color != colour:
+                    self.checkRightSkip(row,col,colour,direction,skipped,moves)
                 else:
                     pass
             #if a piece has been captured already
             else:
-                if self.boardState[row-1][col+1] == 0:
+                if self.boardState[row+direction][col+1] == 0:
                     pass
-                elif self.boardState[row-1][col+1].color != colour:
-                    self.checkUpRightSkip(row,col,colour,skipped,moves)
+                elif self.boardState[row+direction][col+1].color != colour:
+                    self.checkRightSkip(row,col,colour,direction,skipped,moves)
                 else:
                     pass
 
-    def checkUpRightSkip(self,row,col,colour,captures,moves):
+    def checkRightSkip(self,row,col,colour,direction,captures,moves):
         skipped =[]
         for tup in captures:
             skipped.append(tup)
-        if row-2>=0 and col+2<8:
-            if self.boardState[row-2][col+2] == 0:
-                skipped.append((row-1,col+1))
-                if not (row-2,col+2) in moves:
-                    moves[(row-2,col+2)] = skipped
-                self.checkUpRight(row-2,col+2,colour,True,skipped,moves)
-                self.checkUpLeft(row-2,col+2,colour,True,skipped,moves)
+        if (row+(2*direction))>=0 and (row+(2*direction)<8) and col+2<8:
+            if self.boardState[row+(2*direction)][col+2] == 0:
+                skipped.append((row+direction,col+1))
+                if not (row+(2*direction),col+2) in moves:
+                    moves[(row+(2*direction),col+2)] = skipped
+                self.checkRight(row+(2*direction),col+2,colour,direction,True,skipped,moves)
+                self.checkLeft(row+(2*direction),col+2,colour,direction,True,skipped,moves)
             else:
                 pass
 
 
 
-dic = {(1,1):2,(1,3):4,(2,2):4,(2,3):5}
-if not (1,1) in dic:
-    dic[(1,1)] = 6
-print(dic)
+dic = {(1,1):2,(1,3):[(1,2),(2,3)],(2,2):4,(2,3):5}
+a = dic.get((1,3))
+print(a)
