@@ -6,6 +6,7 @@ from gameLogic import *
 from minmax import *
 from GUI import *
 from menu import *
+import time
 # Setup variables
 width = 8
 height = 8
@@ -16,10 +17,11 @@ gui = GUI()
 board = board(width, height, firstPlayer)
 clock = pygame.time.Clock()
 moves = []
+selected = [10,10]
 
 while board.gameWon == -1:
     clock.tick(60)
-    gui.display_board(board.boardState)
+    gui.display_board(board.boardState, selected)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -30,7 +32,12 @@ while board.gameWon == -1:
             clicked_object = gui.get_clicked_object(pos)
             if clicked_object == "board":
                 moves.append(gui.get_square_clicked(pos))
+                selected = gui.highlight_piece(board, moves) #------------------------
+                gui.generate_validMoves(board, moves)
+                #gui.highlight_validmoves(board, moves)
             elif clicked_object == "new":
+                moves = []
+                selected = [10, 10]
                 menu().newgame(board, width, height, firstPlayer)
             elif clicked_object == "tutorial":
                 menu().tutorial()
@@ -41,6 +48,7 @@ while board.gameWon == -1:
         gui.update_message("That is not one of your pieces. Choose a white piece.")
         moves = []
     elif len(moves) == 2:
+        gui.unhighlight_validMoves()
         userMove = (moves[0], moves[1], board.NOTDONE)
         # board.moveWhite(*userMove)
         try:
@@ -51,8 +59,7 @@ while board.gameWon == -1:
             gui.update_message("Invalid move, try again")
             continue
 
-        gui.display_board(board.boardState)
-
+        gui.unhighlight_validMoves()
         temp = minMax2(board)
         board = temp[0]
         if board.gameWon == board.WHITE:
