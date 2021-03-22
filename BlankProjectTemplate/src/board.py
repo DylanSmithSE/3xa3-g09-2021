@@ -93,9 +93,10 @@ class board():
                 self.boardState[i][j] = 0
         for piece in self.blacklist:
             self.boardState[piece[0]][piece[1]] = pieces(piece[0],piece[1],"White")
+            print('Pieces: ', piece[0], piece[1])
         for piece in self.whitelist:
             self.boardState[piece[0]][piece[1]] = pieces(piece[0],piece[1],"Red")
-
+            print('Pieces: ', piece[0], piece[1])
     # #Prints the game board to stdout
     # def printBoard(self):
     #     """

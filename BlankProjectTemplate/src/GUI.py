@@ -57,7 +57,7 @@ class GUI:
                         self.display_piece(row.color,x,y,1)
                     else:
                         self.display_piece(row.color,x,y,0)
-                    x+=1
+                x+=1
             y+=1
         # x = 0
         # for row in board_state:
@@ -81,13 +81,13 @@ class GUI:
     #  @param row The row to display the piece
     #  @param col The collumn to display the piece
     def display_piece(self,colour, row, col, selected):
-        if colour == 'BLACK' and selected == 0:
+        if colour == 'Red' and selected == 0:
             self.screen.blit(self.red_piece, self.calc_pos(row, col))
-        elif colour == 'WHITE' and selected == 0:
+        elif colour == 'White' and selected == 0:
             self.screen.blit(self.white_piece, self.calc_pos(row, col))
-        elif colour == 'BLACK' and selected == 1:
+        elif colour == 'Red' and selected == 1:
             self.screen.blit(self.highlighted_red_piece, self.calc_pos(row, col))
-        elif colour == 'WHITE' and selected == 1:
+        elif colour == 'White' and selected == 1:
             self.screen.blit(self.highlighted_white_piece, self.calc_pos(row, col))
         else:
             pass
