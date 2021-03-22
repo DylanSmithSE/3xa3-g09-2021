@@ -1,12 +1,11 @@
 # Created by Carson Wilcox for Professor Szpakowicz's AI class CSI 4106
 # These
 # Main class runs the game
-from board import *
-from gameLogic import *
-from minmax import *
-from GUI import *
-from menu import *
-import time
+from board2 import *
+from game import *
+#from minmax2 import *
+from GUI2 import *
+from menu2 import *
 # Setup variables
 width = 8
 height = 8
@@ -14,60 +13,55 @@ firstPlayer = 0
 
 ### MAIN PROGRAM ###
 gui = GUI()
-board = board(width, height, firstPlayer)
+game = Game()
 clock = pygame.time.Clock()
 moves = []
-selected = [10,10]
 
-while board.gameWon == -1:
+while game.board.gameWon == -1:
     clock.tick(60)
-    gui.display_board(board.boardState, selected)
+    gui.display_board(game.board.boardState)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            board.gameWon = 2
+            game.board.gameWon = 2
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             pos = pygame.mouse.get_pos()
             clicked_object = gui.get_clicked_object(pos)
             if clicked_object == "board":
-                moves.append(gui.get_square_clicked(pos))
-                selected = gui.highlight_piece(board, moves) #------------------------
-                gui.generate_validMoves(board, moves)
-                #gui.highlight_validmoves(board, moves)
+                game.select(gui.get_square_clicked(pos))
             elif clicked_object == "new":
-                moves = []
-                selected = [10, 10]
                 menu().newgame(board, width, height, firstPlayer)
             elif clicked_object == "tutorial":
                 menu().tutorial()
             elif clicked_object == "nothing":
                 print("You didn't click on anything")
 
-    if len(moves) == 1 and not(moves[0] in board.whitelist):
-        gui.update_message("That is not one of your pieces. Choose a white piece.")
-        moves = []
-    elif len(moves) == 2:
-        gui.unhighlight_validMoves()
-        userMove = (moves[0], moves[1], board.NOTDONE)
-        # board.moveWhite(*userMove)
-        try:
-            moveWhite(board, *userMove)
-        except Exception as e:
-            print(e)
-            moves = []
-            gui.update_message("Invalid move, try again")
-            continue
+            gui.display_board(game.board.boardState)
 
-        gui.unhighlight_validMoves()
-        temp = minMax2(board)
-        board = temp[0]
-        if board.gameWon == board.WHITE:
-            print("White Wins\nGame Over")
-            break
-        elif board.gameWon == board.RED:
-            print("Red Wins\nGame Over")
-            break
+    #
+    # if len(moves) == 1 and not(moves[0] in board.whitelist):
+    #     gui.update_message("That is not one of your pieces. Choose a white piece.")
+    #     moves = []
+    # elif len(moves) == 2:
+    #     userMove = (moves[0], moves[1], board.NOTDONE)
+    #     # board.moveWhite(*userMove)
+    #     try:
+    #         moveWhite(board, *userMove)
+    #     except Exception as e:
+    #         print(e)
+    #         moves = []
+    #         gui.update_message("Invalid move, try again")
+    #         continue
+
+        # temp = minMax2(board)
+        # board = temp[0]
+        # if board.gameWon == board.WHITE:
+        #     print("White Wins\nGame Over")
+        #     break
+        # elif board.gameWon == board.RED:
+        #     print("Red Wins\nGame Over")
+        #     break
 pygame.quit()
 
 

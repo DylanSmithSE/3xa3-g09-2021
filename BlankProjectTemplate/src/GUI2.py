@@ -3,8 +3,9 @@
 #  @author Dylan, Thaneegan, Ardhendu
 #  @date March 3 2021
 import pygame
-import gameLogic
-from board import *
+from board2 import *
+from constants import *
+from pieces2 import *
 
 screen_dimensions = (1060, 720)
 
@@ -17,17 +18,13 @@ class GUI:
         self.board_img = pygame.image.load('./img/board.png')
         self.red_piece = pygame.image.load('./img/red_man.png')
         self.white_piece = pygame.image.load('./img/white_man.png')
-        self.highlighted_red_piece = pygame.image.load('./img/highlighted_red_man.jpg')
-        self.highlighted_white_piece = pygame.image.load('./img/highlighted_white_man.jpg')
-        self.valid_move = pygame.image.load('./img/valid_move.png')     
+        self.red_king = pygame.image.load('./img/red_king.png')
+        self.white_king = pygame.image.load('./img/white_king.png')
         self.new_game_button = pygame.image.load('./img/btn_new_game.png')
         self.tutorial_button = pygame.image.load('./img/btn_tutorial.png')
         #get dimensions of board
         self.board_height = self.board_img.get_height()
         self.board_width = self.board_img.get_width()
-        self.num_cols = 8
-        self.num_rows = 8
-        self.validMoves = []
         self.screen = None
         self.message = "Welcome to Checkers, hit start game to begin."
         print(self.message)
@@ -46,24 +43,16 @@ class GUI:
     #  @details Loops through the board_state and calls display_piece to display
     #           the pieces
     #  @param board_state Two dimensional array representing the state of the board
-    def display_board(self, board_state, selected):
+    def display_board(self, board_state):
         self.screen.blit(self.board_img, (0, 0))
         #Adding pieces
         y = 0
-        #print('Selected is: ', selected[0], selected[1])
         for col in board_state:
             x = 0
             for row in col:
-                if (x == selected[0] and y == selected[1]):
-                    self.display_piece(row,x,y,1)
-                else:
-                    self.display_piece(row,x,y,0) 
+                self.display_piece(row,x,y)
                 x+=1
             y+=1
-        
-        #Highlight any selected moves
-        for spot in self.validMoves:
-            self.display_validMoves(spot)
         # x = 0
         # for row in board_state:
         #     # print('row is ', row)
@@ -85,21 +74,19 @@ class GUI:
     #  @param colour The colour of the piece to be displayed
     #  @param row The row to display the piece
     #  @param col The collumn to display the piece
-    def display_piece(self,colour, row, col, selected):
-        if colour == 'BLACK' and selected == 0:
-            self.screen.blit(self.red_piece, self.calc_pos(row, col))
-        elif colour == 'WHITE' and selected == 0:
-            self.screen.blit(self.white_piece, self.calc_pos(row, col))
-        elif colour == 'BLACK' and selected == 1:
-            self.screen.blit(self.highlighted_red_piece, self.calc_pos(row, col))
-        elif colour == 'WHITE' and selected == 1:
-            self.screen.blit(self.highlighted_white_piece, self.calc_pos(row, col))        
-        else:
+    def display_piece(self,colour, row, col):
+        if colour == 0:
             pass
-
-    #Method to highlight the valid move
-    def display_validMoves(self, spot):
-        self.screen.blit(self.valid_move, self.calc_pos(spot[1], spot[0]))
+        elif colour.color == 'RED':
+            if colour.king:
+                self.screen.blit(self.red_king, self.calc_pos(row, col))
+            else:
+                self.screen.blit(self.red_piece, self.calc_pos(row, col))
+        elif colour.color == 'WHITE':
+            if colour.king:
+                self.screen.blit(self.white_king, self.calc_pos(row, col))
+            else:
+                self.screen.blit(self.white_piece, self.calc_pos(row, col))
 
     ## @brief Calculates the position on the screen of the top left corner of
     #         the square given
@@ -110,8 +97,8 @@ class GUI:
     #  @return (x,y) the coordinates of the top left corner of the square on the
     #          screen
     def calc_pos(self, row, col):
-        x = row * self.board_width/self.num_cols
-        y = col * self.board_height/self.num_rows
+        x = row * self.board_width/COLS
+        y = col * self.board_height/ROWS
         return (x,y)
 
     ## @brief get_clicked_object() is passed the position of a mouseclick and
@@ -142,65 +129,19 @@ class GUI:
     #          clicked on
     def get_square_clicked(self, pos):
         x, y = pos
-        row = x // (self.board_height/self.num_rows)
-        col = y // (self.board_width/self.num_cols)
-        return (int(col),int(row))
+        row = x // (self.board_height/ROWS)
+        col = y // (self.board_width/COLS)
+        return (int(col), int(row))
 
-    def highlight_piece(self, board, moves):
-        counter = 0
-        x = None
-        y = None
-        selected = [10,10]
-        #self.highlight_validmoves(board)
-        for i in board.whitelist:
-            if (moves[0][0] == i[0] and moves[0][1] == i[1]):
-                x = i[1]
-                y = i[0]
-                break
-            counter+=1
-        print('Value of x and y is ', x, y)
-        if (x != None or y != None):
-            self.display_piece('BLACK', x, y, 1)
-            #print('Highlighted piece is ', moves[0][0],moves[0][1])
-            pygame.display.update()
-            selected = x, y
-        return selected
-    
-    #Method to generate all valid moves based on piece selected
-    def generate_validMoves(self, board, moves):
-        validMoves = []
-        x = moves[0][0]
-        y = moves[0][1]
-        #Check to see if selected piece is actually a user piece on the board
-        if moves[0] not in board.whitelist:
-            return
-
-        leftDiagonal = (x-1, y-1)
-        rightDiagonal = (x-1, y+1)
-        #Check to see if there is something in diagonally left or right to the selected piece
-        hit_leftDiagonal = leftDiagonal in board.blacklist or leftDiagonal in board.whitelist
-        hit_rightDiagonal = rightDiagonal in board.blacklist or rightDiagonal in board.whitelist
-
-        #if the selected piece has nothing in its way diagonally nor out of bounds, it will add those possible move(s) to an array.
-        if (not hit_leftDiagonal) and (leftDiagonal[0] >= 0) and (leftDiagonal[1] >= 0) and (leftDiagonal[0] <= 7) and (leftDiagonal[1] <= 7):
-            self.validMoves.append(leftDiagonal)
-        if (not hit_rightDiagonal) and (rightDiagonal[0] >= 0) and (rightDiagonal[1] >= 0) and (rightDiagonal[0] <= 7) and (rightDiagonal[1] <= 7):
-            self.validMoves.append(rightDiagonal)
-
-    #Method to unhighlight any moves
-    def unhighlight_validMoves(self):
-        self.validMoves = []
-
-
-# #testing
-# b = [['','WHITE','','WHITE','','WHITE','','WHITE'],\
-#                 ['WHITE','','WHITE','','WHITE','','WHITE',''],\
-#                 ['','WHITE','','WHITE','','WHITE','','WHITE'],\
-#                 ['','','','','','','',''],\
-#                 ['','','','','','','',''],\
-#                 ['BLACK','','BLACK','','BLACK','','BLACK',''],\
-#                 ['','BLACK','','BLACK','','BLACK','','BLACK'],\
-#                 ['BLACK','','BLACK','','BLACK','','BLACK','']]
+# # # testing
+# b = [[0,piece(0,1,"WHITE",1),0,piece(0,3,"WHITE",1),0,piece(0,5,"WHITE",1),0,piece(0,7,"WHITE",1)],\
+#                     [piece(1,0,"WHITE",1),0,piece(1,2,"WHITE",1),0,piece(1,4,"WHITE",1),0,piece(1,6,"WHITE",1),0],\
+#                     [0,piece(2,1,"WHITE",1),0,piece(2,3,"WHITE",1),0,piece(2,5,"WHITE",1),0,piece(2,7,"WHITE",1)],\
+#                     [0,0,0,0,0,0,0,0],\
+#                     [0,0,0,0,0,piece(4,5,"RED",1),0,0],\
+#                     [piece(5,0,"RED",1),0,0,0,piece(5,4,"RED",1),0,piece(5,6,"RED",1),0],\
+#                     [0,piece(6,1,"RED",1),0,piece(6,3,"RED",1),0,piece(6,5,"RED",1),0,piece(6,7,"RED",1)],\
+#                     [piece(7,0,"RED",1),0,piece(7,2,"RED",1),0,piece(7,4,"RED",1),0,piece(7,6,"RED",1),0]]
 #
 # gui = GUI()
 #
@@ -217,6 +158,8 @@ class GUI:
 #             pass
 #         else:
 #             pass
+#     b[0][1].make_king()
+#     b[7][0].make_king()
 #     gui.display_board(b)
 #
 # #closes screen when the loop ends
