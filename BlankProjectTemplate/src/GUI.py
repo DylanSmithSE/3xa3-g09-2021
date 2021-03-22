@@ -18,7 +18,7 @@ class GUI:
         self.red_piece = pygame.image.load('./img/red_man.png')
         self.white_piece = pygame.image.load('./img/white_man.png')
         self.highlighted_red_piece = pygame.image.load('./img/highlighted_red_man.jpg')
-        self.highlighted_white_piece = pygame.image.load('./img/highlighted_white_man.jpg')        
+        self.highlighted_white_piece = pygame.image.load('./img/highlighted_white_man.jpg')
         self.new_game_button = pygame.image.load('./img/btn_new_game.png')
         self.tutorial_button = pygame.image.load('./img/btn_tutorial.png')
         #get dimensions of board
@@ -52,11 +52,12 @@ class GUI:
         for col in board_state:
             x = 0
             for row in col:
-                if (x == selected[0] and y == selected[1]):
-                    self.display_piece(row,x,y,1)
-                else:
-                    self.display_piece(row,x,y,0) 
-                x+=1
+                if row != 0:
+                    if (x == selected[0] and y == selected[1]):
+                        self.display_piece(row.color,x,y,1)
+                    else:
+                        self.display_piece(row.color,x,y,0)
+                    x+=1
             y+=1
         # x = 0
         # for row in board_state:
@@ -87,7 +88,7 @@ class GUI:
         elif colour == 'BLACK' and selected == 1:
             self.screen.blit(self.highlighted_red_piece, self.calc_pos(row, col))
         elif colour == 'WHITE' and selected == 1:
-            self.screen.blit(self.highlighted_white_piece, self.calc_pos(row, col))        
+            self.screen.blit(self.highlighted_white_piece, self.calc_pos(row, col))
         else:
             pass
 
@@ -155,7 +156,7 @@ class GUI:
             pygame.display.update()
             selected = x, y
         return selected
-    
+
 #     def highlight_validmoves(self, board):
 #         moves = gameLogic.iterBlackMoves(board)
 #         for move in moves:
