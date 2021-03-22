@@ -7,6 +7,7 @@ class Game():
         self.gui = gui
         self.selected = None
         self.turn = "RED"
+        self.validMoves = {}
 
 
     def select(self, square):
@@ -17,17 +18,20 @@ class Game():
             if self.board.boardState[row][col] != 0:
                 print("Selecting")
                 self.selected = self.board.boardState[row][col]
-                print(self.board.getValidMoves(self.selected))
+                self.validMoves = self.board.getValidMoves(self.selected)
             else:
                 pass
         else:
-            if self.board.boardState[row][col] != 0:
+            if (row,col) in self.validMoves.keys():
+                print("moving")
+                print("Skipping: " + str(self.validMoves[(row,col)]))
+                self.board.move(self.selected,row,col,self.validMoves[(row,col)])
+                self.selected = None
+                self.validMoves = {}
+            else:
                 print("Can't move there")
                 self.selected = None
-            else:
-                print("moving")
-                self.board.move(self.selected,row,col)
-                self.selected = None
+                self.validMoves = {}
 
 
 

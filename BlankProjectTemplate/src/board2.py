@@ -45,16 +45,26 @@ class Board():
         self.boardState[7][0].makeKing()
 
     #replace piece with 0 and then moves the piece to the new location
-    def move(self, piece, toRow, toCol):
+    def move(self, piece, toRow, toCol, skipped):
         self.boardState[piece.row][piece.col] = 0
         self.boardState[toRow][toCol] = piece
+        #if a piece reaches the end of the board they become a king
+        if toRow == 7 or toRow ==0:
+            if piece.king:
+                pass
+            else:
+                piece.makeKing()
         piece.move(toRow,toCol)
+        #if there were any pieces skipped we need them removed
+        for p in skipped:
+            self.remove(self.boardState[p[0]][p[1]])
 
-    #replaces piece with 0 in boardstate
     def remove(self, piece):
         self.boardState[piece.row][piece.col] = 0
-        self.red_pieces.remove(piece)
-        self.white_pieces.remove(piece)
+        if piece in self.red_pieces:
+            self.red_pieces.remove(piece)
+        if piece in self.white_pieces:
+            self.white_pieces.remove(piece)
 
     def getValidMoves(self, piece):
         moves = {}
