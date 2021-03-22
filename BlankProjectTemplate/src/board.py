@@ -8,6 +8,7 @@
 # to be instantiated
 from tkinter import *
 from tkinter import messagebox
+from pieces import *
 
 class board():
 
@@ -89,11 +90,11 @@ class board():
 
         for i in range(self.height):
             for j in range(self.width):
-                self.boardState[i][j] = "Null"
+                self.boardState[i][j] = 0
         for piece in self.blacklist:
-            self.boardState[piece[0]][piece[1]] = 'WHITE'
+            self.boardState[piece[0]][piece[1]] = pieces(piece[0],piece[1],"White")
         for piece in self.whitelist:
-            self.boardState[piece[0]][piece[1]] = 'BLACK'
+            self.boardState[piece[0]][piece[1]] = pieces(piece[0],piece[1],"Red")
 
     # #Prints the game board to stdout
     # def printBoard(self):
