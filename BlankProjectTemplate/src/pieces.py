@@ -24,3 +24,5 @@ class pieces:
     #  @param row The row location of the move.
     #  @param col The column location of the move.
     def move(self, row, col):
+        self.row = row
+        self.col = col
