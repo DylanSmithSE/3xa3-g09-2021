@@ -18,7 +18,7 @@ class piece:
         self.direction = direction
 
     ## @brief Represent a checkers king piece.
-    def make_king(self):
+    def makeKing(self):
         self.king = True
 
     ## @brief Move the checkers piece to the desired location.
