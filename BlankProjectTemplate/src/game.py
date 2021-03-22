@@ -17,15 +17,17 @@ class Game():
 
         if self.selected == None:
             if self.board.boardState[row][col] != 0:
-                print("Selecting")
-                self.selected = self.board.boardState[row][col]
-                self.validMoves = self.board.getValidMoves(self.selected)
+                if self.board.boardState[row][col].color == self.turn:
+                    print("Selecting")
+                    self.selected = self.board.boardState[row][col]
+                    self.validMoves = self.board.getValidMoves(self.selected)
+                else:
+                    print("not your turn")
             else:
                 pass
         else:
             if (row,col) in self.validMoves.keys():
                 print("moving")
-                print("Skipping: " + str(self.validMoves[(row,col)]))
                 self.board.move(self.selected,row,col,self.validMoves[(row,col)])
                 self.selected = None
                 self.validMoves = {}

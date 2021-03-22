@@ -8,7 +8,6 @@ from constants import *
 
 class Board():
     def __init__(self):
-        self.turn = "RED"
         self.gameWon = -1
         self.boardState = [[0] * ROWS for x in range(COLS)]
         self.red_pieces = []
@@ -17,8 +16,6 @@ class Board():
 
 
     def resetBoard(self):
-        self.turn = "RED"
-
         self.updateBoard()
         print("new game")
         # Tk().wm_withdraw() #to hide the main window
