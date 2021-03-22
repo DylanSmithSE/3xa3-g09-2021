@@ -2,8 +2,9 @@ from board2 import *
 from constants import *
 
 class Game():
-    def __init__(self):
+    def __init__(self,gui):
         self.board = Board()
+        self.gui = gui
         self.selected = None
         self.turn = "RED"
 

@@ -13,7 +13,7 @@ firstPlayer = 0
 
 ### MAIN PROGRAM ###
 gui = GUI()
-game = Game()
+game = Game(gui)
 clock = pygame.time.Clock()
 moves = []
 
