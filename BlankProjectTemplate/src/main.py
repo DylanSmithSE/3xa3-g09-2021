@@ -33,6 +33,8 @@ while board.gameWon == -1:
             if clicked_object == "board":
                 moves.append(gui.get_square_clicked(pos))
                 selected = gui.highlight_piece(board, moves) #------------------------
+                gui.generate_validMoves(board, moves)
+                #gui.highlight_validmoves(board, moves)
             elif clicked_object == "new":
                 moves = []
                 selected = [10, 10]
@@ -46,6 +48,7 @@ while board.gameWon == -1:
         gui.update_message("That is not one of your pieces. Choose a white piece.")
         moves = []
     elif len(moves) == 2:
+        gui.unhighlight_validMoves()
         userMove = (moves[0], moves[1], board.NOTDONE)
         # board.moveWhite(*userMove)
         try:
@@ -56,7 +59,7 @@ while board.gameWon == -1:
             gui.update_message("Invalid move, try again")
             continue
 
-
+        gui.unhighlight_validMoves()
         temp = minMax2(board)
         board = temp[0]
         if board.gameWon == board.WHITE:

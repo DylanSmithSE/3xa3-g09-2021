@@ -18,7 +18,8 @@ class GUI:
         self.red_piece = pygame.image.load('./img/red_man.png')
         self.white_piece = pygame.image.load('./img/white_man.png')
         self.highlighted_red_piece = pygame.image.load('./img/highlighted_red_man.jpg')
-        self.highlighted_white_piece = pygame.image.load('./img/highlighted_white_man.jpg')        
+        self.highlighted_white_piece = pygame.image.load('./img/highlighted_white_man.jpg')
+        self.valid_move = pygame.image.load('./img/valid_move.png')     
         self.new_game_button = pygame.image.load('./img/btn_new_game.png')
         self.tutorial_button = pygame.image.load('./img/btn_tutorial.png')
         #get dimensions of board
@@ -26,6 +27,7 @@ class GUI:
         self.board_width = self.board_img.get_width()
         self.num_cols = 8
         self.num_rows = 8
+        self.validMoves = []
         self.screen = None
         self.message = "Welcome to Checkers, hit start game to begin."
         print(self.message)
@@ -58,6 +60,10 @@ class GUI:
                     self.display_piece(row,x,y,0) 
                 x+=1
             y+=1
+        
+        #Highlight any selected moves
+        for spot in self.validMoves:
+            self.display_validMoves(spot)
         # x = 0
         # for row in board_state:
         #     # print('row is ', row)
@@ -90,6 +96,10 @@ class GUI:
             self.screen.blit(self.highlighted_white_piece, self.calc_pos(row, col))        
         else:
             pass
+
+    #Method to highlight the valid move
+    def display_validMoves(self, spot):
+        self.screen.blit(self.valid_move, self.calc_pos(spot[1], spot[0]))
 
     ## @brief Calculates the position on the screen of the top left corner of
     #         the square given
@@ -156,9 +166,31 @@ class GUI:
             selected = x, y
         return selected
     
-#     def highlight_validmoves(self, board):
-#         moves = gameLogic.iterBlackMoves(board)
-#         for move in moves:
+    #Method to generate all valid moves based on piece selected
+    def generate_validMoves(self, board, moves):
+        validMoves = []
+        x = moves[0][0]
+        y = moves[0][1]
+        #Check to see if selected piece is actually a user piece on the board
+        if moves[0] not in board.whitelist:
+            return
+
+        leftDiagonal = (x-1, y-1)
+        rightDiagonal = (x-1, y+1)
+        #Check to see if there is something in diagonally left or right to the selected piece
+        hit_leftDiagonal = leftDiagonal in board.blacklist or leftDiagonal in board.whitelist
+        hit_rightDiagonal = rightDiagonal in board.blacklist or rightDiagonal in board.whitelist
+
+        #if the selected piece has nothing in its way diagonally nor out of bounds, it will add those possible move(s) to an array.
+        if (not hit_leftDiagonal) and (leftDiagonal[0] >= 0) and (leftDiagonal[1] >= 0) and (leftDiagonal[0] <= 7) and (leftDiagonal[1] <= 7):
+            self.validMoves.append(leftDiagonal)
+        if (not hit_rightDiagonal) and (rightDiagonal[0] >= 0) and (rightDiagonal[1] >= 0) and (rightDiagonal[0] <= 7) and (rightDiagonal[1] <= 7):
+            self.validMoves.append(rightDiagonal)
+
+    #Method to unhighlight any moves
+    def unhighlight_validMoves(self):
+        self.validMoves = []
+
 
 # #testing
 # b = [['','WHITE','','WHITE','','WHITE','','WHITE'],\
