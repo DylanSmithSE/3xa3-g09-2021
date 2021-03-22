@@ -41,16 +41,19 @@ class Board():
                     pass
                 y = y + 1
             x = x + 1
+        print(self.red_pieces)
 
     #replace piece with 0 and then moves the piece to the new location
     def move(self, piece, toRow, toCol):
-        self.remove(piece)
+        self.boardState[piece.row][piece.col] = 0
         self.boardState[toRow][toCol] = piece
         piece.move(toRow,toCol)
 
     #replaces piece with 0 in boardstate
     def remove(self, piece):
         self.boardState[piece.row][piece.col] = 0
+        self.red_pieces.remove(piece)
+        self.white_pieces.remove(piece)
 
     def getValidMoves(self, piece):
         moves = {}
