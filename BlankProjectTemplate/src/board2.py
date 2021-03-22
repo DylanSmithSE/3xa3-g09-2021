@@ -171,9 +171,3 @@ class Board():
                     self.checkLeft(row+(-2*direction),col+2,colour,-1*direction,True,True,skipped,moves)
             else:
                 pass
-
-
-
-dic = {(1,1):2,(1,3):[(1,2),(2,3)],(2,2):4,(2,3):5}
-a = dic.get((1,3))
-print(a)
