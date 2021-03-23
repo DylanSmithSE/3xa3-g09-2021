@@ -5,12 +5,15 @@
 
 from copy import deepcopy
 from gameLogic import *
+from game import *
+from board2 import *
+#from board import *
 
 ## @brief Function to check if game is won
 #  @details Function takes in board object and returns bool
 #  @param board board object cotaining the state
 def is_won(board):
-    return board.gameWon != board.NOTDONE
+    return board.gameWon != -1
         
 ## @brief Main minimax algorithm function for AI
 #  @details Function takes in board object and returns most appropirate move for the AI
@@ -58,24 +61,50 @@ def maxMinBoard(board, currentDepth, bestMove):
 
     if bestMove == float('-inf'):
         # Create the iterator for the Moves
-        moves = iterBlackMoves(board)
+        red_position = []
+        move_skipped = []
+        moves = []
+        for i in board.red_pieces:
+            red_position.append(board.getValidMoves(i))
+        print('pos is ', red_position)
+        for i in red_position:
+            moves.append([*i])
+        print('len is ', len(red_position), len(moves))
+        #moves = iterBlackMoves(board)
+        print('moves is ', moves)
+        idx = 0
         for move in moves:
+            print('sn is ', red_position[idx][move[idx]])
             maxBoard = deepcopy(board)
-            moveSilentBlack(maxBoard, *move)
+            maxBoard.move(board.red_pieces[idx], move[idx][0], move[idx][1], red_position[idx][move[idx]])
+            #moveSilentBlack(maxBoard, *move)
             value = minMove2(maxBoard, currentDepth-1)[1]
             if value > best_move:
                 best_move = value
-                best_board = maxBoard         
+                best_board = maxBoard
+            idx += 1       
 
     elif bestMove == float('inf'):
-        moves = iterWhiteMoves(board)
+        white_position = []
+        move_skipped = []
+        moves = []
+        for i in board.white_pieces:
+            white_position.append(board.getValidMoves(i))
+        print('wpos is ', white_position)
+        for i in white_position:
+            moves.append([*i])
+        print('wmoves is ', moves)
+        idx = 0
+        #moves = iterWhiteMoves(board)
         for move in moves:
             minBoard = deepcopy(board)
-            moveSilentWhite(minBoard, *move)
+            minBoard.move(board.white_pieces[idx], move[idx][0], move[idx][1], white_position[idx][move[idx]])
+            #moveSilentWhite(minBoard, *move)
             value = maxMove2(minBoard, currentDepth-1)[1]
             if value < best_move:
                 best_move = value
                 best_board = minBoard
+            idx += 1
   
     else:
         raise Exception("bestMove is set to something other than inf or -inf")

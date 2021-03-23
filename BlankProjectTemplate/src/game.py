@@ -1,5 +1,6 @@
 from board2 import *
 from constants import *
+from minmax import *
 
 class Game():
     def __init__(self,gui):

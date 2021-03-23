@@ -2,7 +2,8 @@
 #  @author Carson Wilcox, Thaneegan, Dylan, Ardhendu  
 #  @brief Provides logic for game (including making moves)
 #  @date 3/17/2021
-
+blacklist = [(0,1), (0,3), (0,5), (0,7), (1,0), (1,2), (1,4), (1,6), (2,1), (2,3), (2,5), (2,7)]
+whitelist = [(5,0), (5,2), (5,4), (5,6), (6,1), (6,3), (6,5), (6,7), (7,0), (7,2), (7,4), (7,6)]
 ## @brief Iterates through the white pieces array to generate moves for white pieces.
 #  @param board The state of the current board
 #  @return Returns the location of the possible move of the selected piece
@@ -21,7 +22,8 @@ def iterBlackMoves(board):
     """
         Main Generator for black moves
     """
-    for piece in board.blacklist:
+    
+    for piece in blacklist:
         for move in iterBlackPiece(board, piece):
             yield move
     print('blacklist is ', board.blacklist)
@@ -64,36 +66,36 @@ def iterBoth(board, piece, moves):
         targety = piece[1] + move[1]
         #print(f'targetx is {targetx} and targety is {targety}' )
         # If the move is out of bounds don't move
-        if targetx < 0 or targetx >= board.width or targety < 0 or targety >= board.height:
+        if targetx < 0 or targetx >= 8 or targety < 0 or targety >= 8:
             continue
         target = (targetx, targety)
         # Check that there is nothing in the way of moving to the target
-        black = target in board.blacklist
-        white = target in board.whitelist
+        black = target in blacklist
+        white = target in whitelist
         if not black and not white:
             #print('p and t is ', piece, target)
-            yield (piece, target, board.NOTDONE)
+            yield (piece, target)
         # There was something in the way, can we jump it?
         else:
             print('in ese')
             # It has to be of the opposing color to jump
-            if board.turn == board.RED and black:
-                continue
-            elif board.turn == board.WHITE and white:
-                continue
+            # if board.turn == board.RED and black:
+            #     continue
+            # elif board.turn == board.WHITE and white:
+            #     continue
             # Jump proceeds by adding the same movement in order to jump over the opposing
             # piece on the checkerboard
             jumpx = target[0] + move[0]
             jumpy = target[1] + move[1]
             # If the jump is going to be out of bounds don't do it.
-            if jumpx < 0 or jumpx >= board.width or jumpy < 0 or jumpy >= board.height:
+            if jumpx < 0 or jumpx >= 8 or jumpy < 0 or jumpy >= 8:
                 continue
             jump = (jumpx, jumpy)
             # Check that there is nothing in the jumpzone
-            black = jump in board.blacklist
-            white = jump in board.whitelist
+            black = jump in blacklist
+            white = jump in whitelist
             if not black and not white:
-                yield (piece, jump, board.turn)
+                yield (piece, jump)
 
 ## @brief Moves a black piece, calls the updateboard method, determines if black piece player has won or loss (sets the turn to white after)
 #  @param board The state of the current board
