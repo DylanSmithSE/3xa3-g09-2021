@@ -45,8 +45,6 @@ class Board():
                     pass
                 y = y + 1
             x = x + 1
-        self.boardState[0][1].makeKing()
-        self.boardState[7][0].makeKing()
 
     #replace piece with 0 and then moves the piece to the new location
     def move(self, piece, move, skipped):
