@@ -31,7 +31,7 @@ while game.board.gameWon == -1:
             if clicked_object == "board":
                 game.select(gui.get_square_clicked(pos))
             elif clicked_object == "new":
-                menu().newgame(board, width, height, firstPlayer)
+                menu().newgame(game, width, height, firstPlayer)
             elif clicked_object == "tutorial":
                 menu().tutorial()
             elif clicked_object == "nothing":

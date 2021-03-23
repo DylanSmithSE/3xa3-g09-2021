@@ -18,7 +18,12 @@ class Board():
 
 
     def resetBoard(self):
-        self.updateBoard()
+        self.turn = "RED"
+        self.gameWon = -1
+        self.boardState = [[0] * ROWS for x in range(COLS)]
+        self.red_pieces = []
+        self.white_pieces = []
+        self.setBoard()
         print("new game")
         # Tk().wm_withdraw() #to hide the main window
         # messagebox.showinfo('Starting new game...','New game selected, enjoy!')
