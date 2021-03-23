@@ -22,3 +22,5 @@ class menu:
     #  @param firstPlayer The ID of the player
     def newgame(self, game, width, height, firstPlayer):
         game.resetGame()
+        Tk().wm_withdraw() #to hide the main window
+        messagebox.showinfo('Starting new game...','New game selected, enjoy!')
