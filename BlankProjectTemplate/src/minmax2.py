@@ -4,9 +4,10 @@ import pygame
 
 #takes in the board to consider, a boolean: true for maxplayer false for min player, recursion depth
 def minmax(currentBoard,maxPlayer,depth):
-    print(currentBoard)
+    #if the we are at the furthest depth or the game is over we can return the boardScore
     if depth == 0 or currentBoard.checkGameEnd():
         return currentBoard.evaluateBoard(), currentBoard
+
     #get the best board at the current depth for max player
     if maxPlayer:
         maxScore = float('-inf')
@@ -43,5 +44,4 @@ def getAllBoards(currentBoard):
             tempPiece = tempBoard.boardState[piece.row][piece.col]
             tempBoard.move(tempPiece,move,captures)
             newBoards.append(tempBoard)
-    print(newBoards)
     return newBoards

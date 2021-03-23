@@ -18,7 +18,6 @@ class Game():
         if self.selected == None:
             if self.board.boardState[row][col] != 0:
                 if self.board.boardState[row][col].color == self.board.turn:
-                    print("Selecting")
                     self.selected = self.board.boardState[row][col]
                     self.validMoves = self.board.getValidMoves(self.selected)
                     if self.board.turn == "RED":
@@ -30,7 +29,6 @@ class Game():
                 pass
         else:
             if (row,col) in self.validMoves.keys():
-                print("moving")
                 self.board.move(self.selected,(row,col),self.validMoves[(row,col)])
                 self.selected = None
                 self.validMoves = {}
@@ -45,3 +43,5 @@ class Game():
                 print("Can't move there")
                 self.selected = None
                 self.validMoves = {}
+                self.gui.reset_validMoves()
+                self.gui.reset_selected()

@@ -13,6 +13,7 @@ class Board():
         self.boardState = [[0] * ROWS for x in range(COLS)]
         self.red_pieces = []
         self.white_pieces = []
+        self.winner = ""
         self.setBoard()
 
 
