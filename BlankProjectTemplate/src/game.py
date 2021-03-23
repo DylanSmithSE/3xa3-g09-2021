@@ -9,6 +9,15 @@ class Game():
         self.validMoves = {}
         self.winner = ""
 
+    def resetGame(self):
+        self.gui.reset_validMoves()
+        self.gui.reset_selected()
+        self.board.resetBoard()
+        self.gui.selected = None
+        self.gui.validMoves = {}
+        self.selected = None
+        self.validMoves = {}
+        self.winner = ""
 
     def select(self, square):
         row = square[0]

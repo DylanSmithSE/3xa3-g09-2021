@@ -20,5 +20,5 @@ class menu:
     #  @param width The width of the game board
     #  @param height The height of the game baord
     #  @param firstPlayer The ID of the player
-    def newgame(self, board, width, height, firstPlayer):
-        board.resetBoard(width, height, firstPlayer)
+    def newgame(self, game, width, height, firstPlayer):
+        game.resetGame()
