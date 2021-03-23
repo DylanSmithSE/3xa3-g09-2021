@@ -117,7 +117,7 @@ class Board():
         return moves
 
     def evaluateBoard(self):
-        return self.white_pieces.length() - self.red_pieces.length()
+        return len(self.white_pieces) - len(self.red_pieces)
 
     def getPieces(self, colour):
         if colour == "RED":

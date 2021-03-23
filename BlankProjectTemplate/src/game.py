@@ -1,5 +1,6 @@
 from board2 import *
 from constants import *
+from minmax2 import *
 
 class Game():
     def __init__(self,gui):
@@ -35,7 +36,11 @@ class Game():
                 self.validMoves = {}
                 self.gui.reset_validMoves()
                 self.gui.reset_selected()
-                self.board.checkGameEnd()
+
+                self.board = minmax(self.board,True,3)[1]
+
+                if(self.board.checkGameEnd()):
+                    print("GAME OVER")
             else:
                 print("Can't move there")
                 self.selected = None
