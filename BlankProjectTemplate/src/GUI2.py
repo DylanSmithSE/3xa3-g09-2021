@@ -18,10 +18,16 @@ class GUI:
         self.board_img = pygame.image.load('./img/board.png')
         self.red_piece = pygame.image.load('./img/red_man.png')
         self.white_piece = pygame.image.load('./img/white_man.png')
+        self.highlighted_red_piece = pygame.image.load('./img/highlighted_red_man.jpg')
+        self.highlighted_white_piece = pygame.image.load('./img/highlighted_white_man.jpg')
         self.red_king = pygame.image.load('./img/red_king.png')
         self.white_king = pygame.image.load('./img/white_king.png')
+        self.valid_move = pygame.image.load('./img/valid_move.png')
         self.new_game_button = pygame.image.load('./img/btn_new_game.png')
         self.tutorial_button = pygame.image.load('./img/btn_tutorial.png')
+        #store selected piece and valid moves to be displayed on gui
+        self.selected = []
+        self.moves = {}
         #get dimensions of board
         self.board_height = self.board_img.get_height()
         self.board_width = self.board_img.get_width()
@@ -53,6 +59,15 @@ class GUI:
                 self.display_piece(row,x,y)
                 x+=1
             y+=1
+        
+        #Display the selected piece if any
+        if self.selected:
+            self.display_selected()
+
+        #Display valid moves if there are any
+        if self.moves:
+            self.display_validMoves()
+        
         # x = 0
         # for row in board_state:
         #     # print('row is ', row)
@@ -64,6 +79,35 @@ class GUI:
         #         y+=1
         #     x+=1
         pygame.display.update()
+    
+    #Highlight the selected piece on board
+    def display_selected(self):
+        print('Displaying Selected...')
+        print('Row, Col: ', self.selected[0], self.selected[1])
+        self.screen.blit(self.highlighted_red_piece, self.calc_pos(self.selected[1], self.selected[0]))
+
+    #Reset the selected piece to empty at end of turn
+    def reset_selected(self):
+        self.selected = []
+
+    #Take in the user's selected piece
+    def pass_selected(self, selected):
+        self.selected = selected
+
+    #Iterate through the valid moves and highlight them on the board
+    def display_validMoves(self):
+        print('Displaying Valid Moves...')
+        for (row,col) in self.moves.keys():
+            print('Row, Col: ', row, col)
+            self.screen.blit(self.valid_move, self.calc_pos(col, row))
+
+    #Reset the valid moves dictionary to empty at end of turn
+    def reset_validMoves(self):
+        self.moves = {}
+
+    #Take in the valid moves for the user's selected piece
+    def pass_validMoves(self, moves):
+        self.moves = moves
 
     ## @brief Sets the message to be displayed
     #  @param message The message to be displayed
