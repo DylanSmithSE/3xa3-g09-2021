@@ -22,7 +22,7 @@ class Game():
                     self.selected = self.board.boardState[row][col]
                     self.validMoves = self.board.getValidMoves(self.selected)
                     if self.turn == "RED":
-                        self.gui.pass_selected([row, col])
+                        self.gui.pass_selected(self.selected)
                         self.gui.pass_validMoves(self.validMoves)
                 else:
                     print("not your turn")

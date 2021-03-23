@@ -22,6 +22,8 @@ class GUI:
         self.highlighted_white_piece = pygame.image.load('./img/highlighted_white_man.jpg')
         self.red_king = pygame.image.load('./img/red_king.png')
         self.white_king = pygame.image.load('./img/white_king.png')
+        self.highlighted_red_king = pygame.image.load('./img/highlighted_red_king.jpg')
+        self.highlighted_white_king = pygame.image.load('./img/highlighted_white_king.jpg')
         self.valid_move = pygame.image.load('./img/valid_move.png')
         self.new_game_button = pygame.image.load('./img/btn_new_game.png')
         self.tutorial_button = pygame.image.load('./img/btn_tutorial.png')
@@ -82,9 +84,10 @@ class GUI:
     
     #Highlight the selected piece on board
     def display_selected(self):
-        print('Displaying Selected...')
-        print('Row, Col: ', self.selected[0], self.selected[1])
-        self.screen.blit(self.highlighted_red_piece, self.calc_pos(self.selected[1], self.selected[0]))
+        if self.selected[2] == True:
+            self.screen.blit(self.highlighted_red_king, self.calc_pos(self.selected[1], self.selected[0]))
+        else:
+            self.screen.blit(self.highlighted_red_piece, self.calc_pos(self.selected[1], self.selected[0]))
 
     #Reset the selected piece to empty at end of turn
     def reset_selected(self):
@@ -92,13 +95,12 @@ class GUI:
 
     #Take in the user's selected piece
     def pass_selected(self, selected):
-        self.selected = selected
+        self.selected = [selected.row, selected.col]
+        self.selected.append(selected.king)
 
     #Iterate through the valid moves and highlight them on the board
     def display_validMoves(self):
-        print('Displaying Valid Moves...')
         for (row,col) in self.moves.keys():
-            print('Row, Col: ', row, col)
             self.screen.blit(self.valid_move, self.calc_pos(col, row))
 
     #Reset the valid moves dictionary to empty at end of turn
