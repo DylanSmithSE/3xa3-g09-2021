@@ -116,6 +116,9 @@ class Board():
             self.checkRight(row,col,colour,direction,True,False,[],moves)
         return moves
 
+    def evaluateBoard(self):
+        return self.white_pieces.length() - self.red_pieces.length()
+
 
     def checkLeft(self,row,col,colour,direction,isKing,haveSkipped,captures,moves):
         skipped = []
