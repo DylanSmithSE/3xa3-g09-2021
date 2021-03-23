@@ -30,7 +30,7 @@ class Game():
         else:
             if (row,col) in self.validMoves.keys():
                 print("moving")
-                self.board.move(self.selected,row,col,self.validMoves[(row,col)])
+                self.board.move(self.selected,(row,col),self.validMoves[(row,col)])
                 self.selected = None
                 self.validMoves = {}
                 self.gui.reset_validMoves()

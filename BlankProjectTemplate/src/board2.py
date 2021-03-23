@@ -43,16 +43,16 @@ class Board():
         self.boardState[7][0].makeKing()
 
     #replace piece with 0 and then moves the piece to the new location
-    def move(self, piece, toRow, toCol, skipped):
+    def move(self, piece, move, skipped):
         self.boardState[piece.row][piece.col] = 0
-        self.boardState[toRow][toCol] = piece
+        self.boardState[move[0]][move[1]] = piece
         #if a piece reaches the end of the board they become a king
-        if toRow == 7 or toRow ==0:
+        if move[0] == 7 or move[0] ==0:
             if piece.king:
                 pass
             else:
                 piece.makeKing()
-        piece.move(toRow,toCol)
+        piece.move(move[0],move[1])
         #if there were any pieces skipped we need them removed
         for p in skipped:
             self.remove(self.boardState[p[0]][p[1]])
@@ -119,6 +119,11 @@ class Board():
     def evaluateBoard(self):
         return self.white_pieces.length() - self.red_pieces.length()
 
+    def getPieces(self, colour):
+        if colour == "RED":
+            return self.red_pieces
+        else:
+            return self.white_pieces
 
     def checkLeft(self,row,col,colour,direction,isKing,haveSkipped,captures,moves):
         skipped = []
