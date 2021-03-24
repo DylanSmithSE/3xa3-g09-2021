@@ -33,7 +33,7 @@ while game.board.gameWon == -1:
             elif clicked_object == "new":
                 menu().newgame(game, width, height, firstPlayer)
             elif clicked_object == "tutorial":
-                menu().tutorial()
+                menu().tutorial(game)
             elif clicked_object == "nothing":
                 print("You didn't click on anything")
 

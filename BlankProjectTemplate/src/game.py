@@ -49,8 +49,24 @@ class Game():
                 if(self.board.checkGameEnd()):
                     print("GAME OVER")
             else:
-                print("Can't move there")
-                self.selected = None
-                self.validMoves = {}
-                self.gui.reset_validMoves()
-                self.gui.reset_selected()
+                if self.board.boardState[row][col] != 0:
+                    print('HEY')
+                    print('1 Selected: ', self.selected.row, self.selected.col)
+                    if self.board.boardState[row][col].color == self.board.turn:
+                        print('HEY AGAIN')
+                        self.selected = None
+                        self.validMoves = {}
+                        self.gui.reset_validMoves()
+                        self.gui.reset_selected()
+                        self.selected = self.board.boardState[row][col]
+                        self.validMoves = self.board.getValidMoves(self.selected)
+                        print('2 Selected: ', self.selected.row, self.selected.col)
+                        if self.board.turn == "RED":
+                            self.gui.pass_selected(self.selected)
+                            self.gui.pass_validMoves(self.validMoves)
+                else:
+                    print("Can't move there")
+                    self.selected = None
+                    self.validMoves = {}
+                    self.gui.reset_validMoves()
+                    self.gui.reset_selected()
