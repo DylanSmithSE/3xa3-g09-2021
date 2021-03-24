@@ -8,6 +8,7 @@ from constants import *
 
 class Board():
     def __init__(self):
+        self.turn = "RED"
         self.gameWon = -1
         self.boardState = [[0] * ROWS for x in range(COLS)]
         self.red_pieces = []
@@ -17,7 +18,12 @@ class Board():
 
 
     def resetBoard(self):
-        self.updateBoard()
+        self.turn = "RED"
+        self.gameWon = -1
+        self.boardState = [[0] * ROWS for x in range(COLS)]
+        self.red_pieces = []
+        self.white_pieces = []
+        self.setBoard()
         print("new game")
         # Tk().wm_withdraw() #to hide the main window
         # messagebox.showinfo('Starting new game...','New game selected, enjoy!')
@@ -56,6 +62,7 @@ class Board():
         #if there were any pieces skipped we need them removed
         for p in skipped:
             self.remove(self.boardState[p[0]][p[1]])
+        self.changeTurn()
 
     def remove(self, piece):
         self.boardState[piece.row][piece.col] = 0
@@ -63,6 +70,41 @@ class Board():
             self.red_pieces.remove(piece)
         if piece in self.white_pieces:
             self.white_pieces.remove(piece)
+
+    def changeTurn(self):
+        if self.turn == "RED":
+            self.turn = "WHITE"
+        else:
+            self.turn = "RED"
+
+    def checkGameEnd(self):
+        moves = {}
+        if self.turn == "RED":
+            for piece in self.red_pieces:
+                moves.update(self.getValidMoves(piece))
+                #if red has any valid moves then white has not won
+                if moves:
+                    break
+            #if moves is empty then white wins
+            if not moves:
+                self.winner = "WHITE"
+                print("white Wins!")
+                return True
+            else:
+                return False
+        else:
+            for piece in self.white_pieces:
+                moves.update(self.getValidMoves(piece))
+                #if white has any valid moves then red has not won
+                if moves:
+                    break
+            #if moves is empty then red wins
+            if not moves:
+                self.winner = "RED"
+                print("Red Wins!")
+                return True
+            else:
+                return False
 
     def getValidMoves(self, piece):
         moves = {}
