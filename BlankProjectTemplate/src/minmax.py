@@ -90,6 +90,7 @@ def maxMinBoard(board, currentDepth, bestMove):
             maxBoard.move(board.red_pieces[idx], move[1][0], move[1][1], move_skip)
             #moveSilentBlack(maxBoard, *move)
             value = minMove2(maxBoard, currentDepth-1)[1]
+            print('velue is ', value)
             if value > best_move:
                 best_move = value
                 best_board = maxBoard
