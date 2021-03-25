@@ -26,7 +26,6 @@ def iterBlackMoves(board):
     for piece in blacklist:
         for move in iterBlackPiece(board, piece):
             yield move
-    print('blacklist is ', board.blacklist)
 
 ## @brief Checks for possible moves for the selected piece
 #  @param board The state of the current board
@@ -77,12 +76,12 @@ def iterBoth(board, piece, moves):
             yield (piece, target)
         # There was something in the way, can we jump it?
         else:
-            print('in ese')
+            # print('in ese')
             # It has to be of the opposing color to jump
-            # if board.turn == board.RED and black:
-            #     continue
-            # elif board.turn == board.WHITE and white:
-            #     continue
+            if board.turn == "RED" and black:
+                continue
+            elif board.turn == "WHITE" and white:
+                continue
             # Jump proceeds by adding the same movement in order to jump over the opposing
             # piece on the checkerboard
             jumpx = target[0] + move[0]
@@ -95,7 +94,7 @@ def iterBoth(board, piece, moves):
             black = jump in blacklist
             white = jump in whitelist
             if not black and not white:
-                yield (piece, jump)
+                yield (piece, jump, board.turn)
 
 ## @brief Moves a black piece, calls the updateboard method, determines if black piece player has won or loss (sets the turn to white after)
 #  @param board The state of the current board
@@ -105,10 +104,10 @@ def moveSilentBlack(board, moveFrom, moveTo, winLoss):
     """
         Move black piece without printing
     """
-    if moveTo[0] < 0 or moveTo[0] >= board.width or moveTo[1] < 0 or moveTo[1] >= board.height:
+    if moveTo[0] < 0 or moveTo[0] >= 8 or moveTo[1] < 0 or moveTo[1] >= 8:
         raise Exception("That would move black piece", moveFrom, "out of bounds")
-    black = moveTo in board.blacklist
-    white = moveTo in board.whitelist
+    black = moveTo in blacklist
+    white = moveTo in whitelist
     moveT1 = (moveTo == (moveFrom[0]-1,moveFrom[1]+1))
     moveT2 = (moveTo == (moveFrom[0]-1,moveFrom[1]-1))
     moveT3 = (moveTo == (moveFrom[0]+1,moveFrom[1]-1))
@@ -118,7 +117,7 @@ def moveSilentBlack(board, moveFrom, moveTo, winLoss):
     moveT7 = (moveTo == (moveFrom[0]+2,moveFrom[1]-2))
     moveT8 = (moveTo == (moveFrom[0]+2,moveFrom[1]+2))
     if( not(black or white) and ( moveT1 or  moveT2 or moveT3 or moveT4 or moveT5 or moveT6 or moveT7 or moveT8 )):
-        board.blacklist[board.blacklist.index(moveFrom)] = moveTo
+        blacklist[board.blacklist.index(moveFrom)] = moveTo
         board.updateBoard()
         board.turn = board.WHITE
         board.gameWon = winLoss

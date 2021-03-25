@@ -61,6 +61,8 @@ class Board():
         piece.move(toRow,toCol)
         #if there were any pieces skipped we need them removed
         for p in skipped:
+            if(p == []):
+                continue
             self.remove(self.boardState[p[0]][p[1]])
         self.changeTurn()
 
