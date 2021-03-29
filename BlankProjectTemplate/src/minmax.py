@@ -25,8 +25,8 @@ def minMax2(board):
         currentDepth -= 1
         # Get the best move and it's value from maxMinBoard (minmax handler)
         (bestBoard, bestVal) = maxMove2(board, currentDepth)
-        print('bestboard and bestval is ', (bestBoard, bestVal))
-        # If we got a NUll board raise an exception
+
+    # If we got a NUll board raise an exception
     if not bestBoard:
         raise Exception("Could only return null boards")
     # Otherwise return the board and it's value
@@ -63,7 +63,6 @@ def maxMinBoard(board, currentDepth, bestMove):
         # Create the iterator for the Moves
 
         red_position = []
-        #white_position = []
         move_skipped_1 = []
         moves_1 = []
         for i in board.red_pieces:
@@ -82,15 +81,14 @@ def maxMinBoard(board, currentDepth, bestMove):
         # print('ski1 is ', move_skipped_1, len(move_skipped_1))
         idx = 0
 
-        #moves = iterBlackMoves(board)
-        #print('l is ', list(moves))
         for move, move_skip in zip(moves_1, move_skipped_1):
-            #print('jezz is ', board.red_pieces[idx], move[1][0], move[1][1], move_skip)
             maxBoard = deepcopy(board)
-            maxBoard.move(board.red_pieces[idx], move[1][0], move[1][1], move_skip)
+            if(move_skip == []):
+                maxBoard.move(board.red_pieces[idx], move[1][0], move[1][1], move_skip)
+            else:
+                maxBoard.move(board.red_pieces[idx], move[1][0], move[1][1], move_skip[0])
             #moveSilentBlack(maxBoard, *move)
             value = minMove2(maxBoard, currentDepth-1)[1]
-            print('velue is ', value)
             if value > best_move:
                 best_move = value
                 best_board = maxBoard
@@ -116,10 +114,11 @@ def maxMinBoard(board, currentDepth, bestMove):
         idx = 0
         #moves = iterWhiteMoves(board)
         for move, move_skip in zip(moves_2, move_skipped_2):
-            #print('idx is ', board.white_pieces[idx], move[0], move[1], move_skip)
             minBoard = deepcopy(board)
-            minBoard.move(board.white_pieces[idx],  move[1][0], move[1][1], move_skip)
-            #moveSilentWhite(minBoard, *move)
+            if(move_skip == []):
+                minBoard.move(board.white_pieces[idx],  move[1][0], move[1][1], move_skip)
+            else:
+                minBoard.move(board.white_pieces[idx],  move[1][0], move[1][1], move_skip[0])
             value = maxMove2(minBoard, currentDepth-1)[1]
             if value < best_move:
                 best_move = value

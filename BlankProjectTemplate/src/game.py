@@ -46,7 +46,8 @@ class Game():
                 self.gui.reset_validMoves()
                 self.gui.reset_selected()
                 self.board.checkGameEnd()
-                minMax2(self.board)
+                ai_move = minMax2(self.board)
+                self.board = ai_move[0]
             else:
                 print("Can't move there")
                 self.selected = None
