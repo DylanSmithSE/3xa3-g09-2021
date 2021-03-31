@@ -1,3 +1,4 @@
+#reference: https://github.com/binary-b/python-checkers/tree/master/img
 ## @file GUI.py
 ## @brief Following module handles the graphical user interface for the checkers game
 #  @author Dylan, Thaneegan, Ardhendu
@@ -25,7 +26,7 @@ class GUI:
         self.highlighted_red_king = pygame.image.load('./img/highlighted_red_king.jpg')
         self.highlighted_white_king = pygame.image.load('./img/highlighted_white_king.jpg')
         self.valid_move = pygame.image.load('./img/valid_move.png')
-        self.black_screen = pygame.image.load('./img/blackScreen.png')  
+        self.black_screen = pygame.image.load('./img/blackScreen.png')
         self.new_game_button = pygame.image.load('./img/btn_new_game.png')
         self.new_game = 0
         self.new_game_countdown_3 = pygame.image.load('./img/countdown_3.png')
@@ -34,7 +35,7 @@ class GUI:
         self.new_game_countdown_0 = pygame.image.load('./img/countdown_0.png')
         self.tutorial_button = pygame.image.load('./img/btn_tutorial.png')
         self.tutorial_image = pygame.image.load('./img/full_tutorial.png')
-        self.tutorial = False        
+        self.tutorial = False
         #store selected piece and valid moves to be displayed on gui
         self.selected = []
         self.moves = {}
@@ -69,7 +70,7 @@ class GUI:
                 self.display_piece(row,x,y)
                 x+=1
             y+=1
-        
+
         #Display the selected piece if any
         self.display_selected()
         #Display valid moves if there are any
@@ -89,7 +90,7 @@ class GUI:
         #         y+=1
         #     x+=1
         pygame.display.update()
-    
+
     #Highlight the selected piece on board
     def display_selected(self):
         if self.selected:
@@ -194,7 +195,7 @@ class GUI:
             self.screen.blit(self.tutorial_image, (720,145))
         else:
             self.screen.blit(self.black_screen, (720,145))
-    
+
     def display_newgame(self):
         if self.new_game == 3:
             self.screen.blit(self.new_game_countdown_3, (720,650))
