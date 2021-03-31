@@ -1,3 +1,4 @@
+#reference: tech with tim (https://github.com/techwithtim/Python-Checkers-AI)
 from copy import deepcopy
 from board2 import *
 import pygame
