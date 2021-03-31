@@ -3,10 +3,10 @@
 #  @author Dylan, Thaneegan, Ardhendu
 #  @date March 3 2021
 import pygame
+import time
 from board2 import *
 from constants import *
 from pieces2 import *
-
 screen_dimensions = (1060, 720)
 
 
@@ -25,8 +25,16 @@ class GUI:
         self.highlighted_red_king = pygame.image.load('./img/highlighted_red_king.jpg')
         self.highlighted_white_king = pygame.image.load('./img/highlighted_white_king.jpg')
         self.valid_move = pygame.image.load('./img/valid_move.png')
+        self.black_screen = pygame.image.load('./img/blackScreen.png')  
         self.new_game_button = pygame.image.load('./img/btn_new_game.png')
+        self.new_game = 0
+        self.new_game_countdown_3 = pygame.image.load('./img/countdown_3.png')
+        self.new_game_countdown_2 = pygame.image.load('./img/countdown_2.png')
+        self.new_game_countdown_1 = pygame.image.load('./img/countdown_1.png')
+        self.new_game_countdown_0 = pygame.image.load('./img/countdown_0.png')
         self.tutorial_button = pygame.image.load('./img/btn_tutorial.png')
+        self.tutorial_image = pygame.image.load('./img/full_tutorial.png')
+        self.tutorial = False        
         #store selected piece and valid moves to be displayed on gui
         self.selected = []
         self.moves = {}
@@ -63,13 +71,13 @@ class GUI:
             y+=1
         
         #Display the selected piece if any
-        if self.selected:
-            self.display_selected()
-
+        self.display_selected()
         #Display valid moves if there are any
-        if self.moves:
-            self.display_validMoves()
-        
+        self.display_validMoves()
+        #Display the tutorial image if selected
+        self.display_tutorial()
+        #Display new game countdown if selected
+        self.display_newgame()
         # x = 0
         # for row in board_state:
         #     # print('row is ', row)
@@ -84,10 +92,11 @@ class GUI:
     
     #Highlight the selected piece on board
     def display_selected(self):
-        if self.selected[2] == True:
-            self.screen.blit(self.highlighted_red_king, self.calc_pos(self.selected[1], self.selected[0]))
-        else:
-            self.screen.blit(self.highlighted_red_piece, self.calc_pos(self.selected[1], self.selected[0]))
+        if self.selected:
+            if self.selected[2] == True:
+                self.screen.blit(self.highlighted_red_king, self.calc_pos(self.selected[1], self.selected[0]))
+            else:
+                self.screen.blit(self.highlighted_red_piece, self.calc_pos(self.selected[1], self.selected[0]))
 
     #Reset the selected piece to empty at end of turn
     def reset_selected(self):
@@ -100,8 +109,9 @@ class GUI:
 
     #Iterate through the valid moves and highlight them on the board
     def display_validMoves(self):
-        for (row,col) in self.moves.keys():
-            self.screen.blit(self.valid_move, self.calc_pos(col, row))
+        if self.moves:
+            for (row,col) in self.moves.keys():
+                self.screen.blit(self.valid_move, self.calc_pos(col, row))
 
     #Reset the valid moves dictionary to empty at end of turn
     def reset_validMoves(self):
@@ -179,6 +189,26 @@ class GUI:
         col = y // (self.board_width/COLS)
         return (int(col), int(row))
 
+    def display_tutorial(self):
+        if self.tutorial:
+            self.screen.blit(self.tutorial_image, (720,145))
+        else:
+            self.screen.blit(self.black_screen, (720,145))
+    
+    def display_newgame(self):
+        if self.new_game == 3:
+            self.screen.blit(self.new_game_countdown_3, (720,650))
+            pygame.display.update()
+            time.sleep(1)
+        elif self.new_game == 2:
+            self.screen.blit(self.new_game_countdown_2, (720,650))
+            pygame.display.update()
+            time.sleep(1)
+        elif self.new_game == 1:
+            self.screen.blit(self.new_game_countdown_1, (720,650))
+            pygame.display.update()
+            time.sleep(1)
+            self.screen.blit(self.new_game_countdown_0, (720,650))
 # # # testing
 # b = [[0,piece(0,1,"WHITE",1),0,piece(0,3,"WHITE",1),0,piece(0,5,"WHITE",1),0,piece(0,7,"WHITE",1)],\
 #                     [piece(1,0,"WHITE",1),0,piece(1,2,"WHITE",1),0,piece(1,4,"WHITE",1),0,piece(1,6,"WHITE",1),0],\

@@ -13,6 +13,7 @@ class Board():
         self.boardState = [[0] * ROWS for x in range(COLS)]
         self.red_pieces = []
         self.white_pieces = []
+        self.winner = ""
         self.setBoard()
 
 
@@ -44,20 +45,18 @@ class Board():
                     pass
                 y = y + 1
             x = x + 1
-        self.boardState[0][1].makeKing()
-        self.boardState[7][0].makeKing()
 
     #replace piece with 0 and then moves the piece to the new location
-    def move(self, piece, toRow, toCol, skipped):
+    def move(self, piece, move, skipped):
         self.boardState[piece.row][piece.col] = 0
-        self.boardState[toRow][toCol] = piece
+        self.boardState[move[0]][move[1]] = piece
         #if a piece reaches the end of the board they become a king
-        if toRow == 7 or toRow ==0:
+        if move[0] == 7 or move[0] ==0:
             if piece.king:
                 pass
             else:
                 piece.makeKing()
-        piece.move(toRow,toCol)
+        piece.move(move[0],move[1])
         #if there were any pieces skipped we need them removed
         for p in skipped:
             self.remove(self.boardState[p[0]][p[1]])
@@ -105,6 +104,15 @@ class Board():
             else:
                 return False
 
+    def evaluateBoard(self):
+        return len(self.white_pieces) - len(self.red_pieces)
+
+    def getPieces(self, colour):
+        if colour == "RED":
+            return self.red_pieces
+        else:
+            return self.white_pieces
+
     def getValidMoves(self, piece):
         moves = {}
         row = piece.row
@@ -121,12 +129,13 @@ class Board():
             self.checkRight(row,col,colour,direction,True,False,[],moves)
         return moves
 
-
     def checkLeft(self,row,col,colour,direction,isKing,haveSkipped,captures,moves):
-        skipped = []
         #need this or else all entries of moves will have the same skipped list
+        skipped = []
         for tup in captures:
             skipped.append(tup)
+
+        #if the move is on the board still
         if row+direction>=0 and row+direction<8 and col-1>=0:
             #no captures have been made
             if not haveSkipped:
@@ -153,25 +162,28 @@ class Board():
         if (row+(2*direction))>=0 and (row+(2*direction)<8) and col-2>=0:
             #if we can skip the piece we do and then check if we can continue
             if self.boardState[row+(2*direction)][col-2] == 0:
-                skipped.append((row+direction,col-1))
+                #if we have not visited the square yet
                 if not (row+(2*direction),col-2) in moves:
+                    skipped.append((row+direction,col-1))
                     moves[(row+(2*direction),col-2)] = skipped
-                if not isKing:
-                    self.checkLeft(row+(2*direction),col-2,colour,direction,False,True,skipped,moves)
-                    self.checkRight(row+(2*direction),col-2,colour,direction,False,True,skipped,moves)
-                else:
-                    self.checkLeft(row+(2*direction),col-2,colour,direction,True,True,skipped,moves)
-                    self.checkRight(row+(2*direction),col-2,colour,direction,True,True,skipped,moves)
-                    self.checkLeft(row+(-2*direction),col-2,colour,-1*direction,True,True,skipped,moves)
-                    self.checkRight(row+(-2*direction),col-2,colour,-1*direction,True,True,skipped,moves)
+                    if not isKing:
+                        self.checkLeft(row+(2*direction),col-2,colour,direction,False,True,skipped,moves)
+                        self.checkRight(row+(2*direction),col-2,colour,direction,False,True,skipped,moves)
+                    else:
+                        self.checkLeft(row+(2*direction),col-2,colour,direction,True,True,skipped,moves)
+                        self.checkRight(row+(2*direction),col-2,colour,direction,True,True,skipped,moves)
+                        self.checkLeft(row+(-2*direction),col-2,colour,-1*direction,True,True,skipped,moves)
+                        self.checkRight(row+(-2*direction),col-2,colour,-1*direction,True,True,skipped,moves)
             else:
                 pass
 
 
     def checkRight(self,row,col,colour,direction,isKing,haveSkipped,captures,moves):
+        #need this or else all entries of moves will have the same skipped list
         skipped = []
         for tup in captures:
             skipped.append(tup)
+        #if the move is on the board still
         if row+direction>=0 and row+direction<8 and col+1<8:
             #no captures have been made
             if not haveSkipped:
@@ -196,17 +208,19 @@ class Board():
         for tup in captures:
             skipped.append(tup)
         if (row+(2*direction))>=0 and (row+(2*direction)<8) and col+2<8:
+            #if we can skip the piece we do and then check if we can continue
             if self.boardState[row+(2*direction)][col+2] == 0:
-                skipped.append((row+direction,col+1))
+                #if we have not visited the square yet
                 if not (row+(2*direction),col+2) in moves:
+                    skipped.append((row+direction,col+1))
                     moves[(row+(2*direction),col+2)] = skipped
-                if not isKing:
-                    self.checkRight(row+(2*direction),col+2,colour,direction,False,True,skipped,moves)
-                    self.checkLeft(row+(2*direction),col+2,colour,direction,False,True,skipped,moves)
-                else:
-                    self.checkRight(row+(2*direction),col+2,colour,direction,True,True,skipped,moves)
-                    self.checkLeft(row+(2*direction),col+2,colour,direction,True,True,skipped,moves)
-                    self.checkRight(row+(-2*direction),col+2,colour,-1*direction,True,True,skipped,moves)
-                    self.checkLeft(row+(-2*direction),col+2,colour,-1*direction,True,True,skipped,moves)
+                    if not isKing:
+                        self.checkRight(row+(2*direction),col+2,colour,direction,False,True,skipped,moves)
+                        self.checkLeft(row+(2*direction),col+2,colour,direction,False,True,skipped,moves)
+                    else:
+                        self.checkRight(row+(2*direction),col+2,colour,direction,True,True,skipped,moves)
+                        self.checkLeft(row+(2*direction),col+2,colour,direction,True,True,skipped,moves)
+                        self.checkRight(row+(-2*direction),col+2,colour,-1*direction,True,True,skipped,moves)
+                        self.checkLeft(row+(-2*direction),col+2,colour,-1*direction,True,True,skipped,moves)
             else:
                 pass
