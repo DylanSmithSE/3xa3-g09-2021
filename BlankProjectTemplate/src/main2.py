@@ -17,7 +17,7 @@ game = Game(gui)
 clock = pygame.time.Clock()
 moves = []
 
-while game.board.gameWon == True:
+while game.board.gameWon == -1:
     clock.tick(60)
     gui.display_board(game.board.boardState, game.board.turn)
 
