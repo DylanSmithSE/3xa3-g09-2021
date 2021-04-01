@@ -22,7 +22,7 @@ class menu:
     #  @param height The height of the game baord
     #  @param firstPlayer The ID of the player
     def new_game(self, game):
-        game.resetGame()
+        game.reset_game()
     
     def start_game(self, game, width, height, firstPlayer):
         game.board.resetBoard(game.gui)

@@ -261,3 +261,12 @@ class GUI:
             pygame.display.update()
             time.sleep(1)
             self.screen.blit(new_game_countdown_0, (720,650))
+    
+    def display_winner(self, winner):
+        time.sleep(1)
+        if winner == "RED":
+            self.screen.blit(winner_red, (0,0))
+        else:
+            self.screen.blit(winner_white, (0,0))
+        pygame.display.update()
+        time.sleep(5)
