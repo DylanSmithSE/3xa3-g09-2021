@@ -8,7 +8,7 @@ from constants import *
 
 class Board():
     def __init__(self):
-        self.turn = "RED"
+        self.turn = ""
         self.gameWon = -1
         self.boardState = [[0] * ROWS for x in range(COLS)]
         self.red_pieces = []
@@ -17,8 +17,8 @@ class Board():
         self.setBoard()
 
 
-    def resetBoard(self):
-        self.turn = "RED"
+    def resetBoard(self, gui):
+        self.turn = gui.color_selected
         self.gameWon = -1
         self.boardState = [[0] * ROWS for x in range(COLS)]
         self.red_pieces = []

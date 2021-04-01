@@ -13,7 +13,7 @@ class Game():
     def resetGame(self):
         self.gui.reset_validMoves()
         self.gui.reset_selected()
-        self.board.resetBoard()
+        self.board.resetBoard(self.gui)
         self.gui.selected = None
         self.gui.validMoves = {}
         self.selected = None
@@ -29,7 +29,11 @@ class Game():
                 if self.board.boardState[row][col].color == self.board.turn:
                     self.selected = self.board.boardState[row][col]
                     self.validMoves = self.board.getValidMoves(self.selected)
-                    if self.board.turn == "RED":
+                    if self.gui.single_player == 1:
+                        if self.board.turn == self.gui.color_selected:
+                            self.gui.pass_selected(self.selected)
+                            self.gui.pass_validMoves(self.validMoves)
+                    else:
                         self.gui.pass_selected(self.selected)
                         self.gui.pass_validMoves(self.validMoves)
                 else:
@@ -44,7 +48,8 @@ class Game():
                 self.gui.reset_validMoves()
                 self.gui.reset_selected()
 
-                self.board = minmax(self.board,True,3)[1]
+                if self.gui.single_player == 1:
+                    self.board = minmax(self.board,True,3)[1]
 
                 if(self.board.checkGameEnd()):
                     print("GAME OVER")
@@ -61,7 +66,11 @@ class Game():
                         self.selected = self.board.boardState[row][col]
                         self.validMoves = self.board.getValidMoves(self.selected)
                         print('2 Selected: ', self.selected.row, self.selected.col)
-                        if self.board.turn == "RED":
+                        if self.gui.single_player == 1:
+                            if self.board.turn == self.gui.color_selected:
+                                self.gui.pass_selected(self.selected)
+                                self.gui.pass_validMoves(self.validMoves)
+                        else:
                             self.gui.pass_selected(self.selected)
                             self.gui.pass_validMoves(self.validMoves)
                 else:

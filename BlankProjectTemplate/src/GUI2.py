@@ -15,36 +15,16 @@ class GUI:
     ## @brief The init method loads the graphics, sets the dimensions of the
     #         board and calls make_display()
     def __init__(self):
-        #import images
-        self.board_img = pygame.image.load('./img/board.png')
-        self.red_piece = pygame.image.load('./img/red_man.png')
-        self.white_piece = pygame.image.load('./img/white_man.png')
-        self.highlighted_red_piece = pygame.image.load('./img/highlighted_red_man.jpg')
-        self.highlighted_white_piece = pygame.image.load('./img/highlighted_white_man.jpg')
-        self.red_king = pygame.image.load('./img/red_king.png')
-        self.white_king = pygame.image.load('./img/white_king.png')
-        self.highlighted_red_king = pygame.image.load('./img/highlighted_red_king.jpg')
-        self.highlighted_white_king = pygame.image.load('./img/highlighted_white_king.jpg')
-        self.valid_move = pygame.image.load('./img/valid_move.png')
-        self.black_screen = pygame.image.load('./img/blackScreen.png')
-        self.new_game_button = pygame.image.load('./img/btn_new_game.png')
         self.new_game = 0
-        self.new_game_countdown_3 = pygame.image.load('./img/countdown_3.png')
-        self.new_game_countdown_2 = pygame.image.load('./img/countdown_2.png')
-        self.new_game_countdown_1 = pygame.image.load('./img/countdown_1.png')
-        self.new_game_countdown_0 = pygame.image.load('./img/countdown_0.png')
-        self.tutorial_button = pygame.image.load('./img/btn_tutorial.png')
-        self.tutorial_image = pygame.image.load('./img/full_tutorial.png')
         self.tutorial = False
-        #store selected piece and valid moves to be displayed on gui
+        self.start_game = 1
+        self.single_player = 1
+        self.color_selected = "RED"
         self.selected = []
         self.moves = {}
-        #get dimensions of board
-        self.board_height = self.board_img.get_height()
-        self.board_width = self.board_img.get_width()
+        self.board_height = board_img.get_height()
+        self.board_width = board_img.get_width()
         self.screen = None
-        self.message = "Welcome to Checkers, hit start game to begin."
-        print(self.message)
         self.make_display()
 
     ## @brief make_display() creates the screen, sets the caption and adds
@@ -53,15 +33,18 @@ class GUI:
         self.screen = pygame.display.set_mode(screen_dimensions)
         pygame.display.set_caption('Checkers')
         self.screen.fill((0,0,0))
-        self.screen.blit(self.new_game_button, (720,0))
-        self.screen.blit(self.tutorial_button, (720,80))
+
+    def display_menu(self):
+        self.screen.blit(black_screen, (720,0))
+        self.screen.blit(new_game_button, (720,0))
+        self.screen.blit(tutorial_button, (720,80))
 
     ## @brief Given the state of a board, displays the board on the screen
     #  @details Loops through the board_state and calls display_piece to display
     #           the pieces
     #  @param board_state Two dimensional array representing the state of the board
-    def display_board(self, board_state):
-        self.screen.blit(self.board_img, (0, 0))
+    def display_board(self, board_state, turn):
+        self.screen.blit(board_img, (0, 0))
         #Adding pieces
         y = 0
         for col in board_state:
@@ -71,48 +54,94 @@ class GUI:
                 x+=1
             y+=1
 
-        #Display the selected piece if any
-        self.display_selected()
-        #Display valid moves if there are any
-        self.display_validMoves()
+        if self.start_game == 1:
+            #Blur out the board and display the start button
+            self.display_start()
+            #Display the game mode options when a new game is selected
+            self.display_choose_game_mode()
+            #Display the game options when a new game is selectd
+            self.display_choose_color()
+        else:
+            #Display the menu options (new game, tutorial)
+            self.display_menu()
+
         #Display the tutorial image if selected
         self.display_tutorial()
         #Display new game countdown if selected
         self.display_newgame()
-        # x = 0
-        # for row in board_state:
-        #     # print('row is ', row)
-        #     # break
-        #     y = 0
-        #     for col in row:
-        #         # print('col is ', col)
-        #         self.display_piece(col,x,y)
-        #         y+=1
-        #     x+=1
+        #Display the selected piece if any
+        self.display_selected(turn)
+        #Display valid moves if there are any
+        self.display_validMoves()
+
         pygame.display.update()
+    
+    def display_start(self):
+        self.tutorial = False
+        self.screen.blit(black_screen, (720,0))
+        self.screen.blit(start_button, (OPTION_COLOR_RED[0], OPTION_COLOR_RED[1] + 100))  
+        self.screen.blit(board_img_blurry, (0,0))  
+
+    #Loads the game mode options on screen
+    def display_choose_game_mode(self):
+        self.screen.blit(title_choose_game_mode, (OPTION_MODE_ONE[0], OPTION_MODE_ONE[1] - 60))
+        self.screen.blit(one_players, (OPTION_MODE_ONE))
+        self.screen.blit(two_players, (OPTION_MODE_TWO))
+        
+        #Highlights the option if based on game mode selected
+        if self.single_player == 1:
+            self.screen.blit(one_players_selected, (OPTION_MODE_ONE))
+            self.screen.blit(two_players, (OPTION_MODE_TWO))  
+        else:
+            self.screen.blit(two_players_selected, (OPTION_MODE_TWO))
+            self.screen.blit(one_players, (OPTION_MODE_ONE))       
+
+    #Loads the color options on screen
+    def display_choose_color(self):
+        self.screen.blit(title_choose_color, (OPTION_COLOR_RED[0], OPTION_COLOR_RED[1] - 60))
+        
+        #Highlights the option if white or red option is selected
+        if self.color_selected == "WHITE":
+            self.screen.blit(selected_white, (OPTION_COLOR_WHITE))  
+            self.screen.blit(select_red, (OPTION_COLOR_RED)) 
+        else: 
+            self.screen.blit(selected_red, (OPTION_COLOR_RED))
+            self.screen.blit(select_white, (OPTION_COLOR_WHITE))   
 
     #Highlight the selected piece on board
-    def display_selected(self):
+    def display_selected(self, turn):
         if self.selected:
-            if self.selected[2] == True:
-                self.screen.blit(self.highlighted_red_king, self.calc_pos(self.selected[1], self.selected[0]))
-            else:
-                self.screen.blit(self.highlighted_red_piece, self.calc_pos(self.selected[1], self.selected[0]))
+            if turn == "RED":
+                if self.selected[2] == True:
+                    self.screen.blit(valid_move, self.calc_pos(self.selected[1], self.selected[0]))
+                    self.screen.blit(red_king, self.calc_pos(self.selected[1], self.selected[0]))
+                else:
+                    #self.screen.blit(highlighted_red_piece, self.calc_pos(self.selected[1], self.selected[0]))
+                    self.screen.blit(valid_move, self.calc_pos(self.selected[1], self.selected[0]))
+                    self.screen.blit(red_piece, self.calc_pos(self.selected[1], self.selected[0]))
+            elif turn == "WHITE":
+                if self.selected[2] == True:
+                    self.screen.blit(valid_move, self.calc_pos(self.selected[1], self.selected[0]))
+                    self.screen.blit(white_king, self.calc_pos(self.selected[1], self.selected[0]))
+                else:
+                    #self.screen.blit(highlighted_red_piece, self.calc_pos(self.selected[1], self.selected[0]))
+                    self.screen.blit(valid_move, self.calc_pos(self.selected[1], self.selected[0]))
+                    self.screen.blit(white_piece, self.calc_pos(self.selected[1], self.selected[0]))        
 
     #Reset the selected piece to empty at end of turn
     def reset_selected(self):
         self.selected = []
 
     #Take in the user's selected piece
-    def pass_selected(self, selected):
-        self.selected = [selected.row, selected.col]
-        self.selected.append(selected.king)
+    def pass_selected(self, piece):
+        self.selected = [piece.row, piece.col]
+        self.selected.append(piece.king)
 
     #Iterate through the valid moves and highlight them on the board
     def display_validMoves(self):
         if self.moves:
             for (row,col) in self.moves.keys():
-                self.screen.blit(self.valid_move, self.calc_pos(col, row))
+                self.screen.blit(valid_move, self.calc_pos(col, row))
 
     #Reset the valid moves dictionary to empty at end of turn
     def reset_validMoves(self):
@@ -136,14 +165,14 @@ class GUI:
             pass
         elif colour.color == 'RED':
             if colour.king:
-                self.screen.blit(self.red_king, self.calc_pos(row, col))
+                self.screen.blit(red_king, self.calc_pos(row, col))
             else:
-                self.screen.blit(self.red_piece, self.calc_pos(row, col))
+                self.screen.blit(red_piece, self.calc_pos(row, col))
         elif colour.color == 'WHITE':
             if colour.king:
-                self.screen.blit(self.white_king, self.calc_pos(row, col))
+                self.screen.blit(white_king, self.calc_pos(row, col))
             else:
-                self.screen.blit(self.white_piece, self.calc_pos(row, col))
+                self.screen.blit(white_piece, self.calc_pos(row, col))
 
     ## @brief Calculates the position on the screen of the top left corner of
     #         the square given
@@ -166,14 +195,36 @@ class GUI:
         x,y = pos
         if x <= 720 and y <= 720:
             return "board"
-        elif x > 720 and y <= 70:
-            print("New")
-            print(x, y)
-            return "new"
-        elif x > 720 and y >= 80 and y <= 150:
-            print("Tutorial")
-            print(x, y)
-            return "tutorial"
+        elif self.start_game == 0:
+            if x > 720 and y <= 70:
+                print("New")
+                print(x, y)
+                return "new"
+            elif x > 720 and y >= 80 and y <= 150:
+                print("Tutorial")
+                print(x, y)
+                return "tutorial"
+        elif self.start_game == 1:
+            if x > OPTION_MODE_ONE[0] and x < OPTION_MODE_TWO[0] and y >= OPTION_MODE_ONE[1] and y <= OPTION_MODE_ONE[1]+35:
+                print("1-player mode selected")
+                print(x, y)
+                return "1-player mode"
+            elif x >= OPTION_MODE_TWO[0] and y >= OPTION_MODE_TWO[1] and y <= OPTION_MODE_TWO[1]+35:
+                print("2-player mode selected")
+                print(x, y)
+                return "2-player mode"
+            elif x >= OPTION_COLOR_RED[0] and x < OPTION_COLOR_WHITE[0] and y >= OPTION_COLOR_RED[1] and y <= OPTION_COLOR_RED[1]+35:
+                print("red selected")
+                print(x, y)
+                return "red"
+            elif x > OPTION_COLOR_WHITE[0] and y >= OPTION_COLOR_WHITE[1] and y <= OPTION_COLOR_WHITE[1]+35:
+                print("white selected")
+                print(x, y)
+                return "white"
+            elif x >= OPTION_COLOR_WHITE[0] and y >= OPTION_COLOR_WHITE[1]+100 and y <= OPTION_COLOR_RED[1]+135:
+                print("start game selected")
+                print(x, y)
+                return "start"
         else:
             print(x, y)
             return "nothing"
@@ -192,53 +243,21 @@ class GUI:
 
     def display_tutorial(self):
         if self.tutorial:
-            self.screen.blit(self.tutorial_image, (720,145))
-        else:
-            self.screen.blit(self.black_screen, (720,145))
-
+            self.screen.blit(tutorial_image, (720,145))
+        elif self.start_game == 0 and not self.tutorial:
+            self.screen.blit(black_screen, (720,145))
+    
     def display_newgame(self):
         if self.new_game == 3:
-            self.screen.blit(self.new_game_countdown_3, (720,650))
+            self.screen.blit(new_game_countdown_3, (720,650))
             pygame.display.update()
             time.sleep(1)
         elif self.new_game == 2:
-            self.screen.blit(self.new_game_countdown_2, (720,650))
+            self.screen.blit(new_game_countdown_2, (720,650))
             pygame.display.update()
             time.sleep(1)
         elif self.new_game == 1:
-            self.screen.blit(self.new_game_countdown_1, (720,650))
+            self.screen.blit(new_game_countdown_1, (720,650))
             pygame.display.update()
             time.sleep(1)
-            self.screen.blit(self.new_game_countdown_0, (720,650))
-# # # testing
-# b = [[0,piece(0,1,"WHITE",1),0,piece(0,3,"WHITE",1),0,piece(0,5,"WHITE",1),0,piece(0,7,"WHITE",1)],\
-#                     [piece(1,0,"WHITE",1),0,piece(1,2,"WHITE",1),0,piece(1,4,"WHITE",1),0,piece(1,6,"WHITE",1),0],\
-#                     [0,piece(2,1,"WHITE",1),0,piece(2,3,"WHITE",1),0,piece(2,5,"WHITE",1),0,piece(2,7,"WHITE",1)],\
-#                     [0,0,0,0,0,0,0,0],\
-#                     [0,0,0,0,0,piece(4,5,"RED",1),0,0],\
-#                     [piece(5,0,"RED",1),0,0,0,piece(5,4,"RED",1),0,piece(5,6,"RED",1),0],\
-#                     [0,piece(6,1,"RED",1),0,piece(6,3,"RED",1),0,piece(6,5,"RED",1),0,piece(6,7,"RED",1)],\
-#                     [piece(7,0,"RED",1),0,piece(7,2,"RED",1),0,piece(7,4,"RED",1),0,piece(7,6,"RED",1),0]]
-#
-# gui = GUI()
-#
-# run = True
-# clock = pygame.time.Clock()
-# while run:
-#     #slows down the while loop to make it run the same speed on diff computers
-#     clock.tick(60)
-#     pass
-#     for event in pygame.event.get():
-#         if event.type == pygame.QUIT:
-#             run = False
-#         if event.type == pygame.MOUSEBUTTONDOWN:
-#             pass
-#         else:
-#             pass
-#     b[0][1].make_king()
-#     b[7][0].make_king()
-#     gui.display_board(b)
-#
-# #closes screen when the loop ends
-# #loop ends when we the "x" on the screen is clicked
-# pygame.quit()
+            self.screen.blit(new_game_countdown_0, (720,650))
