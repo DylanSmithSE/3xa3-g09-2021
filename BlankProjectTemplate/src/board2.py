@@ -8,37 +8,51 @@ from constants import *
 
 class Board():
     def __init__(self, gui):
-        self.turn = gui.color_selected
+        self.turn = "RED"
         self.gameWon = -1
         self.boardState = [[0] * ROWS for x in range(COLS)]
         self.red_pieces = []
         self.white_pieces = []
         self.winner = ""
-        self.setBoard()
+        self.setBoard(gui)
 
 
     def resetBoard(self, gui):
-        self.turn = gui.color_selected
+        self.turn = "RED"
         self.gameWon = -1
         self.boardState = [[0] * ROWS for x in range(COLS)]
         self.red_pieces = []
         self.white_pieces = []
-        self.setBoard()
+        self.setBoard(gui)
         print("new game")
         # Tk().wm_withdraw() #to hide the main window
         # messagebox.showinfo('Starting new game...','New game selected, enjoy!')
 
-    def setBoard(self):
+    def setBoard(self, gui):
         x = 0
-        for row in SETUP:
+        load_setup = ""
+        red_increment = 0
+        white_increment = 0
+        if gui.color_selected == "RED":
+            print('RED SELECTED')
+            load_setup = SETUP_FIRSTPLAYER_RED
+            red_increment = -1
+            white_increment = 1
+        else:
+            print('WHITE SELECTED')
+            load_setup = SETUP_FIRSTPLAYER_WHITE
+            red_increment = 1
+            white_increment = -1
+
+        for row in load_setup:
             y = 0
             for col in row:
                 if col == "RED":
-                    p = piece(x,y,"RED",-1)
+                    p = piece(x,y,"RED",red_increment)
                     self.boardState[x][y] = p
                     self.red_pieces.append(p)
                 elif col == "WHITE":
-                    p = piece(x,y,"WHITE",1)
+                    p = piece(x,y,"WHITE",white_increment)
                     self.boardState[x][y] = p
                     self.white_pieces.append(p)
                 else:

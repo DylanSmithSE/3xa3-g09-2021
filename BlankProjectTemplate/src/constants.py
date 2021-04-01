@@ -1,7 +1,7 @@
 import pygame
 
 ROWS, COLS = 8,8
-SETUP = [['','WHITE','','WHITE','','WHITE','','WHITE'],\
+SETUP_FIRSTPLAYER_RED = [['','WHITE','','WHITE','','WHITE','','WHITE'],\
                     ['WHITE','','WHITE','','WHITE','','WHITE',''],\
                     ['','WHITE','','WHITE','','WHITE','','WHITE'],\
                     ['','','','','','','',''],\
@@ -9,6 +9,14 @@ SETUP = [['','WHITE','','WHITE','','WHITE','','WHITE'],\
                     ['RED','','RED','','RED','','RED',''],\
                     ['','RED','','RED','','RED','','RED'],\
                     ['RED','','RED','','RED','','RED','']]
+SETUP_FIRSTPLAYER_WHITE = [['','RED','','RED','','RED','','RED'],\
+                    ['RED','','RED','','RED','','RED',''],\
+                    ['','RED','','RED','','RED','','RED'],\
+                    ['','','','','','','',''],\
+                    ['','','','','','','',''],\
+                    ['WHITE','','WHITE','','WHITE','','WHITE',''],\
+                    ['','WHITE','','WHITE','','WHITE','','WHITE'],\
+                    ['WHITE','','WHITE','','WHITE','','WHITE','']]
 OPTION_MODE_ONE = [720, 100]
 OPTION_MODE_TWO = [890, 100]
 OPTION_COLOR_RED = [720, 220]

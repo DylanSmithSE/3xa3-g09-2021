@@ -23,15 +23,17 @@ class menu:
     #  @param firstPlayer The ID of the player
     def new_game(self, game):
         game.resetGame()
-        game.gui.start_game = 1
-        
     
     def start_game(self, game, width, height, firstPlayer):
+        game.board.resetBoard(game.gui)
         game.gui.new_game = 3
         while game.gui.new_game > 0:
             game.gui.display_newgame()
             game.gui.new_game = game.gui.new_game - 1
         game.gui.start_game = 0
+        game.gui.display_board(game.board.boardState, game.board.turn)
+        if game.gui.single_player == 1 and game.gui.color_selected == "WHITE":
+            game.start_AI()
 
     def select_game_mode(self, game, mode):
         if mode == 1:

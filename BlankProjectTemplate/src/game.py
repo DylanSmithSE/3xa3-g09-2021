@@ -1,24 +1,28 @@
 from board2 import *
 from constants import *
 from minmax2 import *
+from menu2 import *
+import time
 
 class Game():
     def __init__(self,gui):
         self.board = Board(gui)
         self.gui = gui
-        self.selected = None
-        self.validMoves = {}
-        self.winner = ""
+        self.resetGame()
 
     def resetGame(self):
         self.gui.reset_validMoves()
         self.gui.reset_selected()
-        self.board.resetBoard(self.gui)
+        self.gui.start_game = 1
         self.gui.selected = None
         self.gui.validMoves = {}
         self.selected = None
         self.validMoves = {}
         self.winner = ""
+
+    def start_AI(self):
+        #time.sleep(1)
+        self.board = minmax(self.board,True,3)[1]
 
     def select(self, square):
         row = square[0]
