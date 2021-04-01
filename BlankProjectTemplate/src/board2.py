@@ -7,8 +7,8 @@ from pieces2 import *
 from constants import *
 
 class Board():
-    def __init__(self):
-        self.turn = ""
+    def __init__(self, gui):
+        self.turn = gui.color_selected
         self.gameWon = -1
         self.boardState = [[0] * ROWS for x in range(COLS)]
         self.red_pieces = []

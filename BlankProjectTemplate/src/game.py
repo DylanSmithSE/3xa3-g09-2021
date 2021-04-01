@@ -4,7 +4,7 @@ from minmax2 import *
 
 class Game():
     def __init__(self,gui):
-        self.board = Board()
+        self.board = Board(gui)
         self.gui = gui
         self.selected = None
         self.validMoves = {}
