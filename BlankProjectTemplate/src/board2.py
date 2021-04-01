@@ -35,12 +35,12 @@ class Board():
         white_increment = 0
         if gui.color_selected == "RED":
             print('RED SELECTED')
-            load_setup = SETUP_FIRSTPLAYER_RED
+            load_setup = REGULAR_BOARD
             red_increment = -1
             white_increment = 1
         else:
             print('WHITE SELECTED')
-            load_setup = SETUP_FIRSTPLAYER_WHITE
+            load_setup = FLIPPED_BOARD
             red_increment = 1
             white_increment = -1
 
