@@ -30,7 +30,7 @@ class Board():
 
     def setBoard(self):
         x = 0
-        for row in SETUP:
+        for row in REGULAR_BOARD:
             y = 0
             for col in row:
                 if col == "RED":

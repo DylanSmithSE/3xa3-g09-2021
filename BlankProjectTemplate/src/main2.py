@@ -17,7 +17,7 @@ game = Game(gui)
 clock = pygame.time.Clock()
 moves = []
 
-while game.board.gameWon == -1:
+while game.board.gameWon == True:
     clock.tick(60)
     gui.display_board(game.board.boardState, game.board.turn)
 
@@ -43,7 +43,7 @@ while game.board.gameWon == -1:
             elif clicked_object == "red":
                 menu().select_color(game, "red")
             elif clicked_object == "start":
-                menu().start_game(game, width, height, firstPlayer)                
+                menu().start_game(game, width, height, firstPlayer)
             elif clicked_object == "nothing":
                 print("You didn't click on anything")
 
