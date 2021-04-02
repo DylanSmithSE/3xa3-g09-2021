@@ -228,7 +228,7 @@ class GUI:
                 print("white selected")
                 print(x, y)
                 return "white"
-            elif x >= OPTION_COLOR_RED[0] and y >= OPTION_COLOR_RED[1]+100 and y <= OPTION_COLOR_RED[1]+135:
+            elif x >= OPTION_COLOR_RED[0] and y >= OPTION_COLOR_RED[1]+100 and y <= OPTION_COLOR_RED[1]+170:
                 print("start game selected")
                 print(x, y)
                 return "start"
