@@ -9,11 +9,11 @@ from game import *
 from board2 import *
 #from board import *
 
-## @brief Function to check if game is won
-#  @details Function takes in board object and returns bool
-#  @param board board object cotaining the state
-def is_won(board):
-    return board.gameWon != -1
+# ## @brief Function to check if game is won
+# #  @details Function takes in board object and returns bool
+# #  @param board board object cotaining the state
+# def is_won(board):
+#     return board.gameWon != -1
         
 ## @brief Main minimax algorithm function for AI
 #  @details Function takes in board object and returns most appropirate move for the AI
@@ -39,6 +39,7 @@ def minMax2(board):
 #  @param currentDepth depth for the AI to predict best move
 def maxMove2(maxBoard, currentDepth):
     return maxMinBoard(maxBoard, currentDepth-1, float('-inf'))
+    # return maxMinBoard(maxBoard, currentDepth-1, float('inf'))
     
 ## @brief Function to calculate and predict best move from perspective of the player
 #  @details Function takes in board object as well as currentdepth to return best move for the AI
@@ -46,6 +47,7 @@ def maxMove2(maxBoard, currentDepth):
 #  @param currentDepth depth for the AI to predict best player move
 def minMove2(minBoard, currentDepth):
     return maxMinBoard(minBoard, currentDepth-1, float('inf'))
+    # return maxMinBoard(minBoard, currentDepth-1, float('-inf'))
 
 ## @brief Function to calculate and predict best move from perspective of the player
 #  @details Function takes in board object as well as currentdepth to return best move for the AI
@@ -53,7 +55,7 @@ def minMove2(minBoard, currentDepth):
 #  @param currentDepth depth for the AI to predict best player move
 def maxMinBoard(board, currentDepth, bestMove):
 
-    if is_won(board) or currentDepth <= 0:
+    if board.checkGameEnd() or currentDepth <= 0:
         return (board, staticEval2(board))
 
     best_move = bestMove
@@ -65,6 +67,7 @@ def maxMinBoard(board, currentDepth, bestMove):
         red_position = []
         move_skipped_1 = []
         moves_1 = []
+        piece_at = []
         for i in board.red_pieces:
             red_position.append(board.getValidMoves(i))
         idx = 0
@@ -72,6 +75,7 @@ def maxMinBoard(board, currentDepth, bestMove):
             if(i == {}):
                 continue
             for x in list(i.keys()):
+                piece_at.append(idx)
                 moves_1.append(((board.red_pieces[idx].row, board.red_pieces[idx].col), x))
             move_skipped_1.extend(list(red_position[idx].values()))
             idx += 1
@@ -79,14 +83,15 @@ def maxMinBoard(board, currentDepth, bestMove):
         # print('red pos ', red_position, len(red_position))
         # print('moves1 is ', moves_1, len(moves_1))
         # print('ski1 is ', move_skipped_1, len(move_skipped_1))
+
         idx = 0
 
         for move, move_skip in zip(moves_1, move_skipped_1):
             maxBoard = deepcopy(board)
             if(move_skip == []):
-                maxBoard.move(board.red_pieces[idx], move[1][0], move[1][1], move_skip)
+                maxBoard.move(board.red_pieces[piece_at[idx]], move[1][0], move[1][1], move_skip)
             else:
-                maxBoard.move(board.red_pieces[idx], move[1][0], move[1][1], move_skip[0])
+                maxBoard.move(board.red_pieces[idx], move[1][0], move[1][1], move_skip)
             #moveSilentBlack(maxBoard, *move)
             value = minMove2(maxBoard, currentDepth-1)[1]
             if value > best_move:
