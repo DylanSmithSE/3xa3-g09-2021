@@ -193,8 +193,8 @@ class Board():
                     else:
                         self.checkLeft(row+(2*direction),col-2,colour,direction,True,True,skipped,moves)
                         self.checkRight(row+(2*direction),col-2,colour,direction,True,True,skipped,moves)
-                        self.checkLeft(row+(-2*direction),col-2,colour,-1*direction,True,True,skipped,moves)
-                        self.checkRight(row+(-2*direction),col-2,colour,-1*direction,True,True,skipped,moves)
+                        self.checkLeft(row+(2*direction),col-2,colour,-1*direction,True,True,skipped,moves)
+                        self.checkRight(row+(2*direction),col-2,colour,-1*direction,True,True,skipped,moves)
             else:
                 pass
 
@@ -241,7 +241,7 @@ class Board():
                     else:
                         self.checkRight(row+(2*direction),col+2,colour,direction,True,True,skipped,moves)
                         self.checkLeft(row+(2*direction),col+2,colour,direction,True,True,skipped,moves)
-                        self.checkRight(row+(-2*direction),col+2,colour,-1*direction,True,True,skipped,moves)
-                        self.checkLeft(row+(-2*direction),col+2,colour,-1*direction,True,True,skipped,moves)
+                        self.checkRight(row+(2*direction),col+2,colour,-1*direction,True,True,skipped,moves)
+                        self.checkLeft(row+(2*direction),col+2,colour,-1*direction,True,True,skipped,moves)
             else:
                 pass
