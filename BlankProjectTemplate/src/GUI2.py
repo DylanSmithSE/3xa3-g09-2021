@@ -32,7 +32,7 @@ class GUI:
     #         the buttons to the screen
     def make_display(self):
         self.screen = pygame.display.set_mode(screen_dimensions)
-        pygame.display.set_caption('Checkers')
+        pygame.display.set_caption('KingMe')
         self.screen.fill((0,0,0))
 
     def display_menu(self):
