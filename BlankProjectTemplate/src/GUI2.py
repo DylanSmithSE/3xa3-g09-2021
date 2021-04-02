@@ -22,6 +22,7 @@ class GUI:
         self.color_selected = "RED"
         self.selected = []
         self.moves = {}
+        self.previous_winner = ""
         self.board_height = board_img.get_height()
         self.board_width = board_img.get_width()
         self.screen = None
@@ -38,6 +39,7 @@ class GUI:
         self.screen.blit(black_screen, (720,0))
         self.screen.blit(new_game_button, (720,0))
         self.screen.blit(tutorial_button, (720,80))
+        self.previous_winner = ""
 
     ## @brief Given the state of a board, displays the board on the screen
     #  @details Loops through the board_state and calls display_piece to display
@@ -80,7 +82,12 @@ class GUI:
         self.tutorial = False
         self.screen.blit(black_screen, (720,0))
         self.screen.blit(start_button, (OPTION_COLOR_RED[0], OPTION_COLOR_RED[1] + 100))  
-        self.screen.blit(board_img_blurry, (0,0))  
+        if self.previous_winner == "":
+            self.screen.blit(board_img_blurry, (0,0))  
+        elif self.previous_winner == "RED":
+            self.screen.blit(winner_red, (0,0))
+        elif self.previous_winner == "WHITE":
+            self.screen.blit(winner_white, (0,0))
 
     #Loads the game mode options on screen
     def display_choose_game_mode(self):
@@ -261,3 +268,8 @@ class GUI:
             pygame.display.update()
             time.sleep(1)
             self.screen.blit(new_game_countdown_0, (720,650))
+
+    def display_winner(self, winner):
+        time.sleep(1)
+        self.previous_winner = winner
+        self.start_game = 1

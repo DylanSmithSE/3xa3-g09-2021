@@ -8,9 +8,9 @@ class Game():
     def __init__(self,gui):
         self.board = Board(gui)
         self.gui = gui
-        self.resetGame()
+        self.reset_game()
 
-    def resetGame(self):
+    def reset_game(self):
         self.gui.reset_validMoves()
         self.gui.reset_selected()
         self.gui.start_game = 1
@@ -52,11 +52,15 @@ class Game():
                 self.gui.reset_validMoves()
                 self.gui.reset_selected()
 
-                if self.gui.single_player == 1:
+                if self.gui.single_player == 1 and self.gui.color_selected == "RED":
                     self.board = minmax(self.board,True,3)[1]
+                elif self.gui.single_player == 1 and self.gui.color_selected == "WHITE":
+                    self.board = minmax(self.board,False,3)[1]                    
 
                 if(self.board.checkGameEnd()):
                     print("GAME OVER")
+                    self.gui.display_winner(self.board.winner)
+                    self.reset_game()
             else:
                 if self.board.boardState[row][col] != 0:
                     print('HEY')
