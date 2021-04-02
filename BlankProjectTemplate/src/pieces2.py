@@ -10,11 +10,11 @@ class piece:
     #  @param row The row location of the piece.
     #  @param col The column location of the piece.
     #  @param color The color of the piece.
-    def __init__(self, row, col, color, direction):
+    def __init__(self, row, col, color, direction, king = False):
         self.row = row
         self.col = col
         self.color = color
-        self.king = False
+        self.king = king
         self.direction = direction
 
     ## @brief Represent a checkers king piece.

@@ -7,14 +7,14 @@ from pieces2 import *
 from constants import *
 
 class Board():
-    def __init__(self, gui):
-        self.turn = "RED"
+    def __init__(self, gui, board = None, turn = "RED"):
+        self.turn = turn
         self.gameWon = -1
         self.boardState = [[0] * ROWS for x in range(COLS)]
         self.red_pieces = []
         self.white_pieces = []
         self.winner = ""
-        self.setBoard(gui)
+        self.setBoard(gui, board)
 
 
     def resetBoard(self, gui):
@@ -28,22 +28,29 @@ class Board():
         # Tk().wm_withdraw() #to hide the main window
         # messagebox.showinfo('Starting new game...','New game selected, enjoy!')
 
-    def setBoard(self, gui):
-        x = 0
-        load_setup = ""
-        red_increment = 0
-        white_increment = 0
-        if gui.color_selected == "RED":
-            print('RED SELECTED')
-            load_setup = REGULAR_BOARD
-            red_increment = -1
-            white_increment = 1
-        else:
-            print('WHITE SELECTED')
-            load_setup = FLIPPED_BOARD
+    def setBoard(self, gui, board = None):
+        #overloading the constructor to help with testing
+        if board:
+            load_setup = board
             red_increment = 1
             white_increment = -1
 
+        else:
+            load_setup = ""
+            red_increment = 0
+            white_increment = 0
+            if gui.color_selected == "RED":
+                print('RED SELECTED')
+                load_setup = REGULAR_BOARD
+                red_increment = -1
+                white_increment = 1
+            else:
+                print('WHITE SELECTED')
+                load_setup = FLIPPED_BOARD
+                red_increment = 1
+                white_increment = -1
+
+        x = 0
         for row in load_setup:
             y = 0
             for col in row:
