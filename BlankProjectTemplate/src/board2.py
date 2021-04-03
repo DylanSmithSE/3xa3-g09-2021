@@ -32,8 +32,8 @@ class Board():
         #overloading the constructor to help with testing
         if board:
             load_setup = board
-            red_increment = 1
-            white_increment = -1
+            red_increment = -1
+            white_increment = 1
 
         else:
             load_setup = ""
