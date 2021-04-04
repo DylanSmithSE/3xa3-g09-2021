@@ -2,6 +2,7 @@ from board2 import *
 from constants import *
 from minmax import *
 
+
 class Game():
     def __init__(self,gui):
         self.board = Board()
@@ -23,7 +24,7 @@ class Game():
     def select(self, square):
         row = square[0]
         col = square[1]
-
+        
         if self.selected == None:
             if self.board.boardState[row][col] != 0:
                 if self.board.boardState[row][col].color == self.board.turn:
@@ -48,6 +49,8 @@ class Game():
                 self.board.checkGameEnd()
                 ai_move = minMax2(self.board)
                 self.board = ai_move[0]
+                self.board.checkGameEnd()
+                
             else:
                 print("Can't move there")
                 self.selected = None

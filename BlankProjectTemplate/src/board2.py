@@ -14,7 +14,7 @@ class Board():
         self.red_pieces = []
         self.white_pieces = []
         self.setBoard()
-        self.maxDepth = 5
+        self.maxDepth = 4
 
 
     def resetBoard(self):
