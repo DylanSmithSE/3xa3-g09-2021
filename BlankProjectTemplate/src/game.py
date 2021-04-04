@@ -51,6 +51,8 @@ class Game():
                 self.validMoves = {}
                 self.gui.reset_validMoves()
                 self.gui.reset_selected()
+                self.gui.display_board(self.board.boardState, self.board.turn)
+                time.sleep(0.1)
 
                 if self.gui.single_player == 1 and self.gui.color_selected == "RED":
                     self.board = minmax(self.board,True,3)[1]
