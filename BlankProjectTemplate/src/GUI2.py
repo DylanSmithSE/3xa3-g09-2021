@@ -1,8 +1,8 @@
-#reference: https://github.com/binary-b/python-checkers/tree/master/img
 ## @file GUI.py
 ## @brief Following module handles the graphical user interface for the checkers game
-#  @author Dylan, Thaneegan, Ardhendu
-#  @date March 3 2021
+## @details Reference: https://github.com/binary-b/python-checkers/tree/master/img
+#  @author Ardhendu, Dylan, Thaneegan
+#  @date April 4th 2021
 import pygame
 import time
 from board2 import *
@@ -13,7 +13,7 @@ screen_dimensions = (1060, 720)
 
 class GUI:
     ## @brief The init method loads the graphics, sets the dimensions of the
-    #         board and calls make_display()
+    #         board, stores class variables and calls make_display()
     def __init__(self):
         self.new_game = 0
         self.tutorial = False
@@ -35,6 +35,8 @@ class GUI:
         pygame.display.set_caption('KingMe')
         self.screen.fill((0,0,0))
 
+    ## @brief display_menu() displays the menu buttons and resets the previous 
+    #         winner variable
     def display_menu(self):
         self.screen.blit(black_screen, (720,0))
         self.screen.blit(new_game_button, (720,0))
@@ -45,6 +47,7 @@ class GUI:
     #  @details Loops through the board_state and calls display_piece to display
     #           the pieces
     #  @param board_state Two dimensional array representing the state of the board
+    #  @param turn A color string representing the current turn
     def display_board(self, board_state, turn):
         self.screen.blit(board_img, (0, 0))
         #Adding pieces
@@ -78,6 +81,8 @@ class GUI:
 
         pygame.display.update()
     
+    ## @brief display_start() displays the blurred out board when starting the game
+    #         or when the game is over and also displays the start button
     def display_start(self):
         self.tutorial = False
         self.screen.blit(black_screen, (720,0))
@@ -89,7 +94,9 @@ class GUI:
         elif self.previous_winner == "WHITE":
             self.screen.blit(winner_white, (0,0))
 
-    #Loads the game mode options on screen
+    ## @brief display_choose_game_mode() displays the game modes on the main menu
+    #  @details Game modes available are 1-PLayer or 2-Player. Function highlights 
+    #           the current selected choice.
     def display_choose_game_mode(self):
         self.screen.blit(title_choose_game_mode, (OPTION_MODE_ONE[0], OPTION_MODE_ONE[1] - 60))
         self.screen.blit(one_players, (OPTION_MODE_ONE))
@@ -103,7 +110,8 @@ class GUI:
             self.screen.blit(two_players_selected, (OPTION_MODE_TWO))
             self.screen.blit(one_players, (OPTION_MODE_ONE))       
 
-    #Loads the color options on screen
+    ## @brief display_choose_color() displays the color choices for 1st-player on the main menu
+    #  @details The color choices are Red or White. Function highlights the current selected choice.
     def display_choose_color(self):
         self.screen.blit(title_choose_color, (OPTION_COLOR_RED[0], OPTION_COLOR_RED[1] - 60))
         
@@ -115,7 +123,8 @@ class GUI:
             self.screen.blit(selected_red, (OPTION_COLOR_RED))
             self.screen.blit(select_white, (OPTION_COLOR_WHITE))   
 
-    #Highlight the selected piece on board
+    ## @brief display_selected Highlights and displays the selected piece on the board
+    #  @param turn String that represents the color of the current turn passed in
     def display_selected(self, turn):
         if self.selected:
             if turn == "RED":
@@ -135,35 +144,38 @@ class GUI:
                     self.screen.blit(valid_move, self.calc_pos(self.selected[1], self.selected[0]))
                     self.screen.blit(white_piece, self.calc_pos(self.selected[1], self.selected[0]))        
 
-    #Reset the selected piece to empty at end of turn
+    ## @brief reset_selected resets the self.selected variable to empty
     def reset_selected(self):
         self.selected = []
 
-    #Take in the user's selected piece
+    ## @brief pass_selected stores the selected piece as a variable for GUI class to use
+    #  @param piece The piece that is currently selected by user
     def pass_selected(self, piece):
         self.selected = [piece.row, piece.col]
         self.selected.append(piece.king)
 
-    #Iterate through the valid moves and highlight them on the board
+    ## @brief display_validMoves  Display valid moves of a piece on the board
+    #  @details Iterates through the valid moves array and highlight them on the board
     def display_validMoves(self):
         if self.moves:
             for (row,col) in self.moves.keys():
                 self.screen.blit(valid_move, self.calc_pos(col, row))
 
-    #Reset the valid moves dictionary to empty at end of turn
+    ## @brief reset_validMoves resets the valid moves dictionary to empty at end of turn
     def reset_validMoves(self):
         self.moves = {}
 
-    #Take in the valid moves for the user's selected piece
+    ## @brief pass_validMoves stores the valid moves for the user's selected piece
+    #  @param moves The valid moves that is computed by the minmax for the user piece selected
     def pass_validMoves(self, moves):
         self.moves = moves
 
-    ## @brief Sets the message to be displayed
+    ## @brief update_message sets the message to be displayed
     #  @param message The message to be displayed
     def update_message(self, message):
         self.message = message
 
-    ## @brief Displays a piece of the colour given, in the row and collumn given
+    ## @brief display_piece displays a piece of the colour given, in the row and collumn given
     #  @param colour The colour of the piece to be displayed
     #  @param row The row to display the piece
     #  @param col The collumn to display the piece
@@ -181,7 +193,7 @@ class GUI:
             else:
                 self.screen.blit(white_piece, self.calc_pos(row, col))
 
-    ## @brief Calculates the position on the screen of the top left corner of
+    ## @brief calc_pos calculates the position on the screen of the top left corner of
     #         the square given
     #  @details This function will be used by display piece to determine where
     #           on the screen to place the image
@@ -248,12 +260,16 @@ class GUI:
         col = y // (self.board_width/COLS)
         return (int(col), int(row))
 
+    ## @brief display_Tutorial Toggles the display of Tutorial on/off 
     def display_tutorial(self):
         if self.tutorial:
             self.screen.blit(tutorial_image, (720,145))
         elif self.start_game == 0 and not self.tutorial:
             self.screen.blit(black_screen, (720,145))
-    
+
+    ## @brief display_newgame  Display new game countdown on screen
+    #  @details Displays images that represent a countdown from 3 seconds to starting the game
+    #           when a new game is selected
     def display_newgame(self):
         if self.new_game == 3:
             self.screen.blit(new_game_countdown_3, (720,650))
@@ -269,6 +285,10 @@ class GUI:
             time.sleep(1)
             self.screen.blit(new_game_countdown_0, (720,650))
 
+    ## @brief display_winner Store the winner value for GUI class to use
+    #  @details Modifies/stores values based on the winner of the current game in order
+    #           for the next screen to be displayed (I.e gameover screen, main menu, etc)
+    #  @param winner String representing the color of current game's winner
     def display_winner(self, winner):
         time.sleep(1)
         self.previous_winner = winner

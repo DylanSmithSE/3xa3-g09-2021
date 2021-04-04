@@ -1,7 +1,7 @@
 ## @file pieces.py
 #  @author Ardhendu, Dylan, Thaneegan
 #  @brief Class to represent a checkers piece.
-#  @date March 15th 2021
+#  @date April 4th 2021
 
 import pygame
 class piece:
@@ -10,6 +10,8 @@ class piece:
     #  @param row The row location of the piece.
     #  @param col The column location of the piece.
     #  @param color The color of the piece.
+    #  @param direction The direction of the piece.
+    #  @param king Boolean whether the piece is a king or not
     def __init__(self, row, col, color, direction, king = False):
         self.row = row
         self.col = col
