@@ -5,8 +5,8 @@
 
 import pygame
 from board2 import *
-from tkinter import *
-from tkinter import messagebox
+# from tkinter import *
+# from tkinter import messagebox
 class menu:
 
     ## @brief Class to display the message box (utilizing Tinker library) for the Tutorial once called upon.
