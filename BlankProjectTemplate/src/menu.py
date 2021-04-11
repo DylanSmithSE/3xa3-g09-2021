@@ -24,7 +24,7 @@ class menu:
     def new_game(self, game):
         game.reset_game()
     
-    def start_game(self, game, width, height, firstPlayer):
+    def start_game(self, game):
         game.board.resetBoard(game.gui)
         game.gui.new_game = 3
         while game.gui.new_game > 0:

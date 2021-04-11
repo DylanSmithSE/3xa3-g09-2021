@@ -15,7 +15,6 @@ class Board():
     def __init__(self, gui, board = None, turn = "RED"):
         ## turn stores the piece colour that can move
         self.turn = turn
-        self.gameWon = -1
         ## boardState stores the state of the board.
         self.boardState = [[0] * ROWS for x in range(COLS)]
         ## red_pieces stores all the red pieces that remain
@@ -31,12 +30,10 @@ class Board():
     #   GUI class to the setBoard method
     def resetBoard(self, gui):
         self.turn = "RED"
-        self.gameWon = -1
         self.boardState = [[0] * ROWS for x in range(COLS)]
         self.red_pieces = []
         self.white_pieces = []
         self.setBoard(gui)
-        print("new game")
         # Tk().wm_withdraw() #to hide the main window
         # messagebox.showinfo('Starting new game...','New game selected, enjoy!')
 
@@ -56,12 +53,10 @@ class Board():
             red_increment = 0
             white_increment = 0
             if gui.color_selected == "RED":
-                print('RED SELECTED')
                 load_setup = REGULAR_BOARD
                 red_increment = -1
                 white_increment = 1
             else:
-                print('WHITE SELECTED')
                 load_setup = FLIPPED_BOARD
                 red_increment = 1
                 white_increment = -1
@@ -137,7 +132,6 @@ class Board():
             #if moves is empty then white wins
             if not moves:
                 self.winner = "WHITE"
-                print("white Wins!")
                 return True
             else:
                 return False
@@ -150,7 +144,6 @@ class Board():
             #if moves is empty then red wins
             if not moves:
                 self.winner = "RED"
-                print("Red Wins!")
                 return True
             else:
                 return False

@@ -1,30 +1,24 @@
-# Created by Carson Wilcox for Professor Szpakowicz's AI class CSI 4106
-# These
-# Main class runs the game
 from board import *
 from game import *
-#from minmax2 import *
 from GUI import *
 from menu import *
-# Setup variables
-width = 8
-height = 8
-firstPlayer = 0
 
-### MAIN PROGRAM ###
 gui = GUI()
 game = Game(gui)
 clock = pygame.time.Clock()
-moves = []
+running = True
 
-while game.board.gameWon == -1:
+#start the app
+while running:
     clock.tick(60)
     gui.display_board(game.board.boardState, game.board.turn)
 
     for event in pygame.event.get():
+        #if the user wants to exit the app end loop
         if event.type == pygame.QUIT:
-            game.board.gameWon = 2
+            running = False
 
+        #get click and determine what was clicked
         if event.type == pygame.MOUSEBUTTONDOWN:
             pos = pygame.mouse.get_pos()
             clicked_object = gui.get_clicked_object(pos)
@@ -43,9 +37,9 @@ while game.board.gameWon == -1:
             elif clicked_object == "red":
                 menu().select_color(game, "red")
             elif clicked_object == "start":
-                menu().start_game(game, width, height, firstPlayer)
+                menu().start_game(game)
             elif clicked_object == "nothing":
-                print("You didn't click on anything")
+                pass
 
             gui.display_board(game.board.boardState, game.board.turn)
 pygame.quit()

@@ -215,36 +215,21 @@ class GUI:
             return "board"
         elif self.start_game == 0:
             if x > 720 and y <= 70:
-                print("New")
-                print(x, y)
                 return "new"
             elif x > 720 and y >= 80 and y <= 150:
-                print("Tutorial")
-                print(x, y)
                 return "tutorial"
         elif self.start_game == 1:
             if x > OPTION_MODE_ONE[0] and x < OPTION_MODE_TWO[0] and y >= OPTION_MODE_ONE[1] and y <= OPTION_MODE_ONE[1]+35:
-                print("1-player mode selected")
-                print(x, y)
                 return "1-player mode"
             elif x >= OPTION_MODE_TWO[0] and y >= OPTION_MODE_TWO[1] and y <= OPTION_MODE_TWO[1]+35:
-                print("2-player mode selected")
-                print(x, y)
                 return "2-player mode"
             elif x >= OPTION_COLOR_RED[0] and x < OPTION_COLOR_WHITE[0] and y >= OPTION_COLOR_RED[1] and y <= OPTION_COLOR_RED[1]+35:
-                print("red selected")
-                print(x, y)
                 return "red"
             elif x > OPTION_COLOR_WHITE[0] and y >= OPTION_COLOR_WHITE[1] and y <= OPTION_COLOR_WHITE[1]+35:
-                print("white selected")
-                print(x, y)
                 return "white"
             elif x >= OPTION_COLOR_RED[0] and y >= OPTION_COLOR_RED[1]+100 and y <= OPTION_COLOR_RED[1]+170:
-                print("start game selected")
-                print(x, y)
                 return "start"
         else:
-            print(x, y)
             return "nothing"
 
     ## @brief get_square_clicked() is called when the user clicks on the board.

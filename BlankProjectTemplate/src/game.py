@@ -60,7 +60,7 @@ class Game():
                         self.gui.pass_selected(self.selected)
                         self.gui.pass_validMoves(self.validMoves)
                 else:
-                    print("not your turn")
+                    pass
             else:
                 pass
         else:
@@ -79,22 +79,17 @@ class Game():
                     self.board = minmax(self.board,False,3)[1]                    
 
                 if(self.board.checkGameEnd()):
-                    print("GAME OVER")
                     self.gui.display_winner(self.board.winner)
                     self.reset_game()
             else:
                 if self.board.boardState[row][col] != 0:
-                    print('HEY')
-                    print('1 Selected: ', self.selected.row, self.selected.col)
                     if self.board.boardState[row][col].color == self.board.turn:
-                        print('HEY AGAIN')
                         self.selected = None
                         self.validMoves = {}
                         self.gui.reset_validMoves()
                         self.gui.reset_selected()
                         self.selected = self.board.boardState[row][col]
                         self.validMoves = self.board.getValidMoves(self.selected)
-                        print('2 Selected: ', self.selected.row, self.selected.col)
                         if self.gui.single_player == 1:
                             if self.board.turn == self.gui.color_selected:
                                 self.gui.pass_selected(self.selected)
@@ -103,7 +98,6 @@ class Game():
                             self.gui.pass_selected(self.selected)
                             self.gui.pass_validMoves(self.validMoves)
                 else:
-                    print("Can't move there")
                     self.selected = None
                     self.validMoves = {}
                     self.gui.reset_validMoves()
