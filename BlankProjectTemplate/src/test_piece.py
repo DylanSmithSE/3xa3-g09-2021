@@ -1,5 +1,5 @@
 import pytest
-from pieces import *
+from piece import *
 
 #most of the logic for valid moves will be tested in the board2 class
 #here we are simply testing that the piece method fuction as expected
