@@ -5,10 +5,9 @@
 #  @date April 4th 2021
 import pygame
 import time
-from board2 import *
+from board import *
 from constants import *
-from pieces2 import *
-screen_dimensions = (1060, 720)
+from piece import *
 
 
 class GUI:
@@ -31,7 +30,7 @@ class GUI:
     ## @brief make_display() creates the screen, sets the caption and adds
     #         the buttons to the screen
     def make_display(self):
-        self.screen = pygame.display.set_mode(screen_dimensions)
+        self.screen = pygame.display.set_mode(SCREEN_DIMENSIONS)
         pygame.display.set_caption('KingMe')
         self.screen.fill((0,0,0))
 

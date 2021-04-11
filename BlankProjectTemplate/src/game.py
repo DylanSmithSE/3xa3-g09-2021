@@ -5,10 +5,10 @@
 #  @author Ardhendu, Dylan, Thaneegan
 #  @date April 4th 2021
 
-from board2 import *
+from board import *
 from constants import *
-from minmax2 import *
-from menu2 import *
+from minmax import *
+from menu import *
 import time
 
 class Game():

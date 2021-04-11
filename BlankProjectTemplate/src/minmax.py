@@ -3,7 +3,7 @@
 #  @author Ardhendu, Dylan, Thaneegan
 #  @date April 5th 2021
 from copy import deepcopy
-from board2 import *
+from board import *
 import pygame
 
 ## @brief Minmax determines the best move that a player can make

@@ -1,5 +1,6 @@
 import pygame
 
+SCREEN_DIMENSIONS = (1060, 720)
 ROWS, COLS = 8,8
 REGULAR_BOARD = [['','WHITE','','WHITE','','WHITE','','WHITE'],\
                     ['WHITE','','WHITE','','WHITE','','WHITE',''],\

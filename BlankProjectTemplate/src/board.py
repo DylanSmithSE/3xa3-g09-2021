@@ -3,7 +3,7 @@
 #  @details Reference: https://github.com/techwithtim/Python-Checkers-AI
 #  @author Ardhendu, Dylan, Thaneegan
 #  @date April 5th 2021
-from pieces2 import *
+from piece import *
 from constants import *
 
 ## @brief The Board class handles the state of the board. Its main function is to

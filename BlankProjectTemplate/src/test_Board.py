@@ -1,6 +1,6 @@
 import pytest
-from board2 import *
-from GUI2 import *
+from board import *
+from GUI import *
 from testBoards import *
 
 class TestBoard2:

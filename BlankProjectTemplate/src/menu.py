@@ -4,7 +4,7 @@
 #  @date March 15th 2021
 
 import pygame
-from board2 import *
+from board import *
 # from tkinter import *
 # from tkinter import messagebox
 class menu:
