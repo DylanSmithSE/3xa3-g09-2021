@@ -1,4 +1,5 @@
-## @file minmax2.py
+## @file minmax.py
+#  @brief The minmax file determines the best move the AI can make.
 #  @details Reference: https://github.com/techwithtim/Python-Checkers-AI
 #  @author Ardhendu, Dylan, Thaneegan
 #  @date April 5th 2021

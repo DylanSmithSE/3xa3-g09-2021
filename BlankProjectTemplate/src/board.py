@@ -1,13 +1,12 @@
 ## @file board.py
-#  @title Board
+#  @brief The Board class handles the state of the board and well as the moving of the pieces
 #  @details Reference: https://github.com/techwithtim/Python-Checkers-AI
 #  @author Ardhendu, Dylan, Thaneegan
 #  @date April 5th 2021
 from piece import *
 from constants import *
 
-## @brief The Board class handles the state of the board. Its main function is to
-#   determine where pieces of the board can move.
+
 class Board():
     ## @brief The constructor initializes the member variables and calls setBoard
     #  @param gui The GUI is passed in to relay information stored withing the

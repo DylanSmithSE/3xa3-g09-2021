@@ -1,6 +1,6 @@
-## @file pieces.py
-#  @author Ardhendu, Dylan, Thaneegan
+## @file piece.py
 #  @brief Class to represent a checkers piece.
+#  @author Ardhendu, Dylan, Thaneegan
 #  @date April 4th 2021
 
 import pygame
