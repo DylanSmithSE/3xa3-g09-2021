@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="3XA3 Project" company="McMaster" webLink="http://" view-date="2021-01-17" view-index="0" gantt-divider-location="77" resource-divider-location="300" version="2.8.11" locale="en_CA">
+<?xml version="1.0" encoding="UTF-8"?><project name="3XA3 Project" company="McMaster" webLink="http://" view-date="2021-01-17" view-index="0" gantt-divider-location="110" resource-divider-location="300" version="2.8.11" locale="en_CA">
     <description><![CDATA[This project is for the course 3XA3 at McMaster University. The main objective of this project is to add to an open-source project of Checkers while also appropriately following the software project life-cycle.]]></description>
     <view zooming-state="default:6" id="gantt-chart">
-        <field id="tpd3" name="Name" width="33" order="0"/>
-        <field id="tpd4" name="Begin date" width="20" order="1"/>
-        <field id="tpd5" name="End date" width="20" order="2"/>
+        <field id="tpd3" name="Name" width="53" order="0"/>
+        <field id="tpd4" name="Begin date" width="26" order="1"/>
+        <field id="tpd5" name="End date" width="27" order="2"/>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="210" order="0"/>
@@ -33,46 +33,46 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="Team Formation" color="#8cb6ce" meeting="false" start="2021-01-18" duration="1" complete="0" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true"/>
-        <task id="1" name="Project Approval" color="#8cb6ce" meeting="false" start="2021-01-25" duration="5" complete="0" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true"/>
-        <task id="2" name="Problem Statement" color="#8cb6ce" meeting="false" start="2021-01-27" duration="3" complete="0" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true">
+        <task id="0" name="Team Formation" color="#8cb6ce" meeting="false" start="2021-01-18" duration="1" complete="100" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true"/>
+        <task id="1" name="Project Approval" color="#8cb6ce" meeting="false" start="2021-01-25" duration="5" complete="100" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true"/>
+        <task id="2" name="Problem Statement" color="#8cb6ce" meeting="false" start="2021-01-27" duration="3" complete="100" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true">
             <depend id="4" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="4" name="Development Plan" color="#8cb6ce" meeting="false" start="2021-02-01" duration="5" complete="0" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true">
-            <task id="27" name="Gnatt Chart" color="#8cb6ce" meeting="false" start="2021-02-01" duration="5" complete="0" thirdDate="2021-01-11" thirdDate-constraint="0" expand="true"/>
+        <task id="4" name="Development Plan" color="#8cb6ce" meeting="false" start="2021-02-01" duration="5" complete="100" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true">
+            <task id="27" name="Gnatt Chart" color="#8cb6ce" meeting="false" start="2021-02-01" duration="5" complete="100" thirdDate="2021-01-11" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="5" name="Requirements Document" color="#8cb6ce" meeting="false" start="2021-02-08" duration="5" complete="0" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true"/>
-        <task id="6" name="Proof of Concept" color="#8cb6ce" meeting="false" start="2021-02-15" duration="7" complete="0" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true">
-            <task id="28" name="Creating GUI" color="#8cb6ce" meeting="false" start="2021-02-15" duration="7" complete="0" thirdDate="2021-01-18" thirdDate-constraint="0" expand="true"/>
-            <task id="29" name="Creating Assets (Images for GUI)" color="#8cb6ce" meeting="false" start="2021-02-15" duration="7" complete="0" thirdDate="2021-01-18" thirdDate-constraint="0" expand="true"/>
-            <task id="30" name="Integrating new GUI with existing project" color="#8cb6ce" meeting="false" start="2021-02-15" duration="7" complete="0" thirdDate="2021-01-18" thirdDate-constraint="0" expand="true"/>
+        <task id="5" name="Requirements Document" color="#8cb6ce" meeting="false" start="2021-02-08" duration="5" complete="100" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true"/>
+        <task id="6" name="Proof of Concept" color="#8cb6ce" meeting="false" start="2021-02-15" duration="7" complete="100" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true">
+            <task id="28" name="Creating GUI" color="#8cb6ce" meeting="false" start="2021-02-15" duration="7" complete="100" thirdDate="2021-01-18" thirdDate-constraint="0" expand="true"/>
+            <task id="29" name="Creating Assets (Images for GUI)" color="#8cb6ce" meeting="false" start="2021-02-15" duration="7" complete="100" thirdDate="2021-01-18" thirdDate-constraint="0" expand="true"/>
+            <task id="30" name="Integrating new GUI with existing project" color="#8cb6ce" meeting="false" start="2021-02-15" duration="7" complete="100" thirdDate="2021-01-18" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="7" name="Test Plan" color="#8cb6ce" meeting="false" start="2021-02-24" duration="8" complete="0" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true">
-            <task id="24" name="Unit Testing" color="#8cb6ce" meeting="false" start="2021-02-24" duration="8" complete="0" thirdDate="2021-01-11" thirdDate-constraint="0" expand="true"/>
-            <task id="25" name="Integration Testing" color="#8cb6ce" meeting="false" start="2021-02-24" duration="8" complete="0" thirdDate="2021-01-11" thirdDate-constraint="0" expand="true"/>
+        <task id="7" name="Test Plan" color="#8cb6ce" meeting="false" start="2021-02-24" duration="8" complete="100" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true">
+            <task id="24" name="Unit Testing" color="#8cb6ce" meeting="false" start="2021-02-24" duration="8" complete="100" thirdDate="2021-01-11" thirdDate-constraint="0" expand="true"/>
+            <task id="25" name="Integration Testing" color="#8cb6ce" meeting="false" start="2021-02-24" duration="8" complete="100" thirdDate="2021-01-11" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="8" name="Design &amp; Document" color="#8cb6ce" meeting="false" start="2021-03-08" duration="8" complete="0" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true">
-            <task id="20" name="MG" color="#8cb6ce" meeting="false" start="2021-03-08" duration="4" complete="0" thirdDate="2021-01-11" thirdDate-constraint="0" expand="true"/>
-            <task id="21" name="MIS" color="#8cb6ce" meeting="false" start="2021-03-12" duration="4" complete="0" thirdDate="2021-01-11" thirdDate-constraint="0" expand="true"/>
+        <task id="8" name="Design &amp; Document" color="#8cb6ce" meeting="false" start="2021-03-08" duration="8" complete="100" thirdDate="2021-02-03" thirdDate-constraint="0" expand="true">
+            <task id="20" name="MG" color="#8cb6ce" meeting="false" start="2021-03-08" duration="4" complete="100" thirdDate="2021-01-11" thirdDate-constraint="0" expand="true"/>
+            <task id="21" name="MIS" color="#8cb6ce" meeting="false" start="2021-03-12" duration="4" complete="100" thirdDate="2021-01-11" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="9" name="Demonstration" color="#8cb6ce" meeting="false" start="2021-03-18" duration="5" complete="0" thirdDate="2021-03-22" thirdDate-constraint="0" expand="true">
-            <task id="38" name="Restructure Code &amp; Modularize classes" color="#8cb6ce" meeting="false" start="2021-03-18" duration="5" complete="0" thirdDate="2021-02-15" thirdDate-constraint="0" expand="true"/>
-            <task id="48" name="Fix Checkers Logic" color="#8cb6ce" meeting="false" start="2021-03-18" duration="5" complete="0" thirdDate="2021-02-15" thirdDate-constraint="0" expand="true"/>
-            <task id="43" name="Optimize AI (Fix Minmax to use new game logic)" color="#8cb6ce" meeting="false" start="2021-03-18" duration="5" complete="0" thirdDate="2021-02-15" thirdDate-constraint="0" expand="true"/>
-            <task id="45" name="Fix GUI (highlight pieces/valid-moves, fix new-game button and tutorial)" color="#8cb6ce" meeting="false" start="2021-03-18" duration="5" complete="0" thirdDate="2021-02-15" thirdDate-constraint="0" expand="true"/>
+        <task id="9" name="Demonstration" color="#8cb6ce" meeting="false" start="2021-03-18" duration="5" complete="100" thirdDate="2021-03-22" thirdDate-constraint="0" expand="true">
+            <task id="38" name="Restructure Code &amp; Modularize classes" color="#8cb6ce" meeting="false" start="2021-03-18" duration="5" complete="100" thirdDate="2021-02-15" thirdDate-constraint="0" expand="true"/>
+            <task id="48" name="Fix Checkers Logic" color="#8cb6ce" meeting="false" start="2021-03-18" duration="5" complete="100" thirdDate="2021-02-15" thirdDate-constraint="0" expand="true"/>
+            <task id="43" name="Optimize AI (Fix Minmax to use new game logic)" color="#8cb6ce" meeting="false" start="2021-03-18" duration="5" complete="100" thirdDate="2021-02-15" thirdDate-constraint="0" expand="true"/>
+            <task id="45" name="Fix GUI (highlight pieces/valid-moves, fix new-game button and tutorial)" color="#8cb6ce" meeting="false" start="2021-03-18" duration="5" complete="100" thirdDate="2021-02-15" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="10" name="Final Demonstration" color="#8cb6ce" meeting="false" start="2021-03-25" duration="7" complete="0" thirdDate="2021-03-29" thirdDate-constraint="0" expand="true">
-            <task id="33" name="Testing" color="#8cb6ce" meeting="false" start="2021-03-25" duration="7" complete="0" thirdDate="2021-01-18" thirdDate-constraint="0" expand="true"/>
-            <task id="87" name="2-Player Game" color="#8cb6ce" meeting="false" start="2021-03-25" duration="7" complete="0" thirdDate="2021-03-08" thirdDate-constraint="0" expand="true"/>
-            <task id="35" name="Fix King logic" color="#8cb6ce" meeting="false" start="2021-03-25" duration="7" complete="0" thirdDate="2021-01-18" thirdDate-constraint="0" expand="true"/>
-            <task id="31" name="Update GUI (Messages, 2-player game option)" color="#8cb6ce" meeting="false" start="2021-03-25" duration="7" complete="0" thirdDate="2021-01-18" thirdDate-constraint="0" expand="true"/>
-            <task id="37" name="Optimize AI" color="#8cb6ce" meeting="false" start="2021-03-25" duration="7" complete="0" thirdDate="2021-01-18" thirdDate-constraint="0" expand="true"/>
+        <task id="10" name="Final Demonstration" color="#8cb6ce" meeting="false" start="2021-03-25" duration="7" complete="100" thirdDate="2021-03-29" thirdDate-constraint="0" expand="true">
+            <task id="33" name="Testing" color="#8cb6ce" meeting="false" start="2021-03-25" duration="7" complete="100" thirdDate="2021-01-18" thirdDate-constraint="0" expand="true"/>
+            <task id="87" name="2-Player Game" color="#8cb6ce" meeting="false" start="2021-03-25" duration="7" complete="100" thirdDate="2021-03-08" thirdDate-constraint="0" expand="true"/>
+            <task id="35" name="Fix King logic" color="#8cb6ce" meeting="false" start="2021-03-25" duration="7" complete="100" thirdDate="2021-01-18" thirdDate-constraint="0" expand="true"/>
+            <task id="31" name="Update GUI (Messages, 2-player game option)" color="#8cb6ce" meeting="false" start="2021-03-25" duration="7" complete="100" thirdDate="2021-01-18" thirdDate-constraint="0" expand="true"/>
+            <task id="37" name="Optimize AI" color="#8cb6ce" meeting="false" start="2021-03-25" duration="7" complete="100" thirdDate="2021-01-18" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="11" name="Final Documentation" color="#8cb6ce" meeting="false" start="2021-04-05" duration="7" complete="0" thirdDate="2021-04-05" thirdDate-constraint="0" expand="true">
-            <task id="69" name="MIS" color="#8cb6ce" meeting="false" start="2021-04-05" duration="7" complete="0" thirdDate="2021-03-08" thirdDate-constraint="0" expand="true"/>
-            <task id="72" name="MG" color="#8cb6ce" meeting="false" start="2021-04-05" duration="7" complete="0" thirdDate="2021-03-08" thirdDate-constraint="0" expand="true"/>
-            <task id="73" name="SRS" color="#8cb6ce" meeting="false" start="2021-04-05" duration="7" complete="0" thirdDate="2021-03-08" thirdDate-constraint="0" expand="true"/>
-            <task id="77" name="Test Plan &amp; Test Report" color="#8cb6ce" meeting="false" start="2021-04-05" duration="7" complete="0" thirdDate="2021-03-08" thirdDate-constraint="0" expand="true"/>
+        <task id="11" name="Final Documentation" color="#8cb6ce" meeting="false" start="2021-04-05" duration="7" complete="100" thirdDate="2021-04-05" thirdDate-constraint="0" expand="true">
+            <task id="69" name="MIS" color="#8cb6ce" meeting="false" start="2021-04-05" duration="7" complete="100" thirdDate="2021-03-08" thirdDate-constraint="0" expand="true"/>
+            <task id="72" name="MG" color="#8cb6ce" meeting="false" start="2021-04-05" duration="7" complete="100" thirdDate="2021-03-08" thirdDate-constraint="0" expand="true"/>
+            <task id="73" name="SRS" color="#8cb6ce" meeting="false" start="2021-04-05" duration="7" complete="100" thirdDate="2021-03-08" thirdDate-constraint="0" expand="true"/>
+            <task id="77" name="Test Plan &amp; Test Report" color="#8cb6ce" meeting="false" start="2021-04-05" duration="7" complete="100" thirdDate="2021-03-08" thirdDate-constraint="0" expand="true"/>
         </task>
     </tasks>
     <resources>
