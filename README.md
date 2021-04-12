@@ -13,6 +13,8 @@ pip3 install pygame
 ## Usage
 
 ```python
-python main.py
+cd BlankProjectTemplate/src
+python main.py 
+python3 main.py
 ```
 
