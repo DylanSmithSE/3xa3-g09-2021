@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_5f_5finit_5f_5f_0',['__init__',['../classboard_1_1board.html#a5b52830c7ab7662c5bdb26f2d33dad7d',1,'board.board.__init__()'],['../class_g_u_i_1_1_g_u_i.html#a9946311cd45b3f62f3ed7751567d871d',1,'GUI.GUI.__init__()'],['../classpieces_1_1pieces.html#ac7e706ae5e4e9a3bee6af4ecf2eb852d',1,'pieces.pieces.__init__()']]]
+  ['_5f_5finit_5f_5f_0',['__init__',['../classboard_1_1_board.html#aaad1136d15ed0b7f7489e3fcfde7acf6',1,'board.Board.__init__()'],['../class_g_u_i_1_1_g_u_i.html#a9946311cd45b3f62f3ed7751567d871d',1,'GUI.GUI.__init__()'],['../classpiece_1_1piece.html#a8c38dc1380bf061cfc90d60c83ec9840',1,'piece.piece.__init__()'],['../classgame_1_1_game.html#aaf75a2bad60f7e11e69ccd3dd6630542',1,'game.Game.__init__()']]]
 ];

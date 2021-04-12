@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['update_5fmessage_76',['update_message',['../class_g_u_i_1_1_g_u_i.html#a26fdc4aa9ee7fb21a2b2b4f79dce176e',1,'GUI::GUI']]],
-  ['updateboard_77',['updateBoard',['../classboard_1_1board.html#a8e487b2e3cc6cbe98a8b04d5fa61fc48',1,'board::board']]]
+  ['tutorial_99',['tutorial',['../classmenu_1_1menu.html#a9e2ab770b466d214e36ff98143bc3b5f',1,'menu::menu']]]
 ];

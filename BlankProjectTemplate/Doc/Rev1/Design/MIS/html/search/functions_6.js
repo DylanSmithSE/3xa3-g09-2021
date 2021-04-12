@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['newgame_72',['newgame',['../classmenu_1_1menu.html#a2c1c7ffe90770e2a977b90c040891151',1,'menu::menu']]]
+  ['new_5fgame_88',['new_game',['../classmenu_1_1menu.html#acba4d9d71bc758026cdd7373ba77244c',1,'menu::menu']]]
 ];

@@ -68,85 +68,43 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Provides the minmax functionality for AI as well as static evaluation.  
+<p>The minmax file determines the best move the AI can make.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aab2f24c528fffc37e830991978325aee"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minmax_8py.html#aab2f24c528fffc37e830991978325aee">minmax.is_won</a> (board)</td></tr>
-<tr class="memdesc:aab2f24c528fffc37e830991978325aee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to check if game is won.  <a href="minmax_8py.html#aab2f24c528fffc37e830991978325aee">More...</a><br /></td></tr>
-<tr class="separator:aab2f24c528fffc37e830991978325aee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5029d1763c7c344b0f87f7c7c1dc3bea"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minmax_8py.html#a5029d1763c7c344b0f87f7c7c1dc3bea">minmax.minMax2</a> (board)</td></tr>
-<tr class="memdesc:a5029d1763c7c344b0f87f7c7c1dc3bea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main minimax algorithm function for AI.  <a href="minmax_8py.html#a5029d1763c7c344b0f87f7c7c1dc3bea">More...</a><br /></td></tr>
-<tr class="separator:a5029d1763c7c344b0f87f7c7c1dc3bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d1d2537d89816009602400a1d542483"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minmax_8py.html#a1d1d2537d89816009602400a1d542483">minmax.maxMove2</a> (maxBoard, currentDepth)</td></tr>
-<tr class="memdesc:a1d1d2537d89816009602400a1d542483"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to calculate best move for AI.  <a href="minmax_8py.html#a1d1d2537d89816009602400a1d542483">More...</a><br /></td></tr>
-<tr class="separator:a1d1d2537d89816009602400a1d542483"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a895f6cbf285b9cf75ceec5260f3b33e6"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minmax_8py.html#a895f6cbf285b9cf75ceec5260f3b33e6">minmax.minMove2</a> (minBoard, currentDepth)</td></tr>
-<tr class="memdesc:a895f6cbf285b9cf75ceec5260f3b33e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to calculate and predict best move from perspective of the player.  <a href="minmax_8py.html#a895f6cbf285b9cf75ceec5260f3b33e6">More...</a><br /></td></tr>
-<tr class="separator:a895f6cbf285b9cf75ceec5260f3b33e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1423848c09ad78df5c3e20b647e57f0"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minmax_8py.html#ae1423848c09ad78df5c3e20b647e57f0">minmax.maxMinBoard</a> (board, currentDepth, bestMove)</td></tr>
-<tr class="memdesc:ae1423848c09ad78df5c3e20b647e57f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to calculate and predict best move from perspective of the player.  <a href="minmax_8py.html#ae1423848c09ad78df5c3e20b647e57f0">More...</a><br /></td></tr>
-<tr class="separator:ae1423848c09ad78df5c3e20b647e57f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab98e9e52a1ac2b46b79d2635061759ff"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minmax_8py.html#ab98e9e52a1ac2b46b79d2635061759ff">minmax.staticEval2</a> (evalBoard)</td></tr>
-<tr class="memdesc:ab98e9e52a1ac2b46b79d2635061759ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to evaluate the board state and which player is favoured to win to assess AI move.  <a href="minmax_8py.html#ab98e9e52a1ac2b46b79d2635061759ff">More...</a><br /></td></tr>
-<tr class="separator:ab98e9e52a1ac2b46b79d2635061759ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85caa04c5ae3cca405acdb0d26866055"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="minmax_8py.html#a85caa04c5ae3cca405acdb0d26866055">minmax.minmax</a> (currentBoard, maxPlayer, depth)</td></tr>
+<tr class="memdesc:a85caa04c5ae3cca405acdb0d26866055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minmax determines the best move that a player can make.  <a href="minmax_8py.html#a85caa04c5ae3cca405acdb0d26866055">More...</a><br /></td></tr>
+<tr class="separator:a85caa04c5ae3cca405acdb0d26866055"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Provides the minmax functionality for AI as well as static evaluation. </p>
-<dl class="section author"><dt>Author</dt><dd>Carson Wilcox, Thaneegan, Dylan, Ardhendu <br  />
- </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>3/17/2021 </dd></dl>
+<div class="textblock"><p>The minmax file determines the best move the AI can make. </p>
+<p>Reference: <a href="https://github.com/techwithtim/Python-Checkers-AI">https://github.com/techwithtim/Python-Checkers-AI</a> </p><dl class="section author"><dt>Author</dt><dd>Ardhendu, Dylan, Thaneegan </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>April 5th 2021 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="aab2f24c528fffc37e830991978325aee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab2f24c528fffc37e830991978325aee">&#9670;&nbsp;</a></span>is_won()</h2>
+<a id="a85caa04c5ae3cca405acdb0d26866055"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85caa04c5ae3cca405acdb0d26866055">&#9670;&nbsp;</a></span>minmax()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">def minmax.is_won </td>
+          <td class="memname">def minmax.minmax </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>board</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to check if game is won. </p>
-<p>Function takes in board object and returns bool </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">board</td><td>board object cotaining the state </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ae1423848c09ad78df5c3e20b647e57f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae1423848c09ad78df5c3e20b647e57f0">&#9670;&nbsp;</a></span>maxMinBoard()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">def minmax.maxMinBoard </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>board</em>, </td>
+          <td class="paramname"><em>currentBoard</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>currentDepth</em>, </td>
+          <td class="paramname"><em>maxPlayer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>bestMove</em>&#160;</td>
+          <td class="paramname"><em>depth</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -156,140 +114,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Function to calculate and predict best move from perspective of the player. </p>
-<p>Function takes in board object as well as currentdepth to return best move for the AI </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">maxBoard</td><td>board object with final state after completeing all the possible moves </td></tr>
-    <tr><td class="paramname">currentDepth</td><td>depth for the AI to predict best player move </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a1d1d2537d89816009602400a1d542483"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d1d2537d89816009602400a1d542483">&#9670;&nbsp;</a></span>maxMove2()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">def minmax.maxMove2 </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>maxBoard</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>currentDepth</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to calculate best move for AI. </p>
-<p>Function takes in board object as well as currentdepth to return best move for the AI </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">maxBoard</td><td>board object with final state after completeing all the possible moves </td></tr>
-    <tr><td class="paramname">currentDepth</td><td>depth for the AI to predict best move </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a5029d1763c7c344b0f87f7c7c1dc3bea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5029d1763c7c344b0f87f7c7c1dc3bea">&#9670;&nbsp;</a></span>minMax2()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">def minmax.minMax2 </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>board</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Main minimax algorithm function for AI. </p>
-<p>Function takes in board object and returns most appropirate move for the AI </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">board</td><td>board object cotaining the state </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a895f6cbf285b9cf75ceec5260f3b33e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a895f6cbf285b9cf75ceec5260f3b33e6">&#9670;&nbsp;</a></span>minMove2()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">def minmax.minMove2 </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>minBoard</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>currentDepth</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to calculate and predict best move from perspective of the player. </p>
-<p>Function takes in board object as well as currentdepth to return best move for the AI </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">maxBoard</td><td>board object with final state after completeing all the possible moves </td></tr>
-    <tr><td class="paramname">currentDepth</td><td>depth for the AI to predict best player move </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ab98e9e52a1ac2b46b79d2635061759ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab98e9e52a1ac2b46b79d2635061759ff">&#9670;&nbsp;</a></span>staticEval2()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">def minmax.staticEval2 </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>evalBoard</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Function to evaluate the board state and which player is favoured to win to assess AI move. </p>
+<p>Minmax determines the best move that a player can make. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">evalBoard</td><td>board that needs to be evaluated </td></tr>
+    <tr><td class="paramname">currentBoard</td><td>Is a board object representing the state of the game to be evaluated </td></tr>
+    <tr><td class="paramname">maxPlayer</td><td>is a boolean value. It is true when the player calling minmax is the player maximizing the score (white pieces in our case). It is negative when the player calling minmax is minimizing the score. </td></tr>
+    <tr><td class="paramname">depth</td><td>Is the recursive depth that the algorithm will search. It is an exponential algorithm so the higher the recursive depth the slower the AI performs. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>bestBoard.evaluateBoard(), bestBoard The minmax function returns the score of the best move, as well as the board after the best move has been made. </dd></dl>
 
 </div>
 </div>
