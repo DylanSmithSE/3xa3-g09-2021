@@ -5,17 +5,17 @@ from testBoards import *
 
 class TestBoard2:
     def setup_method(self, method):
-        gui = GUI()
-        self.board1 = Board(gui,B1)
-        self.board2 = Board(gui,B2)
-        self.board3 = Board(gui,B1,"WHITE")
-        self.board4 = Board(gui,B3)
-        self.board5 = Board(gui,B4)
-        self.board6 = Board(gui,B5)
-        self.board7 = Board(gui,B6)
-        self.board8 = Board(gui,B6,"WHITE")
-        self.board9 = Board(gui,B7,"WHITE")
-        self.board10 = Board(gui,B8)
+        self.gui = GUI()
+        self.board1 = Board(self.gui,B1)
+        self.board2 = Board(self.gui,B2)
+        self.board3 = Board(self.gui,B1,"WHITE")
+        self.board4 = Board(self.gui,B3)
+        self.board5 = Board(self.gui,B4)
+        self.board6 = Board(self.gui,B5)
+        self.board7 = Board(self.gui,B6)
+        self.board8 = Board(self.gui,B6,"WHITE")
+        self.board9 = Board(self.gui,B7,"WHITE")
+        self.board10 = Board(self.gui,B8)
 
     #testing that the default turn is red
     def test_constructor(self):
@@ -32,6 +32,40 @@ class TestBoard2:
             for p in row:
                 if p != 0:
                     assert p.color == B1[p.row][p.col]
+
+    #testing that the boardState and piece arrays are reset correctly
+    def test_resetBoard(self):
+        self.board1.resetBoard(self.gui)
+        assert self.board1.turn == "RED"
+        for p in self.board1.red_pieces:
+            assert p.color == B1[p.row][p.col]
+        for p in self.board1.white_pieces:
+            assert p.color == B1[p.row][p.col]
+        for row in self.board1.boardState:
+            for p in row:
+                if p != 0:
+                    assert p.color == B1[p.row][p.col]
+        
+        self.gui.color_selected = "WHITE"
+        self.board1.resetBoard(self.gui)
+        assert self.board1.turn == "RED"
+        for p in self.board1.red_pieces:
+            assert p.color == B2[p.row][p.col]
+        for p in self.board1.white_pieces:
+            assert p.color == B2[p.row][p.col]
+        for row in self.board1.boardState:
+            for p in row:
+                if p != 0:
+                    assert p.color == B2[p.row][p.col]
+
+    #testing that getPieces
+    def test_getPieces(self):
+        red = self.board1.getPieces("RED")
+        white = self.board1.getPieces("WHITE")
+        for p in red:
+            assert p.color == B1[p.row][p.col]
+        for p in white:
+            assert p.color == B1[p.row][p.col]
 
     #test that the turn is changed
     def test_changeTurn(self):
@@ -79,6 +113,9 @@ class TestBoard2:
         assert p1 not in self.board4.boardState[1]
         assert self.board4.boardState[0][1] == p3
         assert p3.king
+
+        #improving test coverage lin3 94 in board.py
+        self.board4.move(p3,(0,1),[])
 
     #make sure that all valid moves are found
     def test_getValidMoves(self):
@@ -142,6 +179,12 @@ class TestBoard2:
         assert self.board10.winner == "WHITE"
         self.board10.boardState[5][6].makeKing()
         assert self.board10.checkGameEnd() == False
+    
+    #test evaluateBoard
+    def test_evaluateBoard(self):
+        assert self.board1.evaluateBoard() == 0
+        assert self.board4.evaluateBoard() == 1
+        assert self.board9.evaluateBoard() == -2
 
     def teardown_method(self, method):
         self.board1 = None
