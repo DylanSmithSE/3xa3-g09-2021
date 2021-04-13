@@ -4,12 +4,14 @@
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage{soul}
-\usepackage{tabularx}
+\usepackage{float}
 \usepackage{enumerate}
 \usepackage{changepage}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
+\usepackage{xcolor}
+\usepackage{ulem}
 
 \graphicspath{ {./images/} }
 \hypersetup{
@@ -40,14 +42,21 @@
 \listoftables
 \listoffigures
 
-\begin{table}[bp]
+\begin{table}[H]
 \caption{\bf Revision History}
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-7th Feb & 1.0 & Completed section 1\\
-11th Feb & 1.1 & Dylan added FR\\
-12th Feb & 1.1 & Ardhendu and Thaneegan finished the document\\
+2021-02-07 & 0 & Completed section 1\\
+2021-02-11 & 0 & Dylan added FR\\
+2021-02-12 Feb & 0 & Ardhendu and Thaneegan finished the document\\
+2021-04-10 & 1 & Ardhendu reviewed FR and removed FR5\\
+2021-04-10 & 1 & Dylan removed NFR3\\
+2021-04-11 & 1 & Dylan added numbering to the NFRs\\
+2021-04-11 & 1 & Thaneegan removed NFR17\\
+2021-04-12 & 1 & Thaneegan added FR17\\
+2021-04-12 & 1 & Ardhendu removed NFR2\\
+
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -60,7 +69,7 @@
 \section{Project Drivers}
 
 \subsection{The Purpose of the Project}
-The purpose of this project is to re-implement the checkers game with a Graphical User Interface and adding any missing parts such as proper game instructions. The Artificial Intelligence algorithm for computer play will be optimized for better gameplay and user experience. In addition, missing pieces will be added to make the game regulation size. The game will be reorganized to follow formal software engineering quality attributes.  
+The purpose of this project is to re-implement the checkers game with a Graphical User Interface and adding any missing parts such as proper game instructions {\color{blue} fix game logic and add more options for the player}. The Artificial Intelligence algorithm for computer play will be optimized for better gameplay and user experience. In addition, missing  {\color{blue} king piece} will be added to make the game regulation size. The game will be reorganized to follow formal software engineering quality attributes such as {\color{blue} usability, learnability, maintainability, portability, etc}.  
 
 \subsection{The Stakeholders}
 
@@ -105,7 +114,7 @@ In addition to the client and customers specified above, another group of stakeh
 \section{Functional Requirements}
 
 \subsection{The Scope of the Work and the Product}
-The software product being built is a command line versions of the game of checkers. The game will be improved from its previous version by updating it to include all 24 checkers pieces as opposed to the 12 pieces currently implemented. The checkers game will be implemented to follow all the rules of checkers, a tutorial will be made available to users to help beginners learn how the rules. A Graphical User Interface will also be added to improve the playability of the game. If time permits alternate versions of checkers will be added to make the app appeal to more people.
+The software product being built is a command line version of the game of checkers. The game will be improved from its previous version by updating it to include all 24 checkers pieces as opposed to the 12 pieces currently implemented. The checkers game will be implemented to follow all the rules of checkers, a tutorial will be made available to users to help beginners learn how the rules. A Graphical User Interface will also be added to improve the playability of the game. If time permits alternate versions of checkers will be added to make the app appeal to more people.
 \subsubsection{The Context of the Work}
 The context of the checkers app is going to be a command line application. It will be made using the python programming language. External libraries such as pygame will be used to help developers with the construction of the Graphical User Interface.
 \subsubsection{Work Partitioning}
@@ -180,10 +189,11 @@ Rules of the checkers game were referred to via \cite{CheckersWikipedia}
         \textbf{Fit Criterion}: When the user selects a piece to move the system displays all valid moves.\\
         \textbf{Originator}: Dylan Smith added February 11, 2021.
         
-    \item\textbf{Description}: The system shall display an error message if an invalid move is attempted.\\
-        \textbf{Rationale}: The user needs to know that the move they attempted is invalid, that it won't be accepted, and that it remains their turn.\\
+    \item{\color{blue} \st{\textbf{Description}: The system shall display an error message if an invalid move is attempted.
+    \textbf{Rationale}: The user needs to know that the move they attempted is invalid, that it won't be accepted, and that it remains their turn.\\
         \textbf{Fit Criterion}: An error message is displayed when an invalid move is made.\\
-        \textbf{Originator}: Dylan Smith added February 11, 2021.
+        \textbf{Originator}: Dylan Smith added February 11, 2021.} }\\
+        
         
     \item\textbf{Description}: The system shall display the state of the board after each move.\\
         \textbf{Rationale}: The user will need a way to keep track of the moves that have been made.\\
@@ -220,9 +230,9 @@ Rules of the checkers game were referred to via \cite{CheckersWikipedia}
         \textbf{Fit Criterion}: The user is not active during the opponent's turn. \\
         \textbf{Originator}: Thaneegan added February 12, 2021.  
         
-    \item\textbf{Description}: Black side shall be the first one to move a piece.\\
+    \item\textbf{Description}: \st{Black} Red side shall be the first one to move a piece.\\
         \textbf{Rationale}: To abide by the game rules.\\
-        \textbf{Fit Criterion}:  Only black side will be able to choose pieces on the first turn.\\
+        \textbf{Fit Criterion}:  Only \st{black} Red side will be able to choose pieces on the first turn.\\
         \textbf{Originator}: Ardhendu added February 12, 2021 
         
     \item\textbf{Description}: Any piece on the board shall not move backwards except king piece\\
@@ -240,48 +250,54 @@ Rules of the checkers game were referred to via \cite{CheckersWikipedia}
         \textbf{Fit Criterion}: The desired piece has been highlighted. \\
         \textbf{Originator}: Thaneegan added February 12, 2021.
         
+    \item \textcolor{blue}{\textbf{Description}: User will have the option to play against computer or against another user.\\
+        \textbf{Rationale}: To provide the user with different game modes.\\
+        \textbf{Fit Criterion}: The menu contains two game modes to choose from. \\
+        \textbf{Originator}: Thaneegan added April 12, 2021.
+        }
 \end{enumerate}
 
 \section{Non-functional Requirements}
 
 \subsection{Look and Feel Requirements}
 \begin{itemize}
-    \item The game shall be visually appealing to 90\% of users or more.
-    \item The game display shall be able to scale in size as the user desires.
+    \item {NFR1} The game shall be visually appealing to 90\% of users or more.
+    \item {\color{blue}\st{ {NFR2} The game display shall be able to scale in size as the user desires.}}
 \end{itemize}
 
 \subsection{Usability and Humanity Requirements}
 \begin{itemize}
-    \item The game will be usable by users with color blindness.
-    \item The game will be usable by users who can operate a computer.
-    \item The game shall have a tutorial for new users to learn the rules.
+    \item {\color{blue}\st{ {NFR3} The game will be usable by users with color blindness.}}
+    \item {NFR4} The game will be usable by users who can operate a computer.
+    \item {NFR5} {\color{blue}\st{ The game shall have a tutorial for new users to learn the rules.}
+    The tutorial will be helpful to at least 80 percent of users.}
 \end{itemize}
 
 \subsection{Performance Requirements}
 \begin{itemize}
-    \item The game must move a user's piece within 2 seconds of the user requesting that move.
-    \item The game must move a computer's piece within 3 seconds of the user completing their turn.
-    \item The game must be started and displayed within 5 seconds of the user requesting to play a game.
-    \item The game shall run at a frame rate of 60 frames per second or above.
+    \item {NFR6} The game must move a user's piece within 2 seconds of the user requesting that move.
+    \item {NFR7} The game must move a computer's piece within 3 seconds of the user completing their turn.
+    \item {NFR8} The game must be started and displayed within 5 seconds of the user requesting to play a game.
+    \item {NFR9} The game shall run at a frame rate of 60 frames per second or above.
 \end{itemize}
 
 \subsection{Operational and Environmental Requirements}
 \begin{itemize}
-    \item The user must have python installed on their device.
-    \item The game shall run on the user's device without the need for internet.
+    \item {\color{blue}\st{ {NFR10} The user must have python installed on their device.}}
+    \item {NFR11} The game shall run on the user's device without the need for internet.
 \end{itemize}
 
 \subsection{Maintainability and Support Requirements}
 \begin{itemize}
-    \item The game shall be well documented.
-    \item The game must be modularized into different components.
-    \item The code must follow same coding style throughout. 
+    \item {NFR12} The game shall be well documented.
+    \item {NFR13} The game must be modularized into different components.
+    \item {NFR14} The code must follow same coding style throughout. 
 \end{itemize}
 
 \subsection{Security Requirements}
 \begin{itemize}
-    \item The game must not request the user for personal information.
-    \item The game must not request the user to download nor install anything.
+    \item {NFR15} The game must not request the user for personal information.
+    \item {NFR16} The game must not request the user to download nor install anything.
 \end{itemize}
 
 \subsection{Cultural Requirements}
@@ -291,7 +307,7 @@ Rules of the checkers game were referred to via \cite{CheckersWikipedia}
 
 \subsection{Legal Requirements}
 \begin{itemize}
-    \item The game must not use any symbols that are owned by other creators.
+    \item {\color{blue}\st{ {NFR17} The game must not use any symbols that are owned by other creators. }}
 \end{itemize}
 
 \subsection{Health and Safety Requirements}

@@ -3,6 +3,8 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{soul}
 
 \title{SE 3XA3: Development Plan\\KingMe}
 
@@ -25,7 +27,9 @@
 \midrule
 3rd Feb'21 & Ardhendu, Thaneegan, Dylan & Updated sections 1, 2 3, 4, 6, 7\\
 4th Feb'21 & Ardhendu, Thaneegan, Dylan & Added PoC Plan and updated Technology, Git workflow plan sections\\
-... & ... & ...\\
+10th Apr'21 & Ardhendu & Initial change for rev1\\
+12th Apr'21 & Ardhendu & Fixed technology section\\
+12th Apr'21 & Ardhendu & Added project review section\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -43,12 +47,12 @@ Group meetings will be held online on Microsoft Teams. Two meetings will be held
 Team will communicate via Facebook messenger and Microsoft Teams. Verbal discussions will primarily be held through Microsoft Teams, while written discussions will occur via Facebook messenger. In case a team member is unavailable on either applications, contact information has been exchanged for texting/calling. 
 
 \section{Team Member Roles}
-Ardhendu - Git Expert, Developer\\ 
+Ardhendu - Git Expert, Developer, {\color{blue} Documentation Writer}\\ 
 Dylan - Developer, Tester \\
 Thaneegan - Developer, Tester, UI Expert
 
 \section{Git Workflow Plan}
-We will be following a Git Branching model. Various features will have a branch of their own. Issues will be raised for bugs.
+We will be following a Git Branching model. Various features will have a branch of their own. Issues will be raised for bugs.{\color{blue} We have branch for different modules. Any changes to the module were changed on that branch and merged onto master.}
 
 \section{Proof of Concept Demonstration Plan}
 For this project, testing the mechanics of the pieces should not pose a challenge. Where we see the biggest challenges will be in modifying the existing modules to incorporate the larger playing surface and more pieces, as well as testing the effectiveness of the min/max algorithm. We will need to come up with a testing plan to ensure that algorithm is a worthy opponent. As shown in our Gantt chart, we will be dedicating nearly 2 weeks for testing purposes.
@@ -56,11 +60,13 @@ For this project, testing the mechanics of the pieces should not pose a challeng
 As the project has no user-interface, we plan to add GUI using pygame. Some difficulties that the team may face is limitation of pygame making the game difficult to play.
 In addition, some parts of the game are bit incomplete, hence algorithm will need improvements. In order to complete the game mechanics, all the team members will need to grasp the rules and understand the game completely which can take a bit of time.
 
+{\color{blue} We will be adding highlight functionality as to when player clicks on the piece as well as to show the valid moves. Adding proper menu and instructions was }
+
 \section{Technology}
 We will be using the python programming language to implement our project. \\
 For Graphical User interface, we will be using pygame framework to implement the game. \\
-For testing, unittest library will be used for testing the application.
-Each team member will have their own preference for IDE but primarily we will be using Atom or Visual Studio.
+For testing, \st{unittest} {\color{blue} pytest} library will be used for testing the application.
+Each team member will have their own preference for IDE but primarily we will be using Atom or Visual Studio {\color{blue} code}.
 
 \section{Coding Style}
 We will be using PEP 8 for coding style in python. \\ \url{https://www.python.org/dev/peps/pep-0008/}
@@ -71,5 +77,5 @@ Project schedule can be viewed in our project repository:\\
 \url{https://gitlab.cas.mcmaster.ca/bargea/3xa3-g09-2021/-/tree/master/BlankProjectTemplate/ProjectSchedule}
 
 \section{Project Review}
-N/A
+Overall, we were able to complete most of the goals that we had set for the project. One change that we made was that we had planned to amend and integrate the old AI algorithm to the new modified version. But we had difficulty to integrate old AI with new architecture. Hence we used an AI from another source and changed it to fit our architecture due to time constraints.
 \end{document}
