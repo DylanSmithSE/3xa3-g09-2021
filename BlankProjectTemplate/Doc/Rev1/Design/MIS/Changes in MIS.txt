@@ -45,3 +45,10 @@ iii) Addition of following functions to GUI class
 	- def update_message (self, message)
  
 	- def display_piece (self, colour, row, col)
+
+iv) Addition of following functions to menu class
+	- def start_game (self, game)
+ 
+	- def select_game_mode (self, game, mode)
+ 
+	- def select_color (self, game, color)
