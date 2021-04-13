@@ -7,7 +7,7 @@ Kingme is a checkers game.
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install pygame.
 
 ```bash
-pip3 install pygame
+pip install pygame
 ```
 
 ## Usage
