@@ -1,8 +1,14 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{graphicx}
+\usepackage{changepage}
+\usepackage{xcolor}
+\usepackage{ulem}
+\usepackage{float}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\restylefloat{table}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -12,17 +18,16 @@
 }
 \usepackage[round]{natbib}
 
-\title{SE 3XA3: Test Report\\Title of Project}
+\title{SE 3XA3: Test Report\\KingMe}
 
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
+\author{Team 9, KingMe
+		\\ Ardhendu Barge 400066133
+		\\ Dylan Smith 001314410
+		\\ Thaneegan Chandrasekara 400022748
 }
 
 \date{\today}
-
-\input{../Comments}
+% \input{../Comments}
 
 \begin{document}
 
@@ -38,8 +43,8 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+2021/04/11 & 1 & Adding the functional and nonfuncitonal tests\\
+2021/04/12 & 1 & Adding the unit tests and automated testing\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -48,15 +53,183 @@ Date 2 & 1.1 & Notes\\
 
 \pagenumbering{arabic}
 
-This document ...
+In this document we will cover the results of the testing procedures outlined in our Test Plan.
 
 \section{Functional Requirements Evaluation}
 
+\subsection{Application Options}
+
+\paragraph{Homescreen Tests}
+\begin{enumerate}
+    \item{FR-AO-1}
+    
+    Initial State: Game is not launched.
+    
+    Input: Tester launches the game.
+    
+    Output: Tester is greeted with the homescreen, and provided the option to choose game mode and piece colour.
+    \item{FR-AO-2}
+        
+    Initial State: Game is on the homescreen.
+    
+    Input: None.
+    
+    Output: Application remained on the homescreen until the tester chose to begin a game.
+\end{enumerate}
+
+\paragraph{New Game Tests}
+\begin{enumerate}
+    \item{FR-AO-3}
+            
+    Initial State: Game is is in progress.
+    
+    Input: Tester selects the new game button.
+    
+    Output: Application returned to the homescreen allowing user to begin a new game.
+\end{enumerate}
+
+\paragraph{Game Mode Tests}
+\begin{enumerate}
+    \item{FR-AO-4}
+            
+    Initial State: Game is on the homescreen.
+    
+    Input: Tester selects 1-player mode and plays 1 game as red and 1 game as white.
+    
+    Output: The application allowed the tester to make the first move when they chose red, and then the AI moved the white pieces. The AI made the first move when the tester selected the white pieces, and then waited for the tester to make a move. 
+    \item{FR-AO-5}
+                
+    Initial State: Game is on the homescreen.
+    
+    Input: Tester selects 2-player mode and plays 1 game as red and 1 game as white.
+    
+    Output: In both cases the application only allows the tester to move the red pieces first, and then the turns alternate. The tester was in control of making moves for both colours.
+\end{enumerate}
+
+\paragraph{Colour Choice Tests}
+\begin{enumerate}
+    \item{FR-AO-6/7}
+                
+    Initial State: Game is on the homescreen.
+    
+    Input: Tester selects the red/white pieces and plays a game in both 1-player and 2-player mode.
+    
+    Output: The board is displayed with the piece colour that the tester chose on the bottom of the board, regardless of the game mode chosen.
+\end{enumerate}
+
+\subsection{Gameplay}
+
+\paragraph{Valid Moves Tests}
+\begin{enumerate}
+    \item{FR-GP-1/2}
+                    
+    Initial State: Game is in progress and tester has at least 1 king and 1 regular piece.
+    
+    Input: Tester selects one of their regular pieces on their turn and then selects one of their king pieces.
+    
+    Output: The piece the tester chose is highlighted along with all the valid moves that the piece can make according to the rules of checkers.
+    \item{FR-GP-3}
+    
+    Test Description: Testing that pieces are kinged when they reach the opposite side of the board.
+    
+    Test Output: When a tester moved their piece to the opposite end of the board a crown was added to the piece and it was then able to move in any direction. 
+    \item{FR-GP-4}
+    
+    Test Description: Testing that pieces move.
+    
+    Test Output: When a tester selected a piece, it and the valid moves were highlighted. When the tester chose to move that piece to one of the valid squares the application moved the piece. 
+    \item{FR-GP-5}
+    
+    Test Description: Testing that pieces can capture opposing pieces.
+    
+    Test Output: When a tester selected a piece, it and the valid moves were highlighted. When the tester chose to move that piece to one of the valid squares, that captured an opposing piece, the application moved the piece and removed the captured piece(s).
+\end{enumerate}
+
+\paragraph{Invalid Moves}
+\begin{enumerate}
+    \item{FR-GP-6}
+    
+    Test Description: Testing that user can not make invalid moves.
+    
+    Test Output: When the tester selected a piece, and chose to move the piece to an invalid square, the board did not change and the piece that was selected became unhighlighted.
+    \item{FR-GP-7}
+    
+    Test Description: Testing that user can not make invalid moves.
+    
+    Test Output: When the tester selected a piece, and chose to move the piece to an invalid square, the board did not change and the piece that was selected became unhighlighted.
+\end{enumerate}
+
+\paragraph{End of Game}
+\begin{enumerate}
+    \item{FR-GP-8/9}
+    
+    Test Description: Testing that the end of game can be reached.
+    
+    Test Output: Tester played a game and won, when they made their final move the application displayed a message indicating what colour won and what colour lost. The tester then played a game and lost, when they ran out of moves the application displayed a message indicating what colour won and what co lout lost.
+\end{enumerate}
+
 \section{Nonfunctional Requirements Evaluation}
+For several of the Non functional requirements testing was done by having testers use the application and complete a survey. The results of the surveys will be mentioned with the corresponding test results.
+
+\subsection{Look and Feel}
+\begin{enumerate}
+    \item {NFR-LF-1}
+
+    Test Description: Testing that at least 90\% of testers found the application visually appealing.
+    
+    Test Output: 100\% of testers felt the appearance of the application was visually appealing.
+\end{enumerate}
 
 \subsection{Usability}
-		
+\begin{enumerate}
+    \item {NFR-UH-2}
+
+    Test Description: Testing that the tutorial explains how to use the application.
+    
+    Test Output: 100\% of users said that they found the tutorial helpful when learning to use the application.
+\end{enumerate}
+
 \subsection{Performance}
+\begin{enumerate}
+    \item {NFR-P-1}
+
+    Test Description: Timing how long it takes for the application to reset the board when the user chooses start a new game.
+    
+    Test Output: It took less than 3 seconda for the application to update the display after the tester chose to start a new game.
+    \item {NFR-P-2}
+
+    Test Description: Timing how long it takes for the application to register a users move.
+    
+    Test Output: It took less than 1 second for the application to update the display after the tester made their move.
+    \item {NFR-P-3}
+
+    Test Description: Timing how long it takes for the AI to move.
+    
+    Test Output: It took less than 1 second for the application to update the display with the AI move, after the tester made a move.
+\end{enumerate}
+
+\subsection{Operational and Environment}
+\begin{enumerate}
+    \item {NFR-OE-1}
+
+    Test Description: Testing that the application does not require internet.
+    
+    Test Output: When tester disconnected from internet the application continued to work correctly.
+\end{enumerate}
+
+\subsection{Maintainability and Support}
+\begin{enumerate}
+    \item {NFR-MS-1}
+
+    Test Description: Testing that the source code is documented.
+    
+    Test Output: Tester was able to generate documentation.
+    \item {NFR-MS-3}
+
+    Test Description: Testing that the source code follows the pep8 format.
+    
+    Test Output: Tester did not significant discrepancies in the formatting.
+\end{enumerate}
 
 \subsection{etc.}
 	
@@ -65,19 +238,236 @@ This document ...
 This section will not be appropriate for every project.
 
 \section{Unit Testing}
+We used unit testing to test the modules that were integral to our system. The board class stores the state of the game and contains several methods that are needed by other modules. We were able to used unit testing choosing different board states and checking the outcomes of the methods. The piece class is relied on by the board class, so we also used unit testing to test that the different methods worked correctly on different instances of a piece.
+
+\subsection{Piece Module}
+\paragraph{Testing Constructor}
+\begin{itemize}
+    \item{}Test Constructor\\
+    Instantiate a piece with a row, column, color, and direction. Test to make sure the member variables were set correctly.
+\end{itemize}
+
+\paragraph{Testing Move Method}
+\begin{itemize}
+    \item{}Test Move()\\
+    Move a piece to another row and column. Test to make sure the row and column member variables were updated correctly.
+\end{itemize}
+
+\paragraph{Testing MakeKing Method}
+\begin{itemize}
+    \item{}Test makeKing()\\
+    Make a piece a king. Test that the isKing member variable was updated correctly.
+\end{itemize}
+
+\subsection{Board Module}
+\paragraph{Testing Constructor}
+\begin{itemize}
+    \item{}Test board()\\
+    Instantiate a board with a regular board or a flipped board. Test to make sure the turn is set to "RED".
+\end{itemize}
+
+\paragraph{Testing Set Board}
+\begin{itemize}
+    \item Test setBoard()\\
+    Instantiate a board with a regular board and a flipped board. Test to make sure that red pieces array has been populated with the correct pieces. Test to make sure that white pieces array has been populated with the correct pieces. Test to make sure that board state array has been populated with the correct pieces.
+\end{itemize}
+
+\paragraph{Testing Reset Board}
+\begin{itemize}
+    \item Test resetBoard()\\
+    Emulate the user choosing red and then reset the board. Emulate the user choosing white and then reset the board. Test to make sure that red pieces array has been populated with the correct pieces. Test to make sure that white pieces array has been populated with the correct pieces. Test to make sure that board state array has been populated with the correct pieces.
+\end{itemize}
+
+\paragraph{Testing Get Pieces}
+\begin{itemize}
+    \item Test getPieces()\\
+    Call get pieces with both white and red and make sure that the pieces returned are in the correct locations.
+\end{itemize}
+
+\paragraph{Testing Change Turn}
+\begin{itemize}
+    \item Test changeTurn()\\
+    Call changeTurn and make sure that the turn updates correctly given the current turn. Test for both white and red.
+\end{itemize}
+
+\paragraph{Testing Remove Piece}
+\begin{itemize}
+    \item Test remove()\\
+    Test that the piece to remove is in the board state and is in its piece array. Then call remove. Test that the piece has been remove from both the board state and the piece array. Test for both red and white pieces
+\end{itemize}
+
+\paragraph{Testing Move Piece}
+\begin{itemize}
+    \item Test move()\\
+    Test that the piece to move is in the board state. Then call move specifying the location to move the piece and the piece to remove to make that move. Test that the piece has been moved in the board state and that the captured pieces are removed.
+    \begin{enumerate}
+        \item Test that a piece can move 1 space and does not need to capture any pieces.
+        \item Test that a piece can skip opposing pieces.
+        \item Test that when a piece moves into the last row that it is kinged.
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{Testing Get Valid Moves}
+\begin{itemize}
+    \item Test getValidMoves()\\
+    Test in multiple scenarios by creating different board states. Test that the valid moves function generates the correct dictionary corresponding to all the possible moves that the piece given can make, according to the rules of checkers.
+    \begin{enumerate}
+        \item Test edge cases to make sure that moves aren't generated that would move the piece off the board.
+        \item Test a piece that is blocked, it should not have any valid moves.
+        \item Test a piece that can capture an opposing piece, make sure the capture is in the valid moves and the piece to be removed is in the list of pieces to be removed.
+        \item Test a king piece to make sure moves are generated in both directions.
+        \item Test a king piece to make sure it can capture pieces in both directions.
+        \item Test a piece that can capture multiple opposing pieces to make sure moves are generated correctly.
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{Testing Check Game End}
+\begin{itemize}
+    \item Test checkGameEnd()\\
+    Test in multiple scenarios by creating different board states. Test that the function accurately determines the end of game and produces the correct winner.
+    \begin{enumerate}
+        \item Test that the game ends when all white pieces are captured, and that the winner is set to red.
+        \item Test that the game ends when all red pieces are captured, and that the winner is set to white.
+        \item Test that if all the white pieces are blocked and can't move, and it is white's turn to move, the end of game is reached and red is declared the winner.
+        \item Test that if all the red pieces are blocked and can't move, and it is red's turn to move, the end of game is reached and white is declared the winner.
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{Testing Evaluate Board}
+\begin{itemize}
+    \item Test evaluateBoard()\\
+    Test in multiple scenarios by creating different board states. Test that the function accurately returns the score of the board.
+    \begin{enumerate}
+        \item Test a board in which the score should be 0.
+        \item Test a board in which the score should be positive.
+        \item Test a board in which the score should be negative
+    \end{enumerate}
+\end{itemize}
 
 \section{Changes Due to Testing}
-
+\subsection{Board Module}
+    By performing the unit tests for the get valid moves function we were able to see that the moves were not being generated correctly for a king piece that could make a double jump in both directions. We were able to find the fault in the code and fix the error as a result.
+\subsection{Game Module}
+    For the game module manual testing revealed that the check game end method was being invoked at the wrong time. It was working correctly in situations where one player captured all its opposing pieces, however if would not realize the game was over if one player no longer could make a move. After discovering this fault we were able to fix the error by checking the game status before each player moved their pieces.
 \section{Automated Testing}
-		
+We used pytest to automate our unit tests. We also used pytest-cov to generate a report based on the coverage of our test cases. We used automated testing to check that any modifications to the application did not cause any undesired changes to the board and piece classes. These tests were run before merging any changes.
+
 \section{Trace to Requirements}
-		
+\newpage
+\begin{table}[H]
+    \begin{center}
+	\caption{\bf Requirement Traceability Matrix}
+ 	\begin{adjustwidth}{-1.5cm}{}
+	\begin{tabularx}{1.2\textwidth}{|p{3.4cm}|p{7cm}|p{1.6cm}|X|}
+		\hline 
+		{\bf Requirement ID}  & {\bf Requirement Description} & {\bf Priority} & {\bf Test Case ID} \\
+		\hline
+		FR1 & Home Screen & High & FR-AO-1\\
+		& & & FR-AO-2\\
+		\hline
+		FR2 & Allow user to choose piece colour & Low & FR-AO6\\
+		\hline
+		FR3 & Allow only valid moves & High & FR-GP-6\\
+		\hline
+		FR4 & Show valid moves & Medium & FR-GP-1\\
+		& & & FR-GP-2\\
+		\hline
+		FR6 & Display is updated after each move & High & FR-GP-4\\
+		& & & FR-GP-3\\
+		& & & FR-GP-5\\
+		\hline
+		FR7 & Start new game & Medium & FR-AO-3\\
+		& & & FR-AO-6\\
+		\hline
+		FR8 & Win state & High & FR-GP-8 \\
+		\hline
+		FR9 & Loss state & High & FR-GP-9 \\
+		\hline
+		FR10 & Win/Loss state notification & Medium & FR-GP-8 \\
+		\hline
+		FR11 & Remove jumped pieces & High & FR-GP-5\\
+		\hline
+		FR12 & User's turn & High & FR-GP-7\\
+		\hline
+		FR13 & Red pieces have first turn & High &  FR-AO-6\\
+		\hline
+		FR14 & King pieces can move both ways & Medium & FR-GP-2\\
+		\hline
+		FR15 & Piece Promotion & High & FR-GP-3\\
+		\hline
+		FR16 & Highlight selected piece & Low & FR-GP-1\\
+		\hline
+		FR17 & Different game modes & Low & FR-AO-4\\
+	     &  &  & FR-AO-5\\
+		\hline
+		\hline
+		NFR1 & Look and feel of application & Low & NFR-LF-1\\
+		\hline
+		NFR2 & New game (response time) & Medium & NFR-P-1 \\
+		\hline
+		NFR3 & User makes a move (response time) & High & NFR-P-2 \\
+		\hline
+		NFR3 & AI makes a move (response time) & High & NFR-P-3 \\
+		\hline
+		NFR4 & FPS of application & Low & NFR-P-4 \\
+		\hline
+		NFR5 & Documentation of code & Low & NFR-MS-1 \\
+		\hline
+		NFR6 & Modularized code & Medium & NFR-MS-2 \\
+		\hline
+		NFR7 & Coding style & Low & NFR-MS-3 \\
+		\hline
+		NFR8 & Game should not compromise security & High & NFR-SR-1 \\
+		\hline
+		NFR5 & Game should have a tutorial & High & NFR-UH-2\\
+		\hline
+		NFR11 & Game does not need internet & High & NFR-OE-1\\
+		\hline
+	\end{tabularx}
+	\end{adjustwidth}
+	\end{center}
+\end{table}
+
 \section{Trace to Modules}		
-
+\begin{table}[H]
+    \begin{center}
+	\caption{\bf Module Traceability Matrix}
+	\begin{adjustwidth}{-1.5cm}{}
+	\begin{tabularx}{1.2\textwidth}{|p{8cm}|X|}
+		\hline 
+		{\bf Test Cases}  & {\bf Modules Tested} \\
+		\hline
+		FR-ApplicationOptions & Menu\\
+		& GUI\\
+		\hline
+		FR-GamePlay & Piece\\
+		& Board\\
+		& AI\\
+		\hline
+		NFR-LookAndFeel & GUI\\
+		\hline
+		NFR-UsabilityAndHumanity& GUI\\
+		& Game\\
+		\hline
+		NFR-Performance & GUI\\
+		& Board\\
+		& Minmax\\
+		\hline
+	\end{tabularx}
+	\end{adjustwidth}
+	\end{center}
+\end{table}
 \section{Code Coverage Metrics}
+The unit tests written to test the board and piece class provide 100\% statement coverage of the two mnodules. We used pytest to run the tests and pytest-cov to generate the coverage results. The following image results from running the test cases and generating the coverage report. To run the tests yourself navigate to the scr folder and run make tests. To produce the coverage report yourself navigate to src folder and run make coverage.
 
-\bibliographystyle{plainnat}
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{Coverage.png}
+\caption{Code coverage}
+\label{FigUH}
+\end{figure}
+% \bibliographystyle{plainnat}
 
-\bibliography{SRS}
+% \bibliography{SRS}
 
 \end{document}

@@ -6,8 +6,10 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{graphicx}
+\usepackage{xcolor}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{soul}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -57,6 +59,9 @@
 2021/03/11 & 0 & Added likely and unlikely changes\\
 2021/03/14 & 0 & Added the traceability tables\\
 2021/03/18 & 0 & Added the section introducitons\\
+2021/04/12 & 1 & Updated Menu, Game and Piece Modules in Module Decomposition section\\
+2021/04/12 & 1 & Removed FR5, NFR3 from traceability table\\
+2021/04/12 & 1 & Updated UsesHierarchy image\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -103,7 +108,7 @@ In this section we discuss our module design. The modules are separated into Har
 \item [\refstepcounter{mnum} \mthemnum \label{mGUI}:] GUI Module
 \item [\refstepcounter{mnum} \mthemnum \label{mM}:] Menu Module
 \item [\refstepcounter{mnum} \mthemnum \label{mB}:] Board Module
-\item [\refstepcounter{mnum} \mthemnum \label{mG}:] GameLogic Module
+\item [\refstepcounter{mnum} \mthemnum \label{mG}:] Game Module
 \item [\refstepcounter{mnum} \mthemnum \label{mP}:] Piece Module
 \item [\refstepcounter{mnum} \mthemnum \label{mA}:] AI Module
 \end{description}
@@ -122,7 +127,7 @@ In this section we discuss our module design. The modules are separated into Har
 \multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & GUI Module\\
 & Menu Module\\
 & Board Module\\
-& GameLogic Module\\
+& Game Module\\
 & Piece Module\\
 \midrule
 
@@ -161,8 +166,8 @@ In this section we will discuss what modules our system have been decomposed int
 \subsubsection{Menu Module (\mref{mM})}
 
 \begin{description}
-\item[Secrets:] Manages the 'New Game' and 'Tutorial' logic.
-\item[Services:] Provides a way to restart the game and also provides instructions on how to play the game.
+\item[Secrets:] \st{Manages the 'New Game' and 'Tutorial' logic.} {\color{blue} Manages the logic for the Main Menu and the In-Game Menu.}
+\item[Services:] \st{Provides a way to select restart the game and also provides instructions on how to play the game.} \textcolor{blue} {Provides functionality for selecting game mode (1-player or 2-player), selecting piece color (red or white), restarting the game (new game) and also provides instructions on how to play the game (tutorial).}
 \item[Implemented By:] menu.py (Python)
 \end{description}
 
@@ -174,19 +179,19 @@ In this section we will discuss what modules our system have been decomposed int
 \item[Implemented By:] board.py (Python)
 \end{description}
 
-\subsubsection{GameLogic Module (\mref{mG})}
+\subsubsection{Game Module (\mref{mG})}
 
 \begin{description}
-\item[Secrets:] The checkers logic.
-\item[Services:] Determines the valid moves that can be made by any given piece. Tracks whether or not a win/loss state has been reached.
-\item[Implemented By:] gameLogic.py (Python)
+\item[Secrets:] \textcolor{blue}{\st{The checkers logic.} Manages user input to play the game.}
+\item[Services:] \textcolor{blue}{\st{ Determines the valid moves that can be made by any given piece. Tracks whether or not a win/loss state has been reached.} Determines what happens when user input is received.}
+\item[Implemented By:] game.py (Python)
 \end{description}
 
 \subsubsection{Piece Module (\mref{mP})}
 
 \begin{description}
-\item[Secrets:] Manages how the position of the piece.
-\item[Services:] Contains the information on where the piece is located and the direction(s) it can move.
+\item[Secrets:] \st{Manages how the position of the piece.} {\color{blue} Manages the position and state of a piece.}
+\item[Services:] \st{Contains the information on where the piece is located and the direction(s) it can move.} {\color{blue} Stores information about the piece's state. Provides functionality for moving a piece and for changing piece from 'man' to 'king'}
 \item[Implemented By:] piece.py (Python)
 \end{description}
 
@@ -210,25 +215,25 @@ This section shows two traceability matrices. The first shows the connection bet
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
 FR1 & \mref{mGUI}\\
-R2 & \mref{mGUI}, \mref{mM}\\
-R3 & \mref{mP}\\
-R4 & \mref{mP}\\
-R5 & \mref{mGUI}, \mref{mP}\\
+FR2 & \mref{mGUI}, \mref{mM}\\
+FR3 & \mref{mP}\\
+FR4 & \mref{mP}\\
+\textcolor{blue}{\st{FR5}} & \textcolor{blue}{\st{$\mref{mGUI}, \mref{mP}$}}\\
 FR6 & \mref{mGUI}, \mref{mB}, \mref{mG}\\
 FR7 & \mref{mGUI}, \mref{mM}\\
 FR8 & \mref{mB}, \mref{mG}\\
 FR9 & \mref{mB}, \mref{mG}\\
 FR10 & \mref{mGUI}, \mref{mG}\\
-R11 & \mref{mP}, \mref{mGUI}, \mref{mB}, \mref{mG}\\
+FR11 & \mref{mP}, \mref{mGUI}, \mref{mB}, \mref{mG}\\
 FR12 & \mref{mGUI}, \mref{mP}\\
 FR13 & \mref{mB}, \mref{mP}\\
 FR14 & \mref{mB}, \mref{mG}, \mref{mP}\\
 FR15 & \mref{mGUI}, \mref{mG}, \mref{mP}\\
 FR16 & \mref{mGUI}, \mref{mB}, \mref{mP}\\
-
+\textcolor{blue}{FR17} & \textcolor{blue}{\mref{mGUI}, \mref{mG}, \mref{mB}}\\
 NFR1 & \mref{mGUI}, \mref{mM}\\
 NFR2 & \mref{mGUI}\\
-NFR3 & \mref{mGUI}\\
+\textcolor{blue}{\st{NFR3}} & \textcolor{blue}{\st{$\mref{mGUI}$}}\\
 NFR4 & N/A\\
 NFR5 & \mref{mM}\\
 
