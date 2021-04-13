@@ -4,6 +4,8 @@
 \usepackage{tabularx}
 \usepackage{changepage}
 \usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{ulem}
 \usepackage{float}
 \hypersetup{
     colorlinks,
@@ -38,7 +40,21 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-March 5, 2021 & 1.0 & Revision 0 (all members)\\
+20201/03/50 & 0 & Revision 0 (all members)\\
+2021/04/11 & 1 & Updated the testing tools section\\
+2021/04/11 & 1 & Updated functional requirement test FR-AO-6\\
+2021/04/11 & 1 & Added functional requirement test FR-AO-7\\
+2021/04/11 & 1 & Updated functional requirement test FR-GP-7\\
+2021/04/11 & 1 & Removed test NFR-UH-1 because requirement was removed\\
+2021/04/12 & 1 & Added NFR-LF-1 to traceability matrix\\
+2021/04/12 & 1 & Updated NFR-OE-1\\
+2021/04/12 & 1 & Updated NFR-P-1\\
+2021/04/12 & 1 & Updated NFR-UH-2\\
+2021/04/12 & 1 & Updated NFR-SR-1\\
+2021/04/12 & 1 & Updated FR-GP-6\\
+2021/04/12 & 1 & Removed FR5\\
+2021/04/12 & 1 & Updated test case IDs and Requirement ID ordering in traceability matrix\\
+
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -102,7 +118,7 @@ Test team will consist of all three members of team namely Ardhendu, Thaneegan a
 We will use automated testing to perform unit testing and integration testing. We will need to use unit testing to ensure the application adheres to all the rules of checkers. We will provide the various functions with input and ensure the correct output. We will use unittest to automate the process, and we will run the tests any time one of the functions are modified. We will also use integration testing to ensure that different functions and modules interact with one another correctly. They will also be automated using unittest and will be run when any changes are made to one of the components or when a new component is added.
 
 \subsection{Testing Tools}
-We will be using unittest and vscode for testing the application. We will also use many different testing techniques. We will use a combination of whitebox, blackbox and exploratory testing to test the checkers logic and to test the GUI.
+We will be using \textcolor{blue}{\sout{unittest} pytest, pytest-cov} and vscode for testing the application. We will also use many different testing techniques. We will use a combination of whitebox, blackbox and exploratory testing to test the checkers logic and to test the GUI.
 
 \subsection{Testing Schedule}
 The Gantt chart illustrates the subtasks for tesing and the corresponding resource breakdown.
@@ -120,7 +136,7 @@ Please see the Gantt Chart at the following url: \href{https://gitlab.cas.mcmast
     
     Type: Functional, Manual
     
-    Initial State: Game is not launched (Clarify with TA).
+    Initial State: Game is not launched.
     					
     Input: Run the game/application.
     					
@@ -184,13 +200,26 @@ Please see the Gantt Chart at the following url: \href{https://gitlab.cas.mcmast
     \item{FR-AO-6}
     Type: Functional, Manual
     
-    Initial State: Tester has chosen 1-player mode.
+    Initial State: 
+    Tester has chosen 1-player mode.
     					
-    Input: Tester selects red/black as their colour.
+    Input: Tester selects red/white as their colour.
     					
-    Output: When game commences the Tester will be able to move the red/black pieces and the computer will move the black/red.
-    					
-    How test will be performed: Tester will choose the red pieces. When the game begins the Tester will move the red pieces to ensure the game allows it. This will be tested with FR-AO-4 to ensure that the computer then moves the black pieces. The Tester will make several more moves ensuring this pattern hold. The Tester will then start a new game (FR-AO-3) and choose the black pieces and repeat the process.
+    Output: 
+    When game commences the \textcolor{blue}{board will be displayed with the red/white pieces on the bottom of the board}. The tester will be able to move the red/white pieces and the computer will move the white/red.
+				
+    How test will be performed: Tester will choose \textcolor{blue}{1-player mode and} the red pieces. When the game begins the \textcolor{blue}{the tester will check that the red pieces are on the bottom of the board}. The tester will move the red pieces to ensure the game allows it. This will be tested with FR-AO-4 to ensure that the computer then moves the white pieces. The Tester will make several more moves ensuring this pattern holds. The Tester will then start a new game (FR-AO-3) and choose the white pieces and repeat the process.
+    
+    \item{}
+    \textcolor{blue}{FR-AO-7
+    Type: Functional, Manual\\
+    Initial State: 
+    Tester has chosen 2-player mode.\\
+    Input: Tester selects red/white as their colour.\\
+    Output: 
+    When game commences the board will be displayed with the red/white pieces on the bottom of the board. The tester will be able to alternate moving pieces, but regardless which colour is chosen to be on the bottom, a red piece must move first.\\
+    How test will be performed: Tester will choose 2-player mode and the red pieces. When the game begins the the tester will check that the red pieces are on the bottom of the board. The tester will move the a red pieces to ensure the game allows it and then move a white piece. The Tester will make several more moves ensuring this pattern holds. The Tester will then start a new game (FR-AO-3) and choose the white pieces and repeat the process ensuring that the red piece moves first.}
+    
 \end{enumerate}
 
 \subsubsection{Gameplay}
@@ -213,7 +242,7 @@ Please see the Gantt Chart at the following url: \href{https://gitlab.cas.mcmast
     					
     Input: Tester chooses to move the king piece.
     					
-    Output: The game will highlight the selected pieces and indicate all the possible moves that piece can make with small dots.
+    Output: The game will highlight the selected pieces and indicate all the possible moves that piece can make.
     					
     How test will be performed: Tester will play a game and select a king piece and make sure that the valid moves include moves in both directions.
     \item{FR-GP-3} 
@@ -257,9 +286,9 @@ Please see the Gantt Chart at the following url: \href{https://gitlab.cas.mcmast
     					
     Input: Tester chooses to move to an invalid square.
     					
-    Output: The game will notify the tester that the move was invalid, and the board will remain in the same state.
+    Output: \textcolor{blue}{The seldeted piece is unhighlighted\sout{ The game will notify the tester that the move was invalid,}} and the board will remain in the same state.
     					
-    How test will be performed: Tester will play a game and select one of their pieces. The tester will then choose to move to an invalid square and see if the they are notified that the move is invalid and that the board remains in it's current state.
+    How test will be performed: Tester will play a game and select one of their pieces. The tester will then choose to move to an invalid square and \textcolor{blue}{see if the selected piece is unhighlighted \sout{ if the they are notified that the move is invalid}} and that the board remains in it's current state.
     \item{FR-GP-7}
     Type: Functional, Manual
     
@@ -267,9 +296,10 @@ Please see the Gantt Chart at the following url: \href{https://gitlab.cas.mcmast
     					
     Input: Tester chooses a piece to move.
     					
-    Output: The game will notify the tester that it is not their turn and will not change the state of the board.
+    Output: \textcolor{blue}{\sout{The game will notify the tester that it is not their turn and will not change the state of the board.}\\
+    The application will not allow the user to select a piece.}
     					
-    How test will be performed: Tester will play a game while the computer is making a move the tester will attempt to move a piece. The tester will then note if the game notified them that is was not their turn and that the board did not change state.
+    How test will be performed: Tester will play a game while the computer is making a move the tester will attempt to move a piece. The tester will then note if the game \textcolor{blue}{\sout{notified them that is was not their turn and that the board did not change state} allows them to move a piece.}
 \end{enumerate}
 
 \paragraph{End of Game}
@@ -297,21 +327,33 @@ Please see the Gantt Chart at the following url: \href{https://gitlab.cas.mcmast
 \end{enumerate}
 \subsection{Tests for Nonfunctional Requirements}
 
+\subsubsection{Look and Feel}
+
+\begin{enumerate}
+\textcolor{blue}{
+\item{}NFR-LF-1\\ 
+Type: Non-functional, Manual\\
+Initial State: Game application is launched.\\
+Input/Condition: Play game.\\
+Output/Result: Users' opinion on how appealing the application is.\\
+How test will be performed: Tester will play the game and complete a survey question based on how they felt the application looked.}
+
+
+
+\end{enumerate}
+
 \subsubsection{Usability and Humanity}
 
 \begin{enumerate}
 
-\item{NFR-UH-1\\}
+\item{}
+\textcolor{blue}{\sout{NFR-UH-1\\
+Type: Non-functional, Manual\\
+Initial State: Game application is launched with default colour scheme.\\
+Input/Condition: Change colour scheme to the preference.\\
+Output/Result: Colour scheme is changed to one chosen by the user.\\
+How test will be performed: Tester will execute the steps to change colour scheme people .}}
 
-Type: Non-functional, Manual
-					
-Initial State: Game application is launched with default colour scheme.
-					
-Input/Condition: Change colour scheme to the preference.
-					
-Output/Result: Colour scheme is changed to one chosen by the user.
-					
-How test will be performed: Tester will execute the steps to change colour scheme people .
 
 \item{NFR-UH-2\\}
 
@@ -321,9 +363,9 @@ Initial State: Game application is launched.
 					
 Input/Condition: Select "Tutorial" option on main screen.
 					
-Output/Result: A pdf will open with all the instructions in it.
+Output/Result: \textcolor{blue}{\sout{PA pdf will open with all the instructions in it} A pop up will appear detailing how to use the application}.
 					
-How test will be performed: Tester will manually perform the steps to open the instructions.
+How test will be performed: Testers will launch application and attempt to play. \textcolor{blue}{They will view the tutorial and complete a survey answering if they found the tutorial helpful.}
 
 \end{enumerate}
 
@@ -341,7 +383,7 @@ Input: User clicks on new game button in menu.
 					
 Output: The board is reset to the initial state.
 					
-How test will be performed: A timer will be used to compute the time taken from when the user clicks on the spot they wish to move their piece to and when the board displays the updated state.
+How test will be performed: A timer will be used to compute the time taken from when the user clicks \textcolor{blue}{\sout{on the spot they wish to move their piece to and when the board displays the updated state.} on new game button and when the new game menu is shown.}
 
 \item{NFR-P-2\\}
 
@@ -395,7 +437,7 @@ Input/Condition: Disconnect from internet as well as remove any ethernet from co
 					
 Output/Result: Game launches and user is play is able to it.
 					
-How test will be performed: Tester will manually perform the steps to open the instructions.
+How test will be performed: \textcolor{blue}{\sout{Tester will manually perform the steps to open the instructions.} Tester will disconnect from internet and launch game to see if game functions. }
 
 \end{enumerate}
 
@@ -455,7 +497,7 @@ Input: Source code will be reviewed by tester through code inspection.
 					
 Output: Tester will determine if there are any requests for input that is not related to making a move on the checkers board or accessing a functionality on the menu.
 					
-How test will be performed: Tester will conduct a code inspection to identify any spots in the source code where they may be a security vulnerability. Tester will ensure no requests for external input is being made, outside of 1) making a move on the checkers board and 2) clicking on of the menu functionalities.
+How test will be performed: \textcolor{blue}{\sout{Tester will conduct a code inspection to identify any spots in the source code where they may be a security vulnerability.}} Tester will ensure no requests for external input is being made, outside of 1) making a move on the checkers board and 2) clicking on of the menu functionalities.
 \end{enumerate}
 
 \subsection{Traceability Between Test Cases and Requirements}
@@ -478,7 +520,7 @@ How test will be performed: Tester will conduct a code inspection to identify an
 		FR4 & Show valid moves & Medium & FR-GP-1\\
 		& & & FR-GP-2\\
 		\hline
-		FR5 & Invalid move notification & Medium & FR-GP-6\\
+		\textcolor{blue}{\sout{FR5}} & \textcolor{blue}{\sout{Invalid move notification}} & \textcolor{blue}{\sout{Medium }}& \textcolor{blue}{\sout{FR-GP-6}}\\
 		\hline
 		FR6 & Display is updated after each move & High & FR-GP-4\\
 		& & & FR-GP-3\\
@@ -497,7 +539,7 @@ How test will be performed: Tester will conduct a code inspection to identify an
 		\hline
 		FR12 & User's turn & High & FR-GP-7\\
 		\hline
-		FR13 & Black pieces have first turn & High &  FR-AO-6\\
+		FR13 & Red pieces have first turn & High &  FR-AO-6\\
 		\hline
 		FR14 & King pieces can move both ways & Medium & FR-GP-2\\
 		\hline
@@ -509,27 +551,27 @@ How test will be performed: Tester will conduct a code inspection to identify an
 	     &  &  & FR-AO-5\\
 		\hline
 		\hline
-		NFR1 & New game (response time) & Medium & NFR-P-1 \\
-		\hline
-		NFR2 & User makes a move (response time) & High & NFR-P-2 \\
-		\hline
-		NFR3 & AI makes a move (response time) & High & NFR-P-3 \\
-		\hline
-		NFR4 & FPS of application & Low & NFR-P-4 \\
-		\hline
-		NFR5 & Documentation of code & Low & NFR-MS-1 \\
-		\hline
-		NFR6 & Modularized code & Medium & NFR-MS-2 \\
-		\hline
-		NFR7 & Coding style & Low & NFR-MS-3 \\
-		\hline
-		NFR8 & Game should not compromise security & High & NFR-SR-1 \\
-		\hline
-		NFR3 & Game has different colour schemes & Medium & NFR-UH-1\\
+		\textcolor{blue}{NFR}1 & \textcolor{blue}{Look and feel of application} & \textcolor{blue}{Low} & \textcolor{blue}{NFR-LF-1}\\
 		\hline
 		NFR5 & Game should have a tutorial & High & NFR-UH-2\\
 		\hline
+		NFR6 & User makes a move (response time) & High & NFR-P-2 \\
+		\hline
+		NFR7 & AI makes a move (response time) & High & NFR-P-3 \\
+		\hline
+		NFR8 & New game (response time) & Medium & NFR-P-1 \\
+		\hline
+		NFR9 & FPS of application & Low & NFR-P-4 \\
+		\hline
 		NFR11 & Game does not need internet & High & NFR-OE-1\\
+		\hline
+		NFR12 & Documentation of code & Low & NFR-MS-1 \\
+		\hline
+		NFR13 & Modularized code & Medium & NFR-MS-2 \\
+		\hline
+		NFR14 & Coding style & Low & NFR-MS-3 \\
+		\hline
+		NFR15 & Game should not compromise security & High & NFR-SR-1 \\
 		\hline
 	\end{tabularx}
 	\end{adjustwidth}
