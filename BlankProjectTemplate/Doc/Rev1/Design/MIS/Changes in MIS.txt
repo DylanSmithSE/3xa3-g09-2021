@@ -1,0 +1,47 @@
+i) Changed name of gameLogic.py to game.py
+
+ii) Addition of following functions to board class
+	- def setBoard (self, gui, board=None)
+ 
+	- def move (self, piece, move, skipped)
+ 
+	- def remove (self, piece)
+ 
+	- def changeTurn (self)
+ 
+	- def checkGameEnd (self)
+ 
+	- def evaluateBoard (self)
+ 
+	- def getPieces (self, colour)
+ 
+	- def getValidMoves (self, piece)
+
+iii) Addition of following functions to GUI class
+	- def display_tutorial (self)
+ 
+	- def display_newgame (self)
+ 
+	- def display_winner (self, winner)
+
+	- def display_start (self)
+ 
+	- def display_choose_game_mode (self)
+ 
+	- def display_choose_color (self)
+ 
+	- def display_selected (self, turn)
+ 
+	- def reset_selected (self)
+ 
+	- def pass_selected (self, piece)
+
+	- def display_validMoves (self)
+ 
+	- def reset_validMoves (self)
+ 
+	- def pass_validMoves (self, moves)
+ 
+	- def update_message (self, message)
+ 
+	- def display_piece (self, colour, row, col)

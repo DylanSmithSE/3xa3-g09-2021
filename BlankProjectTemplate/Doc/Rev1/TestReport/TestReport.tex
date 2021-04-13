@@ -45,6 +45,7 @@
 \midrule
 2021/04/11 & 1 & Adding the functional and nonfuncitonal tests\\
 2021/04/12 & 1 & Adding the unit tests and automated testing\\
+2021/04/12 & 1 & Updating the functional tests\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -62,6 +63,7 @@ In this document we will cover the results of the testing procedures outlined in
 \paragraph{Homescreen Tests}
 \begin{enumerate}
     \item{FR-AO-1}
+    \label{FR-AO-1}
     
     Initial State: Game is not launched.
     
@@ -69,7 +71,8 @@ In this document we will cover the results of the testing procedures outlined in
     
     Output: Tester is greeted with the homescreen, and provided the option to choose game mode and piece colour.
     \item{FR-AO-2}
-        
+    \label{FR-AO-2}    
+    
     Initial State: Game is on the homescreen.
     
     Input: None.
@@ -80,6 +83,7 @@ In this document we will cover the results of the testing procedures outlined in
 \paragraph{New Game Tests}
 \begin{enumerate}
     \item{FR-AO-3}
+    \label{FR-AO-3}    
             
     Initial State: Game is is in progress.
     
@@ -91,6 +95,7 @@ In this document we will cover the results of the testing procedures outlined in
 \paragraph{Game Mode Tests}
 \begin{enumerate}
     \item{FR-AO-4}
+    \label{FR-AO-4}    
             
     Initial State: Game is on the homescreen.
     
@@ -98,7 +103,8 @@ In this document we will cover the results of the testing procedures outlined in
     
     Output: The application allowed the tester to make the first move when they chose red, and then the AI moved the white pieces. The AI made the first move when the tester selected the white pieces, and then waited for the tester to make a move. 
     \item{FR-AO-5}
-                
+    \label{FR-AO-5}    
+               
     Initial State: Game is on the homescreen.
     
     Input: Tester selects 2-player mode and plays 1 game as red and 1 game as white.
@@ -109,6 +115,7 @@ In this document we will cover the results of the testing procedures outlined in
 \paragraph{Colour Choice Tests}
 \begin{enumerate}
     \item{FR-AO-6/7}
+    \label{FR-AO-6/7}    
                 
     Initial State: Game is on the homescreen.
     
@@ -122,6 +129,7 @@ In this document we will cover the results of the testing procedures outlined in
 \paragraph{Valid Moves Tests}
 \begin{enumerate}
     \item{FR-GP-1/2}
+    \label{FR-GP-1/2}    
                     
     Initial State: Game is in progress and tester has at least 1 king and 1 regular piece.
     
@@ -129,44 +137,63 @@ In this document we will cover the results of the testing procedures outlined in
     
     Output: The piece the tester chose is highlighted along with all the valid moves that the piece can make according to the rules of checkers.
     \item{FR-GP-3}
+     \label{FR-GP-3}    
+                       
+    Initial State: Game is in progress and tester has 1 piece that can move to the last row on the opposite side of the board.
     
-    Test Description: Testing that pieces are kinged when they reach the opposite side of the board.
+    Input: Tester moves their piece to the last row.
     
-    Test Output: When a tester moved their piece to the opposite end of the board a crown was added to the piece and it was then able to move in any direction. 
+    Output: The piece is displayed with a crown and can now move in any directions.
     \item{FR-GP-4}
+    \label{FR-GP-4}    
+                        
+    Initial State: Game is in progress and the tester has one of their pieces selected.
     
-    Test Description: Testing that pieces move.
+    Input: Tester chose to move to one of the valid squares.
     
-    Test Output: When a tester selected a piece, it and the valid moves were highlighted. When the tester chose to move that piece to one of the valid squares the application moved the piece. 
+    Output: The application displayed the piece in the new square.
     \item{FR-GP-5}
+     \label{FR-GP-5}    
+                       
+    Initial State: A game is in progress and the tester can capture an opposing piece.
     
-    Test Description: Testing that pieces can capture opposing pieces.
+    Input: Tester chose to capture the piece.
     
-    Test Output: When a tester selected a piece, it and the valid moves were highlighted. When the tester chose to move that piece to one of the valid squares, that captured an opposing piece, the application moved the piece and removed the captured piece(s).
+    Output: The application move the piece to the new square and removed the captured piece.
 \end{enumerate}
 
-\paragraph{Invalid Moves}
+\paragraph{Invalid Move Tests}
 \begin{enumerate}
     \item{FR-GP-6}
+    \label{FR-GP-6}    
+                        
+    Initial State: Game is in progress and tester has selected a piece.
     
-    Test Description: Testing that user can not make invalid moves.
+    Input: Tester chose to move to a square that was not highlighted.
     
-    Test Output: When the tester selected a piece, and chose to move the piece to an invalid square, the board did not change and the piece that was selected became unhighlighted.
+    Output: The board remains the same an the same and the selected piece becomes unhighlighted.
     \item{FR-GP-7}
+    \label{FR-GP-7}    
+                    
+    Initial State: Game is in progress and it is the AI's turn to move a piece.
     
-    Test Description: Testing that user can not make invalid moves.
+    Input: Tester attempts to select a piece.
     
-    Test Output: When the tester selected a piece, and chose to move the piece to an invalid square, the board did not change and the piece that was selected became unhighlighted.
+    Output: The application did not allow the tester to chose a piece.
 \end{enumerate}
 
 \paragraph{End of Game}
 \begin{enumerate}
     \item{FR-GP-8/9}
+    \label{FR-GP-8/9}
+                        
+    Initial State: Game is in progress and tester is 1 move from winning/losing.
     
-    Test Description: Testing that the end of game can be reached.
+    Input: Tester makes the winning/losing move.
     
-    Test Output: Tester played a game and won, when they made their final move the application displayed a message indicating what colour won and what colour lost. The tester then played a game and lost, when they ran out of moves the application displayed a message indicating what colour won and what co lout lost.
-\end{enumerate}
+    Output: The application displays the game over screen displaying who won and who lost.
+    
+ \end{enumerate}
 
 \section{Nonfunctional Requirements Evaluation}
 For several of the Non functional requirements testing was done by having testers use the application and complete a survey. The results of the surveys will be mentioned with the corresponding test results.
@@ -174,7 +201,8 @@ For several of the Non functional requirements testing was done by having tester
 \subsection{Look and Feel}
 \begin{enumerate}
     \item {NFR-LF-1}
-
+    \label{NFR-LF-1}    
+    
     Test Description: Testing that at least 90\% of testers found the application visually appealing.
     
     Test Output: 100\% of testers felt the appearance of the application was visually appealing.
@@ -183,7 +211,8 @@ For several of the Non functional requirements testing was done by having tester
 \subsection{Usability}
 \begin{enumerate}
     \item {NFR-UH-2}
-
+    \label{NFR-UH-2}    
+    
     Test Description: Testing that the tutorial explains how to use the application.
     
     Test Output: 100\% of users said that they found the tutorial helpful when learning to use the application.
@@ -192,17 +221,20 @@ For several of the Non functional requirements testing was done by having tester
 \subsection{Performance}
 \begin{enumerate}
     \item {NFR-P-1}
-
+    \label{NFR-P-1}    
+    
     Test Description: Timing how long it takes for the application to reset the board when the user chooses start a new game.
     
     Test Output: It took less than 3 seconda for the application to update the display after the tester chose to start a new game.
     \item {NFR-P-2}
-
+    \label{NFR-P-2}    
+    
     Test Description: Timing how long it takes for the application to register a users move.
     
     Test Output: It took less than 1 second for the application to update the display after the tester made their move.
     \item {NFR-P-3}
-
+    \label{NFR-P-3}    
+    
     Test Description: Timing how long it takes for the AI to move.
     
     Test Output: It took less than 1 second for the application to update the display with the AI move, after the tester made a move.
@@ -211,7 +243,8 @@ For several of the Non functional requirements testing was done by having tester
 \subsection{Operational and Environment}
 \begin{enumerate}
     \item {NFR-OE-1}
-
+    \label{NFR-OE-1}    
+    
     Test Description: Testing that the application does not require internet.
     
     Test Output: When tester disconnected from internet the application continued to work correctly.
@@ -220,12 +253,14 @@ For several of the Non functional requirements testing was done by having tester
 \subsection{Maintainability and Support}
 \begin{enumerate}
     \item {NFR-MS-1}
-
+    \label{NFR-MS-1}    
+    
     Test Description: Testing that the source code is documented.
     
     Test Output: Tester was able to generate documentation.
     \item {NFR-MS-3}
-
+    \label{NFR-MS-3}    
+    
     Test Description: Testing that the source code follows the pep8 format.
     
     Test Output: Tester did not significant discrepancies in the formatting.
@@ -362,66 +397,60 @@ We used pytest to automate our unit tests. We also used pytest-cov to generate a
 		\hline 
 		{\bf Requirement ID}  & {\bf Requirement Description} & {\bf Priority} & {\bf Test Case ID} \\
 		\hline
-		FR1 & Home Screen & High & FR-AO-1\\
-		& & & FR-AO-2\\
+		FR1 & Home Screen & High & \hyperref[FR-AO-1]{FR-AO-1}\\
+		& & & \hyperref[FR-AO-2]{FR-AO-2}\\
 		\hline
-		FR2 & Allow user to choose piece colour & Low & FR-AO6\\
+		FR2 & Allow user to choose piece colour & Low & \hyperref[FR-AO-6/7]{FR-AO6}\\
 		\hline
-		FR3 & Allow only valid moves & High & FR-GP-6\\
+		FR3 & Allow only valid moves & High & \hyperref[FR-GP-6]{FR-GP-6}\\
 		\hline
-		FR4 & Show valid moves & Medium & FR-GP-1\\
-		& & & FR-GP-2\\
+		FR4 & Show valid moves & Medium & \hyperref[FR-GP-1/2]{FR-GP-1}\\
+		& & & \hyperref[FR-GP-1/2]{FR-GP-2}\\
 		\hline
-		FR6 & Display is updated after each move & High & FR-GP-4\\
-		& & & FR-GP-3\\
-		& & & FR-GP-5\\
+		FR6 & Display is updated after each move & High & \hyperref[FR-GP-4]{FR-GP-4}\\
+		& & & \hyperref[FR-GP-3]{FR-GP-3}\\
+		& & & \hyperref[FR-GP-5]{FR-GP-5}\\
 		\hline
-		FR7 & Start new game & Medium & FR-AO-3\\
-		& & & FR-AO-6\\
+		FR7 & Start new game & Medium & \hyperref[FR-AO-3]{FR-AO-3}\\
+		& & & \hyperref[FR-AO-6/7]{FR-AO-6}\\
 		\hline
-		FR8 & Win state & High & FR-GP-8 \\
+		FR8 & Win state & High & \hyperref[FR-GP-8/9]{FR-GP-8} \\
 		\hline
-		FR9 & Loss state & High & FR-GP-9 \\
+		FR9 & Loss state & High & \hyperref[FR-GP-8/9]{FR-GP-9} \\
 		\hline
-		FR10 & Win/Loss state notification & Medium & FR-GP-8 \\
+		FR10 & Win/Loss state notification & Medium & \hyperref[FR-GP-8/9]{FR-GP-8} \\
 		\hline
-		FR11 & Remove jumped pieces & High & FR-GP-5\\
+		FR11 & Remove jumped pieces & High & \hyperref[FR-GP-5]{FR-GP-5}\\
 		\hline
-		FR12 & User's turn & High & FR-GP-7\\
+		FR12 & User's turn & High & \hyperref[FR-GP-7]{FR-GP-7}\\
 		\hline
-		FR13 & Red pieces have first turn & High &  FR-AO-6\\
+		FR13 & Red pieces have first turn & High &  \hyperref[FR-AO-6/7]{FR-AO-6}\\
 		\hline
-		FR14 & King pieces can move both ways & Medium & FR-GP-2\\
+		FR14 & King pieces can move both ways & Medium & \hyperref[FR-GP-1/2]{FR-GP-2}\\
 		\hline
-		FR15 & Piece Promotion & High & FR-GP-3\\
+		FR15 & Piece Promotion & High & \hyperref[FR-GP-3]{FR-GP-3}\\
 		\hline
-		FR16 & Highlight selected piece & Low & FR-GP-1\\
+		FR16 & Highlight selected piece & Low & \hyperref[FR-GP-1/2]{FR-GP-1}\\
 		\hline
-		FR17 & Different game modes & Low & FR-AO-4\\
-	     &  &  & FR-AO-5\\
+		FR17 & Different game modes & Low & \hyperref[FR-AO-4]{FR-AO-4}\\
+	     &  &  & \hyperref[FR-AO-5]{FR-AO-5}\\
 		\hline
 		\hline
-		NFR1 & Look and feel of application & Low & NFR-LF-1\\
+		NFR1 & Look and feel of application & Low & \hyperref[NFR-LF-1]{NFR-LF-1}\\
 		\hline
-		NFR2 & New game (response time) & Medium & NFR-P-1 \\
+		NFR2 & New game (response time) & Medium & \hyperref[NFR-P-1]{NFR-P-1} \\
 		\hline
-		NFR3 & User makes a move (response time) & High & NFR-P-2 \\
+		NFR3 & User makes a move (response time) & High & \hyperref[NFR-P-2]{NFR-P-2} \\
 		\hline
-		NFR3 & AI makes a move (response time) & High & NFR-P-3 \\
+		NFR3 & AI makes a move (response time) & High &\hyperref[NFR-P-3]{NFR-P-3}  \\
 		\hline
-		NFR4 & FPS of application & Low & NFR-P-4 \\
+		NFR5 & Documentation of code & Low & \hyperref[NFR-MS-1]{NFR-MS-1} \\
 		\hline
-		NFR5 & Documentation of code & Low & NFR-MS-1 \\
+		NFR7 & Coding style & Low & \hyperref[NFR-MS-3]{NFR-MS-3} \\
 		\hline
-		NFR6 & Modularized code & Medium & NFR-MS-2 \\
+		NFR5 & Game should have a tutorial & High & \hyperref[NFR-UH-2]{NFR-UH-2}\\
 		\hline
-		NFR7 & Coding style & Low & NFR-MS-3 \\
-		\hline
-		NFR8 & Game should not compromise security & High & NFR-SR-1 \\
-		\hline
-		NFR5 & Game should have a tutorial & High & NFR-UH-2\\
-		\hline
-		NFR11 & Game does not need internet & High & NFR-OE-1\\
+		NFR11 & Game does not need internet & High & \hyperref[NFR-OE-1]{NFR-OE-1}\\
 		\hline
 	\end{tabularx}
 	\end{adjustwidth}
