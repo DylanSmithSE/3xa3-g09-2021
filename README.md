@@ -1,6 +1,6 @@
 # Kingme 3XA3-G09-2021
 
-Kingme is a checkers game.
+Kingme is a checkers application that I created for my Software Project Management course (3XA3), along with Thaneegan and Ardhendu. We reimplemented an open source project by [Codeofcarsen](https://github.com/codeofcarson/Checkers) (see documentation for design decisions with further details).
 
 ## Installation
 
@@ -15,7 +15,6 @@ pip install pygame
 ```python
 cd BlankProjectTemplate/src
 python main.py
-or 
+or
 python3 main.py
 ```
-
